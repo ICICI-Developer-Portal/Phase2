@@ -1212,7 +1212,7 @@ for (var i=0; i<this.additionalParams.length; i++) {
       env: 'UAT',
       ips: this.objOnB.txtIPAddress,
       callbackUrl: this.objOnB.txtCallbackURL,
-      // "file1":file
+      file1:this.objOnB.file1
     };
 
     const formData = new FormData();
@@ -1392,47 +1392,53 @@ for (var i=0; i<this.additionalParams.length; i++) {
     }
 
     this.collection =
-      this.edit_data.AccountNo +
-      ' ' +
-      this.edit_data.CmsClientCode +
-      ' ' +
-      this.edit_data.url +
-      ' ' +
-      this.edit_data.Ip +
-      ' ' +
-      this.edit_data.Port +
-      ' ' +
-      this.edit_data.Checksum +
-      ' ' +
-      this.edit_data.Encryption +
-      ' ' +
-      this.edit_data.Certificate +
-      ' ' +
-      this.edit_data.web +
-      ' ' +
-      this.edit_data.message +
-      ' ' +
-      this.edit_data.ModeOffered +
-      ' ' +
-      this.edit_data.noOftransaction +
-      ' ' +
-      this.edit_data.transactionLimit +
-      ' ' +
-      this.edit_data.ammountField +
-      ' ' +
-      this.edit_data.URN1 +
-      ' ' +
-      this.edit_data.URN2 +
-      ' ' +
-      this.edit_data.DiscText +
-      ' ' +
-      this.edit_data.IFSC_Code +
-      ' ' +
-      this.edit_data.vertualCode +
-      ' ' +
-      this.edit_data.refundCode +
-      ' ' +
-      this.edit_data.Account_no;
+    this.objOnB.AccountNo +
+    ' ' +
+    this.objOnB.CmsClientCode +
+    ' ' +
+    this.objOnB.url +
+    ' ' +
+    this.objOnB.Ip +
+    ' ' +
+    this.objOnB.Port +
+    ' ' +
+    this.objOnB.Checksum +
+    ' ' +
+    this.objOnB.Encryption +
+    ' ' +
+    this.objOnB.Certificate +
+    ' ' +
+    this.objOnB.web +
+    ' ' +
+    this.objOnB.message +
+    ' ' +
+    this.objOnB.IFSC_Code +
+    ' ' +
+    this.objOnB.virtualCode +
+    ' ' +
+    this.objOnB.refundCode +
+    ' ' +
+    this.objOnB.Account_no +
+    ' ' +
+    this.objOnB.Acc_name +
+    ' ' +
+    this.objOnB.Auth_level +
+    ' ' +
+    this.objOnB.Urn +
+    ' ' +
+    this.objOnB.Acc_env +
+    ' ' +
+    this.objOnB.Acc_validation +
+    ' ' +
+    this.objOnB.Acc_acceptance +
+    ' ' +
+    this.objOnB.Rec_mail +
+    ' ' +
+    this.objOnB.Acc_mode +
+    ' ' +
+    this.objOnB.Acc_trans +
+    ' ' +
+    this.objOnB.Acc_amount;
 
     var inputFields = {
       userName: localStorage.getItem('username'),
@@ -1446,7 +1452,7 @@ for (var i=0; i<this.additionalParams.length; i++) {
       env: 'PROD',
       ips: this.edit_data['whitelistIpInputModal'],
       callbackUrl: this.edit_data['CallbackUrl'],
-      file2: '',
+      file2: this.edit_data.file2,
       jiraRefId: this.JiraIdnew,
     };
 
@@ -1468,7 +1474,7 @@ for (var i=0; i<this.additionalParams.length; i++) {
 
     let a: any = (<HTMLInputElement>document.getElementById('file2')).files;
     for (let k = 0; k < a.length; k++) {
-      formData.append('file1', a[k]);
+      formData.append('file2', a[k]);
     }
     formData.append('jiraRefId', this.JiraIdnew);
     //console.log(formData);
@@ -1481,7 +1487,7 @@ for (var i=0; i<this.additionalParams.length; i++) {
         if (res.success === 'true') {
           //File upload service
           var formData = new FormData();
-          let b: any = (<HTMLInputElement>document.getElementById('file1'))
+          let b: any = (<HTMLInputElement>document.getElementById('file2'))
             .files;
           for (let k = 0; k < b.length; k++) {
             formData.append(res.jiraId, b[k]);

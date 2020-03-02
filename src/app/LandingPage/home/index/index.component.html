@@ -2644,14 +2644,14 @@
                    id="file1"
                    (change)="picked($event)"
                    type="file"
-                   [(ngModel)]="objOnB.txtFile"
-                   #txtFile="ngModel"
-                   name="txtFile"
+                   [(ngModel)]="objOnB.file1"
+                   #file1="ngModel"
+                   name="file1"
                    mdbInputDirective
                    required
                  />
                  <div
-                   *ngIf="txtFile.invalid && txtFile.dirty"
+                   *ngIf="file1.invalid && file1.dirty"
                    class="text-danger form-error"
                  >
                    File is required.
@@ -2959,7 +2959,7 @@
                  required
                />
                <div
-                 *ngIf="txtFile1.invalid && txtFile1.dirty"
+                 *ngIf="file2.invalid && file2.dirty"
                  class="text-danger form-error"
                >
                  File is required.
