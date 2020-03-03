@@ -1210,8 +1210,8 @@ for (var i=0; i<this.additionalParams.length; i++) {
       spocPhone: this.objOnB.txtContactNumber,
       relManager: this.objOnB.txtRelManager,
       env: 'UAT',
-      ips: this.objOnB.txtIPAddress,
-      callbackUrl: this.objOnB.txtCallbackURL,
+      ips: '',
+      callbackUrl: '',
       file1:this.objOnB.file1
     };
 
@@ -1382,63 +1382,63 @@ for (var i=0; i<this.additionalParams.length; i++) {
     this.shfrmProdFirst = false;
     this.shfrmProdSecond = false;
     var ips = [];
-    for (var i = 0; i < this.edit_data.txtSubDomain.length; ++i) {
+    for (var i = 0; i < this.edit_data.DomainApi.length; ++i) {
       ips.push(
-        this.edit_data.txtSubDomain[i].itemName +
+        this.edit_data.DomainApi[i].itemName +
           ' (' +
-          this.edit_data.txtSubDomain[i].id +
+          this.edit_data.DomainApi[i].id +
           ')',
       );
     }
 
     this.collection =
-    this.objOnB.AccountNo +
+    this.edit_data.AccountNo +
     ' ' +
-    this.objOnB.CmsClientCode +
+    this.edit_data.CmsClientCode +
     ' ' +
-    this.objOnB.url +
+    this.edit_data.url +
     ' ' +
-    this.objOnB.Ip +
+    this.edit_data.Ip +
     ' ' +
-    this.objOnB.Port +
+    this.edit_data.Port +
     ' ' +
-    this.objOnB.Checksum +
+    this.edit_data.Checksum +
     ' ' +
-    this.objOnB.Encryption +
+    this.edit_data.Encryption +
     ' ' +
-    this.objOnB.Certificate +
+    this.edit_data.Certificate +
     ' ' +
-    this.objOnB.web +
+    this.edit_data.web +
     ' ' +
-    this.objOnB.message +
+    this.edit_data.message +
     ' ' +
-    this.objOnB.IFSC_Code +
+    this.edit_data.IFSC_Code +
     ' ' +
-    this.objOnB.virtualCode +
+    this.edit_data.virtualCode +
     ' ' +
-    this.objOnB.refundCode +
+    this.edit_data.refundCode +
     ' ' +
-    this.objOnB.Account_no +
+    this.edit_data.Account_no +
     ' ' +
-    this.objOnB.Acc_name +
+    this.edit_data.Acc_name +
     ' ' +
-    this.objOnB.Auth_level +
+    this.edit_data.Auth_level +
     ' ' +
-    this.objOnB.Urn +
+    this.edit_data.Urn +
     ' ' +
-    this.objOnB.Acc_env +
+    this.edit_data.Acc_env +
     ' ' +
-    this.objOnB.Acc_validation +
+    this.edit_data.Acc_validation +
     ' ' +
-    this.objOnB.Acc_acceptance +
+    this.edit_data.Acc_acceptance +
     ' ' +
-    this.objOnB.Rec_mail +
+    this.edit_data.Rec_mail +
     ' ' +
-    this.objOnB.Acc_mode +
+    this.edit_data.Acc_mode +
     ' ' +
-    this.objOnB.Acc_trans +
+    this.edit_data.Acc_trans +
     ' ' +
-    this.objOnB.Acc_amount;
+    this.edit_data.Acc_amount;
 
     var inputFields = {
       userName: localStorage.getItem('username'),
