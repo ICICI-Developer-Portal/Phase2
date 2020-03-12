@@ -525,3 +525,6 @@ input[type="number"] {
 .docBtn {
   margin-left: 10px;
 }
+.txtAlign{
+text-align: center;
+}

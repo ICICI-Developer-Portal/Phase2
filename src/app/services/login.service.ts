@@ -392,7 +392,12 @@ export class LoginService {
     return this.http.post(this.apiUrl + 'load-api-data', query, options);
     //return this.http.get(this.apiUrl+'load-api-data'+json);
   }
-
+  api_description(id) {
+    return this.http.get(
+      'https://developer.icicibank.com/rest/getMenuDescription?ID=' +
+        id,
+    );
+  }
   // Get error code of documentation page
 
   error_code() {

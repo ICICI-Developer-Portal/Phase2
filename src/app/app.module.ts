@@ -23,6 +23,7 @@ import {
 import { SigninModalComponent } from './LandingPage/home/common-modal/signin-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToasterModule, ToasterService } from 'angular2-toaster';
+// import { BranchDetailsComponent } from './documentation-dashb/branch-details/branch-details.component';
 @NgModule({
   declarations: [AppComponent, AdminPortalComponent, SigninModalComponent],
   imports: [
