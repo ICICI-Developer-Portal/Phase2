@@ -14,11 +14,12 @@
             id="v-pills-tab"
             role="tablist"
             aria-orientation="vertical"
+            [innerHTML]="createTree()"  
           >
             <!-- <div class="searchBar" [routerLink]="['/viewallapi']" style="cursor: pointer;">
                       <input style="cursor: pointer;" readonly="true" type="text" placeholder="Search API by Name, Description"><i class="material-icons">search</i>
                    </div> -->
-            <li class="nav-link active">
+            <!-- <li class="nav-link active">
               <a
                 id="v-pills-home-tab"
                 [routerLink]="['/documentation']"
@@ -30,8 +31,88 @@
               >
                 Introduction
               </a>
-            </li>
+            </li> -->
             <!-- Buidling Block-->
+            <!-- {{ treeData[key]['nodes'][key]['DETAILS'].TAB_NAME
+                }} -->
+            <!-- <li class="nav-link" *ngFor="let val of treeVal; let i = index">
+              <a
+                id="v-pills-messages-tab"
+                [routerLink]="['/buildingblock']"
+                data-toggle="pill"
+                href="javascript:;"
+                role="tab"
+                aria-controls="v-pills-messages"
+                aria-selected="false"
+                >{{ val.TAB_NAME
+                }}<img
+                  class="dropdownIcon"
+                  src="assets/images/dropdown-2.svg"
+                  alt=""
+                />
+              </a>
+
+              <ul
+                class="collapse nav-pills-first-level submenuLevelOne list-unstyled"
+                *ngIf="val.CHILD_COUNT > 0"
+                [innerHTML]="getTreeNodesData()"
+              ></ul>
+
+              <ul
+                class="collapse nav-pills-first-level submenuLevelOne list-unstyled"
+                *ngIf="val.CHILD_COUNT > 0"
+              >
+                <li
+                  class="nav-link"
+                  *ngFor="let val of treeVal[i].child; let j = index"
+                >
+                  <a
+                    [routerLink]="['/offers']"
+                    id="v-pills-collect-from-VPA-tab"
+                    data-toggle="pill"
+                    href="javascript:;"
+                    role="tab"
+                    aria-controls="v-pills-collect-from-VPA"
+                    aria-selected="false"
+                    >{{ val.TAB_NAME }}
+                    <img
+                      class="dropdownIcon"
+                      src="assets/images/dropdown-2.svg"
+                      alt=""
+                    />
+                  </a>
+                  <ul
+                    class="submenuLevelTwo nav-pills-first-level collapse list-unstyled"
+                  >
+                    <li class="nav-link">
+                      <a
+                        id="v-pills-List-Customer-Accounts-tab"
+                        href="javascript:;"
+                        data-toggle="pill"
+                        role="tab"
+                        aria-selected="false"
+                        (click)="AppId('431')"
+                      >
+                        Get Pre approved offers
+                      </a>
+                    </li>
+                    <li class="nav-link">
+                      <a
+                        id="v-pills-List-Customer-Accounts-tab"
+                        href="javascript:;"
+                        data-toggle="pill"
+                        role="tab"
+                        aria-selected="false"
+                        (click)="AppId('432')"
+                      >
+                        Get Pre approved offers On Customer ID
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li> -->
+
             <li class="nav-link">
               <a
                 id="v-pills-messages-tab"
@@ -1428,7 +1509,7 @@
                         role="tab"
                         aria-selected="false"
                       >
-                      Paylater with EMI<img
+                        Paylater with EMI<img
                           class="dropdownIcon"
                           src="assets/images/dropdown-2.svg"
                           alt=""
@@ -1446,7 +1527,7 @@
                             aria-selected="false"
                             (click)="AppId('1228')"
                           >
-                          Account closure
+                            Account closure
                           </a>
                         </li>
                         <li class="nav-link">
@@ -1458,7 +1539,7 @@
                             aria-selected="false"
                             (click)="AppId('1227')"
                           >
-                          Foreclosure amount
+                            Foreclosure amount
                           </a>
                         </li>
                         <li class="nav-link">
@@ -1470,7 +1551,7 @@
                             aria-selected="false"
                             (click)="AppId('1226')"
                           >
-                          Re-Payment of loan
+                            Re-Payment of loan
                           </a>
                         </li>
                         <li class="nav-link">
@@ -1482,7 +1563,7 @@
                             aria-selected="false"
                             (click)="AppId('1225')"
                           >
-                          Bill Inquiry
+                            Bill Inquiry
                           </a>
                         </li>
                         <li class="nav-link">
@@ -1494,7 +1575,7 @@
                             aria-selected="false"
                             (click)="AppId('1224')"
                           >
-                          Account Inquiry
+                            Account Inquiry
                           </a>
                         </li>
                         <li class="nav-link">
@@ -1506,57 +1587,58 @@
                             aria-selected="false"
                             (click)="AppId('1223')"
                           >
-                          Amortization Schedule
+                            Amortization Schedule
                           </a>
                         </li>
                         <li class="nav-link">
-                           <a
-                             id="v-pills-List-Customer-Accounts-tab"
-                             href="javascript:;"
-                             data-toggle="pill"
-                             role="tab"
-                             aria-selected="false"
-                             (click)="AppId('1222')"
-                           >
-                           Loan disbursement
-                           </a>
-                         </li>
-                         <li class="nav-link">
-                           <a
-                             id="v-pills-List-Customer-Accounts-tab"
-                             href="javascript:;"
-                             data-toggle="pill"
-                             role="tab"
-                             aria-selected="false"
-                             (click)="AppId('1221')"
-                           >
-                           Loan Creation 
-                           </a>
-                         </li>
-                         <li class="nav-link">
-                           <a
-                             id="v-pills-List-Customer-Accounts-tab"
-                             href="javascript:;"
-                             data-toggle="pill"
-                             role="tab"
-                             aria-selected="false"
-                             (click)="AppId('1220')"
-                           >
-                           Loan Creation for existing Account holder and Auto debit.
-                           </a>
-                         </li>
-                         <li class="nav-link">
-                           <a
-                             id="v-pills-List-Customer-Accounts-tab"
-                             href="javascript:;"
-                             data-toggle="pill"
-                             role="tab"
-                             aria-selected="false"
-                             (click)="AppId('1219')"
-                           >
-                           Get Saving Account details
-                           </a>
-                         </li>
+                          <a
+                            id="v-pills-List-Customer-Accounts-tab"
+                            href="javascript:;"
+                            data-toggle="pill"
+                            role="tab"
+                            aria-selected="false"
+                            (click)="AppId('1222')"
+                          >
+                            Loan disbursement
+                          </a>
+                        </li>
+                        <li class="nav-link">
+                          <a
+                            id="v-pills-List-Customer-Accounts-tab"
+                            href="javascript:;"
+                            data-toggle="pill"
+                            role="tab"
+                            aria-selected="false"
+                            (click)="AppId('1221')"
+                          >
+                            Loan Creation
+                          </a>
+                        </li>
+                        <li class="nav-link">
+                          <a
+                            id="v-pills-List-Customer-Accounts-tab"
+                            href="javascript:;"
+                            data-toggle="pill"
+                            role="tab"
+                            aria-selected="false"
+                            (click)="AppId('1220')"
+                          >
+                            Loan Creation for existing Account holder and Auto
+                            debit.
+                          </a>
+                        </li>
+                        <li class="nav-link">
+                          <a
+                            id="v-pills-List-Customer-Accounts-tab"
+                            href="javascript:;"
+                            data-toggle="pill"
+                            role="tab"
+                            aria-selected="false"
+                            (click)="AppId('1219')"
+                          >
+                            Get Saving Account details
+                          </a>
+                        </li>
                       </ul>
                     </li>
                   </ul>

@@ -39,4 +39,9 @@ export class DashboardService {
       options,
     );
   }
+  getMenuTreeData() {
+    return this.http.get(
+      'https://developer.icicibank.com/rest/getMenuTree?ID=0',
+    );
+  }
 }

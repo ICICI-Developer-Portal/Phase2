@@ -19,6 +19,11 @@ import { NDAComponent } from './nda/nda.component';
 import { ContractComponent } from './contract/contract.component';
 
 import { ResetComponent } from './reset_password/reset.component';
+import {
+  MatAutocompleteModule,
+  MatFormFieldModule,
+  MatInputModule,
+} from '@angular/material';
 // import { CommonSigninModalComponent } from './common-signin-modal/common-signin-modal.component';
 
 @NgModule({
@@ -34,6 +39,9 @@ import { ResetComponent } from './reset_password/reset.component';
     ReactiveFormsModule,
     // NgMultiSelectDropDownModule.forRoot(),
     AngularMultiSelectModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   declarations: [
     HomeComponent,

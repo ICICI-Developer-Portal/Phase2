@@ -23,6 +23,11 @@ import {
 import { SigninModalComponent } from './LandingPage/home/common-modal/signin-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToasterModule, ToasterService } from 'angular2-toaster';
+import {
+  MatAutocompleteModule,
+  MatFormFieldModule,
+  MatInputModule,
+} from '@angular/material';
 @NgModule({
   declarations: [AppComponent, AdminPortalComponent, SigninModalComponent],
   imports: [
@@ -40,6 +45,9 @@ import { ToasterModule, ToasterService } from 'angular2-toaster';
     FormsModule,
     ReactiveFormsModule,
     ToasterModule.forRoot(),
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

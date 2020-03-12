@@ -54,7 +54,11 @@ import { EcollectionComponent } from './Sidenav-pages/Sidenav-Subpages/ecollecti
 import { IsurepayComponent } from './Sidenav-pages/Sidenav-Subpages/isurepay/isurepay.component';
 import { RemittanceComponent } from './Sidenav-pages/Sidenav-Subpages/remittance/remittance.component';
 import { CompositepayComponent } from './Sidenav-pages/Sidenav-Subpages/compositepay/compositepay.component';
-
+import {
+  MatAutocompleteModule,
+  MatFormFieldModule,
+  MatInputModule,
+} from '@angular/material';
 @NgModule({
   imports: [
     CommonModule,
@@ -68,6 +72,9 @@ import { CompositepayComponent } from './Sidenav-pages/Sidenav-Subpages/composit
     //  NgMultiSelectDropDownModule.forRoot(),
     NgxPaginationModule,
     Ng2SearchPipeModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   declarations: [
     DocumentationDashbComponent,

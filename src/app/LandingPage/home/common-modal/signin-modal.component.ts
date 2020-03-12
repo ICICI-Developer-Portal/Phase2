@@ -62,6 +62,8 @@ export class SigninModalComponent implements OnInit {
   domainLst: any[];
   loginResponse: any;
   currentPath: string;
+  companyNamesDetails: any;
+  companyNames: any;
   constructor(
     private SessionService: SessionService,
     private authService: AuthService,
@@ -623,5 +625,15 @@ export class SigninModalComponent implements OnInit {
   }
   modalRef4Close() {
     this.modalRef4.hide();
+  }
+
+  //componay name autocomplete
+  getCompanyName(companyName) {
+    this.adm.getCompanyName(companyName).subscribe(data => {
+      if (data.status === 200) {
+        this.companyNamesDetails = data;
+        this.companyNames = JSON.parse(this.companyNamesDetails._body);
+      }
+    });
   }
 }

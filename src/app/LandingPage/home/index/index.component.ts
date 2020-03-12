@@ -113,6 +113,8 @@ export class IndexComponent implements OnInit {
   ipAddressErrorMsg: string = '';
   portNumErrorMsg: string = '';
   urlErrorMsg: string = '';
+  companyNamesDetails: any;
+  companyNames: any;
 
   constructor(
     private HttpClient: HttpClient,
@@ -1351,5 +1353,15 @@ export class IndexComponent implements OnInit {
     let patt = /^([0-9])$/;
     let result = patt.test(event.key);
     return result;
+  }
+
+  //componay name autocomplete
+  getCompanyName(companyName) {
+    this.adm.getCompanyName(companyName).subscribe(data => {
+      if (data.status === 200) {
+        this.companyNamesDetails = data;
+        this.companyNames = JSON.parse(this.companyNamesDetails._body);
+      }
+    });
   }
 }
