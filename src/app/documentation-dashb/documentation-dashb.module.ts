@@ -23,6 +23,7 @@ import { CommertialBankComponent } from './Sidenav-pages/commertial-bank/commert
 import { ViewAllApiComponent } from './Sidenav-pages/view-all-api/view-all-api.component';
 import { AccountDepositComponent } from './Sidenav-pages/account-deposit/account-deposit.component';
 import { MerchantOnboardingComponent } from './merchant-onboarding/merchant-onboarding.component';
+import { OffersComponent } from './Sidenav-pages/Sidenav-Subpages/offers/offers.component';
 import { BranchDetailsComponent } from './branch-details/branch-details.component';
 import { CustomerAuthComponent } from './Sidenav-pages/Sidenav-Subpages/customer-auth/customer-auth.component';
 import { CustomerOnboardingComponent } from './Sidenav-pages/Sidenav-Subpages/customer-onboarding/customer-onboarding.component';
@@ -88,6 +89,7 @@ import { RootDetailsComponent } from './root-details/root-details.component';
     AccountDepositComponent,
     MerchantOnboardingComponent,
     BranchDetailsComponent,
+    OffersComponent,
     CustomerAuthComponent,
     CustomerOnboardingComponent,
     AutoloanComponent,
