@@ -43,6 +43,7 @@ export class IndexComponent implements OnInit {
   modalRef5: BsModalRef;
   modalRef6: BsModalRef;
   modalRef7: BsModalRef;
+  modalRef8: BsModalRef;
 
   valueWidth = false;
   show: boolean = false;
@@ -53,6 +54,9 @@ export class IndexComponent implements OnInit {
   signupForm2: FormGroup;
   signupForm3: FormGroup;
   signupForm4: FormGroup;
+  frmUATFirst: FormGroup;
+  frmUATSecond: FormGroup;
+  frmUATThird: FormGroup;
   forgetpassForm: FormGroup;
   mobnumPattern = '^((\\+91-?)|0)?[0-9]{10}$';
   logged_in: Boolean = false;
@@ -74,6 +78,10 @@ export class IndexComponent implements OnInit {
   shfrmUATSecond: boolean = false;
   shfrmUATThird: boolean = false;
 
+  shfrmProdFirst: boolean = false;
+  shfrmProdSecond: boolean = false;
+  shfrmProdThird: boolean = false;
+
   imageSrc;
   sellersPermitFile: any;
   sellersPermitString: string;
@@ -81,6 +89,11 @@ export class IndexComponent implements OnInit {
   frmUAT_A1: boolean = false;
   frmUAT_A2: boolean = false;
   frmUAT_A3: boolean = false;
+
+  frmProd_A1: boolean = false;
+  frmProd_A2: boolean = false;
+  frmProd_A3: boolean = false;
+
   feedback_email_address: any;
   feedback_location_name: any;
   issues: any = '';
@@ -93,14 +106,7 @@ export class IndexComponent implements OnInit {
 
   list: any = [];
 
-  edit_data = {
-    JiraId: '',
-    txtMerchantName: '',
-    txtDescription: '',
-    companyName: '',
-    contactPerson: '',
-    contactEmail: '',
-  };
+  edit_data: any;
   otp_txt_id: any = '';
   confirmMsg: any;
   confirmMsgProd: any;
@@ -115,6 +121,32 @@ export class IndexComponent implements OnInit {
   urlErrorMsg: string = '';
   companyNamesDetails: any;
   companyNames: any;
+  idArr: any = [];
+  additionalParams: any;
+  accNo: boolean = false;
+  clientCode: boolean = false;
+  url: boolean = false;
+  ip: boolean = false;
+  port: boolean = false;
+  checksum: boolean = false;
+  encryption: boolean = false;
+  certificate: boolean = false;
+  service: boolean = false;
+  commModel: boolean = false;
+  ifsc: boolean = false;
+  virtualCode: boolean = false;
+  ips: boolean = false;
+  interAccNo: boolean = false;
+  accName: boolean = false;
+  authLevel: boolean = false;
+  urn: boolean = false;
+  env: boolean = false;
+  valid: boolean = false;
+  accept: boolean = false;
+  recipient: boolean = false;
+  mode: boolean = false;
+  trans: boolean = false;
+  amount: boolean = false;
 
   constructor(
     private HttpClient: HttpClient,
@@ -199,6 +231,10 @@ export class IndexComponent implements OnInit {
     this.frmUAT_A1 = true;
     this.frmUAT_A2 = true;
     this.frmUAT_A3 = true;
+
+    this.frmProd_A1 = true;
+    this.frmProd_A2 = true;
+    this.frmProd_A3 = true;
 
     this.get_domain_and_apis();
   }
@@ -538,7 +574,7 @@ export class IndexComponent implements OnInit {
     }
   }
   // forget Password function
-  forgot(username: any) {
+  forgot(username: any, forgotpasswreset: TemplateRef<any>) {
     if (username == '') {
       this.toastrmsg('error', 'Enter Username');
       return;
@@ -549,7 +585,10 @@ export class IndexComponent implements OnInit {
       var response = data._body;
       var obj = JSON.parse(response);
       if (obj.status == true) {
-        this.toastrmsg('success', ' Please check your mail');
+        this.modalRef8 = this.modalService.show(forgotpasswreset, {
+          backdrop: 'static',
+        });
+        // this.toastrmsg('success', ' Please check your mail');
         this.router.navigate(['/index']);
         this.modalRef3.hide();
         this.spinnerService.hide();
@@ -692,6 +731,7 @@ export class IndexComponent implements OnInit {
           }
         }
         this.objOnB.txtSubDomain = [];
+        // this.edit_data.txtSubDomain = [];
         this.itemList = dt;
         console.log(this.itemList);
       });
@@ -700,129 +740,196 @@ export class IndexComponent implements OnInit {
       this.toastrmsg('error', 'Please select correct domain type.');
     }
   }
-  onItemSelect(item: any) {
-    if (item.id == 1105 || item.id == 1106) {
-      if (item.id == 1105) {
-        sessionStorage.setItem('1105', 'true');
-      }
-      if (item.id == 1106) {
-        sessionStorage.setItem('1106', 'true');
-      }
-      if (
-        sessionStorage.getItem('1105') == 'true' ||
-        sessionStorage.getItem('1106') == 'true'
-      ) {
-        this.Cms_allShow = true;
-        this.Webservice_Show = true;
-        this.Ecollection_Show = false;
-      }
-    }
 
-    if (item.id == 1107) {
-      sessionStorage.setItem('1107', 'true');
+  onItemSelect(item: any) {
+    if (item.id) {
+      this.idArr.push(item.id);
+      console.log('hi', this.idArr);
+      sessionStorage.setItem(this.idArr, 'true');
     }
-    if (item.id == 1107) {
-      this.Cms_allShow = true;
-      this.Webservice_Show = false;
-      this.Ecollection_Show = true;
+    // if (item.id == 1105 || item.id == 1106) {
+    //   if (item.id == 1105) {
+    //     sessionStorage.setItem('1105', 'true');
+    //   }
+    //   if (item.id == 1106) {
+    //     sessionStorage.setItem('1106', 'true');
+    //   }
+    //   if (
+    //     sessionStorage.getItem('1105') == 'true' ||
+    //     sessionStorage.getItem('1106') == 'true'
+    //   ) {
+    //     this.Cms_allShow = true;
+    //     this.Webservice_Show = true;
+    //     this.Ecollection_Show = false;
+    //   }
+    // }
+
+    // if (item.id == 1107) {
+    //   sessionStorage.setItem('1107', 'true');
+    // }
+    // if (item.id == 1107) {
+    //   this.Cms_allShow = true;
+    //   this.Webservice_Show = false;
+    //   this.Ecollection_Show = true;
+    // }
+    // else{
+    //   this.Cms_allShow = false;
+    //   this.Webservice_Show = false;
+    //   this.Ecollection_Show = false;
+    //   }
+  }
+  catArr: any = [];
+
+  /****** To select group ******/
+  onGroupDeSelect(items) {
+    if (items.category) {
+      console.log('check', items.list);
+      for (var i = 0; i < items.list.length; i++) {
+        this.idArr.push(items.list[i].id);
+        this.catArr.push(items.list[i].category);
+      }
+      console.log('groupselect', this.idArr, this.catArr);
     }
+    // if (items.category == CONSTANTS.CMS_COLLECTION) {
+    //   sessionStorage.setItem('1105', 'true');
+    //   sessionStorage.setItem('1106', 'true');
+    //   sessionStorage.setItem('1107', 'true');
+    //   this.Cms_allShow = true;
+    //   this.Webservice_Show = true;
+    //   this.Ecollection_Show = true;
+    // }
   }
 
   /****** To Unselect group ******/
   onGroupSelect(items) {
-    if (items.category == CONSTANTS.CMS_COLLECTION) {
-      sessionStorage.setItem('1105', 'false');
-      sessionStorage.setItem('1106', 'false');
-      sessionStorage.setItem('1107', 'false');
-      this.Cms_allShow = false;
-      this.Webservice_Show = false;
-      this.Ecollection_Show = false;
+    console.log(items.list);
+    for (var i = 0; i < items.list.length; i++) {
+      for (var j = 0; j < this.idArr.length; j++) {
+        if (items.list[i].id === this.idArr[j]) {
+          console.log('true');
+          this.idArr.splice(j, 1);
+          console.log('gropu arr', this.idArr);
+        }
+      }
     }
-  }
 
-  /****** To select group ******/
-  onGroupDeSelect(items) {
-    if (items.category == CONSTANTS.CMS_COLLECTION) {
-      sessionStorage.setItem('1105', 'true');
-      sessionStorage.setItem('1106', 'true');
-      sessionStorage.setItem('1107', 'true');
-      this.Cms_allShow = true;
-      this.Webservice_Show = true;
-      this.Ecollection_Show = true;
-    }
+    // if(items.category){
+    //   console.log("no check", items.list)
+    // for(var i=0;i<items.list.length;i++){
+
+    //   this.idArr = items.list[i].id;
+    //   this.catArr= items.list[i].category;
+    //   console.log("splice",this.idArr, this.catArr )
+    //   this.idArr.splice(i,1);
+    //   this.catArr.splice(i,1);
+    //   }
+    //   console.log("Deselect category",this.idArr,this.catArr)
+    // }
+    // sessionStorage.setItem(items.category , 'false');
+    // if (items.category == CONSTANTS.CMS_COLLECTION) {
+    //   sessionStorage.setItem('1105', 'false');
+    //   sessionStorage.setItem('1106', 'false');
+    //   sessionStorage.setItem('1107', 'false');
+    //   this.Cms_allShow = false;
+    //   this.Webservice_Show = false;
+    //   this.Ecollection_Show = false;
+    // }
   }
 
   onSelectAll(items: any) {
-    if (items.category == CONSTANTS.CMS_COLLECTION) {
-      this.Cms_allShow = true;
-      this.Webservice_Show = true;
-      this.Ecollection_Show = true;
-
-      sessionStorage.setItem('1105', 'true');
-      sessionStorage.setItem('1106', 'true');
-      sessionStorage.setItem('1107', 'true');
+    for (var i = 0; i < items.length; i++) {
+      this.idArr.push(items[i].id);
+      this.catArr.push(items[i].category);
+      //   var key = this.getKeyByValue(items, items[i].id);
+      // console.log("key",key);
     }
+    console.log('allselect', this.idArr, this.catArr);
+
+    // if (items.category == CONSTANTS.CMS_COLLECTION) {
+    //   this.Cms_allShow = true;
+    //   this.Webservice_Show = true;
+    //   this.Ecollection_Show = true;
+
+    //   sessionStorage.setItem('1105', 'true');
+    //   sessionStorage.setItem('1106', 'true');
+    //   sessionStorage.setItem('1107', 'true');
+    // }
     // var ips = [];
     // for (var i = 0; i < this.objOnB.txtSubDomain.length; ++i) {
     //   ips.push(this.objOnB.txtSubDomain[i].itemName+" ("+this.objOnB.txtSubDomain[i].id+")");
     // }
   }
   onDeSelectAll(items: any) {
-    if (items.category == CONSTANTS.CMS_COLLECTION) {
-      this.Cms_allShow = false;
-      this.Webservice_Show = false;
-      this.Ecollection_Show = false;
+    this.idArr = [];
+    this.catArr = [];
+    console.log('deselect all', this.catArr, this.idArr);
+    // if (items.category == CONSTANTS.CMS_COLLECTION) {
+    //   this.Cms_allShow = false;
+    //   this.Webservice_Show = false;
+    //   this.Ecollection_Show = false;
 
-      sessionStorage.setItem('1105', 'false');
-      sessionStorage.setItem('1106', 'false');
-      sessionStorage.setItem('1107', 'false');
-    }
+    //   sessionStorage.setItem('1105', 'false');
+    //   sessionStorage.setItem('1106', 'false');
+    //   sessionStorage.setItem('1107', 'false');
+    // }
   }
 
   OnItemDeSelect(items: any) {
-    if (items.id == 1105 || items.id == 1106) {
-      if (items.id == 1105) {
-        sessionStorage.setItem('1105', 'false');
+    for (var i = 0; i < this.idArr.length; i++) {
+      if (items.id === this.idArr[i]) {
+        this.idArr.splice(i, 1);
+        console.log(this.idArr);
       }
-      if (items.id == 1106) {
-        sessionStorage.setItem('1106', 'false');
-      }
-      if (
-        sessionStorage.getItem('1105') == 'false' &&
-        sessionStorage.getItem('1106') == 'false'
-      ) {
-        this.Webservice_Show = false;
-      }
-      if (
-        sessionStorage.getItem('1105') == 'false' &&
-        sessionStorage.getItem('1106') == 'false' &&
-        sessionStorage.getItem('1107') == 'false'
-      ) {
-        this.Cms_allShow = false;
-        this.Webservice_Show = false;
-        this.Ecollection_Show = false;
-      }
+      sessionStorage.setItem(items.id, 'false');
     }
+    // if (items.id == 1105 || items.id == 1106) {
+    //   if (items.id == 1105) {
+    //     sessionStorage.setItem('1105', 'false');
+    //   }
+    //   if (items.id == 1106) {
+    //     sessionStorage.setItem('1106', 'false');
+    //   }
+    //   if (
+    //     sessionStorage.getItem('1105') == 'false' &&
+    //     sessionStorage.getItem('1106') == 'false'
+    //   ) {
+    //     this.Webservice_Show = false;
+    //   }
+    //   if (
+    //     sessionStorage.getItem('1105') == 'false' &&
+    //     sessionStorage.getItem('1106') == 'false' &&
+    //     sessionStorage.getItem('1107') == 'false'
+    //   ) {
+    //     this.Cms_allShow = false;
+    //     this.Webservice_Show = false;
+    //     this.Ecollection_Show = false;
+    //   }
+    // }
 
-    if (items.id == 1107) {
-      if (items.id == 1107) {
-        sessionStorage.setItem('1107', 'false');
-      }
-      if (
-        sessionStorage.getItem('1105') == 'false' &&
-        sessionStorage.getItem('1106') == 'false' &&
-        sessionStorage.getItem('1107') == 'false'
-      ) {
-        this.Cms_allShow = false;
-        this.Webservice_Show = false;
-        this.Ecollection_Show = false;
-      }
-    }
-    if (items.id == 1105 && items.id == 1106 && items.id == 1107) {
-      this.Cms_allShow = false;
-      this.Webservice_Show = false;
-      this.Ecollection_Show = false;
-    }
+    // if (items.id == 1107) {
+    //   if (items.id == 1107) {
+    //     sessionStorage.setItem('1107', 'false');
+    //   }
+    //   if (
+    //     sessionStorage.getItem('1105') == 'false' &&
+    //     sessionStorage.getItem('1106') == 'false' &&
+    //     sessionStorage.getItem('1107') == 'false'
+    //   ) {
+    //     this.Cms_allShow = false;
+    //     this.Webservice_Show = false;
+    //     this.Ecollection_Show = false;
+    //   }
+    // }
+    // if (items.id == 1105 && items.id == 1106 && items.id == 1107) {
+    //   this.Cms_allShow = false;
+    //   this.Webservice_Show = false;
+    //   this.Ecollection_Show = false;
+    // }
+    // else{
+    //   this.Cms_allShow = false;
+    //   this.Webservice_Show = false;
+    //   this.Ecollection_Show = false;
+    //   }
   }
 
   public picked(event) {
@@ -853,7 +960,7 @@ export class IndexComponent implements OnInit {
     this.imageSrc = base64result;
     localStorage.setItem('Imagepath', this.imageSrc);
   }
-
+  //Next button in UAT
   btnNext() {
     this.frmUAT_A2 = true;
     this.frmUAT_A1 = false;
@@ -863,7 +970,17 @@ export class IndexComponent implements OnInit {
     this.shfrmUATFirst = false;
     this.shfrmUATThird = false;
   }
+  //Next button in Production
+  btnProdNext() {
+    this.frmProd_A2 = true;
+    this.frmProd_A1 = false;
+    this.frmProd_A3 = false;
 
+    this.shfrmProdSecond = true;
+    this.shfrmProdFirst = false;
+    this.shfrmProdThird = false;
+  }
+  //Nav tab in UAT
   uatNext(id) {
     if (this.shfrmUATFirst) {
       this.shfrmUATFirst = true;
@@ -876,13 +993,160 @@ export class IndexComponent implements OnInit {
       this.shfrmUATThird = id == 3 ? true : false;
     }
   }
-
+  //Nav tab in production
+  openProdCurrentTabEnv(id) {
+    if (this.shfrmProdFirst) {
+      this.shfrmProdFirst = true;
+    } else if (this.shfrmProdSecond) {
+      this.shfrmProdFirst = id == 1 ? true : false;
+      this.shfrmProdSecond = id > 1 ? true : false;
+    } else {
+      this.shfrmProdFirst = id == 1 ? true : false;
+      this.shfrmProdSecond = id == 2 ? true : false;
+      this.shfrmProdThird = id == 3 ? true : false;
+    }
+  }
+  //   getKeyByValue(object, value) {
+  //     return Object.keys(object).find(key => object[key] === value);
+  // }
+  //Continue button in UAT
   btnContinue() {
     this.shfrmUATThird = true;
     this.shfrmUATFirst = false;
     this.shfrmUATSecond = false;
-  }
 
+    //Jira Service
+    // this.HttpClient.post<any>(
+    //   'https://developer.icicibank.com/rest/getAdditionalParameters',
+    //   this.idArr
+    // ).subscribe(
+    //   res => {
+    //     console.log(res);
+    //     if (res.success === 'true') {
+    //       //File upload service
+    //       var options = new FormData();
+    //       let b: any = (<HTMLInputElement>document.getElementById('file1'))
+    //         .files;
+    //       for (let k = 0; k < b.length; k++) {
+    //         options.append(res.jiraId, b[k]);
+    //       }
+    //       this.HttpClient.post<any>(
+    //         'https://developer.icicibank.com/fileUpload',
+    //         options,
+    //       ).subscribe(
+    //         res => {
+    //           console.log(res);
+    //         },
+    //         err => {
+    //           console.log('err', err);
+    //           console.log('err headers', err.headers);
+    //         },
+    //       );
+    //     }
+    //   },
+    //   err => {
+    //     console.log('zze', err);
+    //     console.log('zzz', err.headers);
+    //   },
+    // );
+    console.log('test', this.idArr);
+    this.idArr = this.idArr.toString();
+    console.log('id array', this.idArr);
+
+    var json = {
+      ID: this.idArr,
+    };
+    console.log('json', json);
+    this.adm.getUATFromData(json).subscribe((data: any) => {
+      console.log(data);
+      var response = data._body;
+      var obj = JSON.parse(response);
+      console.log('obj', obj);
+      this.additionalParams = obj.ADDITIONAL_DETAILS.split(',');
+      for (var i = 0; i < this.additionalParams.length; i++) {
+        if (this.additionalParams[i].match('Account Number')) {
+          this.accNo = true;
+        }
+        if (this.additionalParams[i].match('Client Code')) {
+          this.clientCode = true;
+        }
+        if (this.additionalParams[i].match('URL')) {
+          this.url = true;
+        }
+        if (this.additionalParams[i].match('IP')) {
+          this.ip = true;
+        }
+        if (this.additionalParams[i].match('Port')) {
+          this.port = true;
+        }
+        if (this.additionalParams[i].match('Checksum')) {
+          this.checksum = true;
+        }
+        if (this.additionalParams[i].match('Encryption')) {
+          this.encryption = true;
+        }
+        if (this.additionalParams[i].match('Certificate')) {
+          this.certificate = true;
+        }
+        if (this.additionalParams[i].match('Service Type')) {
+          this.service = true;
+        }
+        if (this.additionalParams[i].match('Communication Method')) {
+          this.commModel = true;
+        }
+        if (this.additionalParams[i].match('IFSC Code')) {
+          this.ifsc = true;
+        }
+        if (this.additionalParams[i].match('Virtual Code')) {
+          this.virtualCode = true;
+        }
+        if (this.additionalParams[i].match('IPS Refund Code')) {
+          this.ips = true;
+        }
+        if (this.additionalParams[i].match('Intermediate Account Number')) {
+          this.interAccNo = true;
+        }
+        if (this.additionalParams[i].match('Account Name')) {
+          this.accName = true;
+        }
+        if (this.additionalParams[i].match('Authorization Level')) {
+          this.authLevel = true;
+        }
+        if (this.additionalParams[i].match('URN')) {
+          this.urn = true;
+        }
+        if (this.additionalParams[i].match('Environment')) {
+          this.env = true;
+        }
+        if (this.additionalParams[i].match('Validation Mode')) {
+          this.valid = true;
+        }
+        if (this.additionalParams[i].match('Acceptance Mode')) {
+          this.accept = true;
+        }
+        if (this.additionalParams[i].match('Recipient Mail ID')) {
+          this.recipient = true;
+        }
+        if (this.additionalParams[i].match('Mode Offered')) {
+          this.mode = true;
+        }
+        if (this.additionalParams[i].match('Transaction Limit')) {
+          this.trans = true;
+        }
+        if (this.additionalParams[i].match('Amount')) {
+          this.amount = true;
+        }
+      }
+      console.log('final', this.additionalParams);
+    });
+  }
+  //Continue button funcionality in Production
+  openProdContinue() {
+    this.shfrmProdFirst = true;
+    this.shfrmProdSecond = false;
+    this.shfrmProdThird = false;
+  }
+  //UAT
   openModaldemo(UATconfirm: TemplateRef<any>) {
     this.modalRef = this.modalService.show(UATconfirm);
   }
@@ -922,27 +1186,33 @@ export class IndexComponent implements OnInit {
       ' ' +
       this.objOnB.message +
       ' ' +
-      this.objOnB.ModeOffered +
-      ' ' +
-      this.objOnB.noOftransaction +
-      ' ' +
-      this.objOnB.transactionLimit +
-      ' ' +
-      this.objOnB.ammountField +
-      ' ' +
-      this.objOnB.URN1 +
-      ' ' +
-      this.objOnB.URN2 +
-      ' ' +
-      this.objOnB.DiscText +
-      ' ' +
       this.objOnB.IFSC_Code +
       ' ' +
-      this.objOnB.vertualCode +
+      this.objOnB.virtualCode +
       ' ' +
       this.objOnB.refundCode +
       ' ' +
-      this.objOnB.Account_no;
+      this.objOnB.Account_no +
+      ' ' +
+      this.objOnB.Acc_name +
+      ' ' +
+      this.objOnB.Auth_level +
+      ' ' +
+      this.objOnB.Urn +
+      ' ' +
+      this.objOnB.Acc_env +
+      ' ' +
+      this.objOnB.Acc_validation +
+      ' ' +
+      this.objOnB.Acc_acceptance +
+      ' ' +
+      this.objOnB.Rec_mail +
+      ' ' +
+      this.objOnB.Acc_mode +
+      ' ' +
+      this.objOnB.Acc_trans +
+      ' ' +
+      this.objOnB.Acc_amount;
 
     var inputFields = {
       userName: localStorage.getItem('username'),
@@ -954,9 +1224,37 @@ export class IndexComponent implements OnInit {
       spocPhone: this.objOnB.txtContactNumber,
       relManager: this.objOnB.txtRelManager,
       env: 'UAT',
-      ips: this.objOnB.txtIPAddress,
-      callbackUrl: this.objOnB.txtCallbackURL,
-      // "file1":file
+      // ips: "",
+      // callbackUrl: "",
+      AccountNo: this.objOnB.AccountNo ? this.objOnB.AccountNo : '',
+      ClientCode: this.objOnB.ClientCode ? this.objOnB.ClientCode : '',
+      url: this.objOnB.url ? this.objOnB.url : '',
+      Ip: this.objOnB.Ip ? this.objOnB.Ip : '',
+      Port: this.objOnB.Port ? this.objOnB.Port : '',
+      Checksum: this.objOnB.Checksum ? this.objOnB.Checksum : '',
+      Encryption: this.objOnB.Encryption ? this.objOnB.Encryption : '',
+      Certificate: this.objOnB.Certificate ? this.objOnB.Certificate : '',
+      web: this.objOnB.web ? this.objOnB.web : '',
+      message: this.objOnB.message ? this.objOnB.message : '',
+      IFSC_Code: this.objOnB.IFSC_Code ? this.objOnB.IFSC_Code : '',
+      virtualCode: this.objOnB.virtualCode ? this.objOnB.virtualCode : '',
+      refundCode: this.objOnB.refundCode ? this.objOnB.refundCode : '',
+      Account_no: this.objOnB.Account_no ? this.objOnB.Account_no : '',
+      Acc_name: this.objOnB.Acc_name ? this.objOnB.Acc_name : '',
+      Auth_level: this.objOnB.Auth_level ? this.objOnB.Auth_level : '',
+      Urn: this.objOnB.Urn ? this.objOnB.Urn : '',
+      Acc_env: this.objOnB.Acc_env ? this.objOnB.Acc_env : '',
+      Acc_validation: this.objOnB.Acc_validation
+        ? this.objOnB.Acc_validation
+        : '',
+      Acc_acceptance: this.objOnB.Acc_acceptance
+        ? this.objOnB.Acc_acceptance
+        : '',
+      Rec_mail: this.objOnB.Rec_mail ? this.objOnB.Rec_mail : '',
+      Acc_mode: this.objOnB.Acc_mode ? this.objOnB.Acc_mode : '',
+      Acc_trans: this.objOnB.Acc_trans ? this.objOnB.Acc_trans : '',
+      Acc_amount: this.objOnB.Acc_amount ? this.objOnB.Acc_amount : '',
+      file1: this.objOnB.file1,
     };
 
     const formData = new FormData();
@@ -970,8 +1268,32 @@ export class IndexComponent implements OnInit {
     formData.append('spocPhone', inputFields['spocPhone']);
     formData.append('relManager', inputFields['relManager']);
     formData.append('env', inputFields['env']);
-    formData.append('ips', inputFields['ips']);
-    formData.append('callbackUrl', inputFields['callbackUrl']);
+    // formData.append("ips", inputFields["ips"]);
+    // formData.append("callbackUrl", inputFields["callbackUrl"]);
+    formData.append('AccountNo', inputFields['AccountNo']);
+    formData.append('ClientCode', inputFields['ClientCode']);
+    formData.append('url', inputFields['url']);
+    formData.append('Ip', inputFields['Ip']);
+    formData.append('Port', inputFields['Port']);
+    formData.append('Checksum', inputFields['Checksum']);
+    formData.append('Encryption', inputFields['Encryption']);
+    formData.append('Certificate', inputFields['Certificate']);
+    formData.append('web', inputFields['web']);
+    formData.append('message', inputFields['message']);
+    formData.append('IFSC_Code', inputFields['IFSC_Code']);
+    formData.append('virtualCode', inputFields['virtualCode']);
+    formData.append('refundCode', inputFields['refundCode']);
+    formData.append('Account_no', inputFields['Account_no']);
+    formData.append('Acc_name', inputFields['Acc_name']);
+    formData.append('Auth_level', inputFields['Auth_level']);
+    formData.append('Urn', inputFields['Urn']);
+    formData.append('Acc_env', inputFields['Acc_env']);
+    formData.append('Acc_validation', inputFields['Acc_validation']);
+    formData.append('Acc_acceptance', inputFields['Acc_acceptance']);
+    formData.append('Rec_mail', inputFields['Rec_mail']);
+    formData.append('Acc_mode', inputFields['Acc_mode']);
+    formData.append('Acc_trans', inputFields['Acc_trans']);
+    formData.append('Acc_amount', inputFields['Acc_amount']);
     console.log(formData);
     let a: any = (<HTMLInputElement>document.getElementById('file1')).files;
     console.log('a', a);
@@ -1024,6 +1346,7 @@ export class IndexComponent implements OnInit {
 
   Close_ConfirmUAT() {
     this.modalRef.hide();
+    this.modalRef4.hide();
     this.router.navigate(['/index']);
   }
   Close_ConfirmProd() {
@@ -1040,7 +1363,7 @@ export class IndexComponent implements OnInit {
     this.shfrmUATSecond = false;
     this.shfrmUATThird = false;
   }
-
+  //Production
   get_Production(Production, signin) {
     if (localStorage.getItem('id') != null) {
       this.modalRef5 = this.modalService.show(Production, {
@@ -1118,9 +1441,70 @@ export class IndexComponent implements OnInit {
       }
     }
   }
-
+  //Confirm button functionality in Production
   btnConfirmProd(Prodconfirm) {
+    this.shfrmProdThird = true;
+    this.shfrmProdFirst = false;
+    this.shfrmProdSecond = false;
     var ips = [];
+    for (var i = 0; i < this.edit_data.DomainApi.length; ++i) {
+      ips.push(
+        this.edit_data.DomainApi[i].itemName +
+          ' (' +
+          this.edit_data.DomainApi[i].id +
+          ')',
+      );
+    }
+
+    this.collection =
+      this.edit_data.AccountNo +
+      ' ' +
+      this.edit_data.CmsClientCode +
+      ' ' +
+      this.edit_data.url +
+      ' ' +
+      this.edit_data.Ip +
+      ' ' +
+      this.edit_data.Port +
+      ' ' +
+      this.edit_data.Checksum +
+      ' ' +
+      this.edit_data.Encryption +
+      ' ' +
+      this.edit_data.Certificate +
+      ' ' +
+      this.edit_data.web +
+      ' ' +
+      this.edit_data.message +
+      ' ' +
+      this.edit_data.IFSC_Code +
+      ' ' +
+      this.edit_data.virtualCode +
+      ' ' +
+      this.edit_data.refundCode +
+      ' ' +
+      this.edit_data.Account_no +
+      ' ' +
+      this.edit_data.Acc_name +
+      ' ' +
+      this.edit_data.Auth_level +
+      ' ' +
+      this.edit_data.Urn +
+      ' ' +
+      this.edit_data.Acc_env +
+      ' ' +
+      this.edit_data.Acc_validation +
+      ' ' +
+      this.edit_data.Acc_acceptance +
+      ' ' +
+      this.edit_data.Rec_mail +
+      ' ' +
+      this.edit_data.Acc_mode +
+      ' ' +
+      this.edit_data.Acc_trans +
+      ' ' +
+      this.edit_data.Acc_amount;
+
     var inputFields = {
       userName: localStorage.getItem('username'),
       domainName: this.edit_data['Domain'],
@@ -1133,7 +1517,7 @@ export class IndexComponent implements OnInit {
       env: 'PROD',
       ips: this.edit_data['whitelistIpInputModal'],
       callbackUrl: this.edit_data['CallbackUrl'],
-      file1: '',
+      file2: this.edit_data.file2,
       jiraRefId: this.JiraIdnew,
     };
 
@@ -1155,7 +1539,7 @@ export class IndexComponent implements OnInit {
 
     let a: any = (<HTMLInputElement>document.getElementById('file2')).files;
     for (let k = 0; k < a.length; k++) {
-      formData.append('file1', a[k]);
+      formData.append('file2', a[k]);
     }
     formData.append('jiraRefId', this.JiraIdnew);
     //console.log(formData);
@@ -1164,6 +1548,28 @@ export class IndexComponent implements OnInit {
       formData,
     ).subscribe(
       res => {
+        console.log(res);
+        if (res.success === 'true') {
+          //File upload service
+          var formData = new FormData();
+          let b: any = (<HTMLInputElement>document.getElementById('file2'))
+            .files;
+          for (let k = 0; k < b.length; k++) {
+            formData.append(res.jiraId, b[k]);
+          }
+          this.HttpClient.post<any>(
+            'https://developer.icicibank.com/fileUpload',
+            formData,
+          ).subscribe(
+            res => {
+              console.log(res);
+            },
+            err => {
+              console.log('err', err);
+              console.log('err headers', err.headers);
+            },
+          );
+        }
         // this.toastrmsg('success', res['message']);
         this.modalRef = this.modalService.show(Prodconfirm, {
           backdrop: 'static',

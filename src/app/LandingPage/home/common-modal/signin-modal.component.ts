@@ -64,6 +64,7 @@ export class SigninModalComponent implements OnInit {
   currentPath: string;
   companyNamesDetails: any;
   companyNames: any;
+  modalRef8: BsModalRef;
   constructor(
     private SessionService: SessionService,
     private authService: AuthService,
@@ -487,9 +488,16 @@ export class SigninModalComponent implements OnInit {
     this.router.navigate(['/documentation']);
     localStorage.setItem('IsReload', 'true');
   }
-
+  // Modalforgotpasswreset(forgotpasswreset: TemplateRef<any>) {
+  //   this.modalRef8 = this.modalService.show(forgotpasswreset, {
+  //     backdrop: 'static',
+  //   });
+  //   try {
+  //     this.modalRef.hide();
+  //   } catch (e) {}
+  // }
   // forget Password function
-  forgot(username: any) {
+  forgot(username: any, forgotpasswreset: TemplateRef<any>) {
     console.log('forgot pass click');
     if (username == '') {
       console.log('user name empty');
@@ -502,8 +510,11 @@ export class SigninModalComponent implements OnInit {
       var response = data._body;
       var obj = JSON.parse(response);
       if (obj.status == true) {
-        this.toastrmsg('success', 'Please check your mail');
-        //this.router.navigate(['/index']);
+        this.modalRef8 = this.modalService.show(forgotpasswreset, {
+          backdrop: 'static',
+        });
+        // this.toastrmsg('success', 'Please check your mail');
+        this.router.navigate(['/index']);
         this.modalRef3.hide();
         this.spinnerService.hide();
       } else {
@@ -511,7 +522,6 @@ export class SigninModalComponent implements OnInit {
       }
     });
   }
-
   OnCheckEmail(Exists_Email: any) {
     try {
       var json = { email: Exists_Email };
@@ -564,6 +574,7 @@ export class SigninModalComponent implements OnInit {
     localStorage.removeItem('password');
     localStorage.removeItem('id');
     localStorage.removeItem('role');
+    //localStorage.removeItem('nodeId');
 
     this.adm.sendUserId('');
     this.showbtn = true;

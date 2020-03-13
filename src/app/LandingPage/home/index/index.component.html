@@ -1,3 +1,8 @@
+<style>
+  .select-all {
+    display: none !important;
+  }
+</style>
 <toaster-container></toaster-container>
 <ng4-loading-spinner> </ng4-loading-spinner>
 <div class="tab-content">
@@ -43,8 +48,8 @@
     <section class="sectionAPIs sectionAPIsGrayBg">
       <h3>How it <span>Works?</span></h3>
       <!-- <p class="text-center mb50" (click)="browse_api(signin)">Get your developers onboard, very quickly. Learn how to incorporate our
-            ICICI Bank APIs in just few easy steps.
-         </p> -->
+             ICICI Bank APIs in just few easy steps.
+          </p> -->
       <p class="text-center mb50">
         Get your developers onboard, very quickly. Learn how to incorporate our
         ICICI Bank APIs in just few easy steps.
@@ -53,7 +58,9 @@
         <a class="howItWorksContainer" (click)="HowItWork(modal_hwi)">
           <div class="workImageContainer">
             <!-- <img src="assets/images/signup.svg" alt=""> -->
-            <h2><p>1</p></h2>
+            <h2>
+              <p>1</p>
+            </h2>
           </div>
           <p>Sign up for an ICICI Developer Account.</p>
         </a>
@@ -62,7 +69,9 @@
         </div>
         <a class="howItWorksContainer" (click)="HowItWork(modal_hwi)">
           <div class="workImageContainer">
-            <h2><p>2</p></h2>
+            <h2>
+              <p>2</p>
+            </h2>
             <!-- <img src="assets/images/createapp.svg" alt=""> -->
           </div>
           <p>Create an Application</p>
@@ -72,7 +81,9 @@
         </div>
         <a class="howItWorksContainer" (click)="HowItWork(modal_hwi)">
           <div class="workImageContainer">
-            <h2><p>3</p></h2>
+            <h2>
+              <p>3</p>
+            </h2>
             <!-- <img src="assets/images/testthepp.svg" alt=""> -->
           </div>
           <p>Select the Application</p>
@@ -83,7 +94,9 @@
         <a class="howItWorksContainer" (click)="HowItWork(modal_hwi)">
           <div class="workImageContainer">
             <!-- <img src="assets/images/testitout.svg" alt=""> -->
-            <h2><p>4</p></h2>
+            <h2>
+              <p>4</p>
+            </h2>
           </div>
           <p>Test it Out</p>
         </a>
@@ -92,7 +105,9 @@
         </div>
         <a class="howItWorksContainer" (click)="HowItWork(modal_hwi)">
           <div class="workImageContainer">
-            <h2><p>5</p></h2>
+            <h2>
+              <p>5</p>
+            </h2>
             <!-- <img src="assets/images/getcode.svg" alt=""> -->
           </div>
           <p>Get Sample Code</p>
@@ -183,7 +198,7 @@
     </section>
     <section class="sectionAPIs sectionAPIsGrayBg">
       <h3 class="mb60">Available <span>APIs</span></h3>
-      <div class="row mb30 hidden-xs">
+      <div class="row mb30 hidden-xs success-label-div">
         <div class="col-md-3">
           <a
             class="cursor"
@@ -266,7 +281,7 @@
             </div>
           </a>
         </div>
-        <div class="col-md-3 ml-offset-3">
+        <div class="col-md-3">
           <a
             class="cursor"
             (click)="payment(signin)"
@@ -288,7 +303,7 @@
             </div>
           </a>
         </div>
-        <div class="col-md-3 mr-offset-3">
+        <div class="col-md-3">
           <a
             class="cursor"
             (click)="commercial(signin)"
@@ -514,10 +529,10 @@
           <option value="Others">Others</option>
         </select>
         <!-- <select class="select mb25" name="Suggestion" [(ngModel)] ="Suggestion">
-               <option value="">Select</option>
-               <option value="Suggestion">Suggestion</option>
-               <option value="Others">Others</option>
-            </select> -->
+                <option value="">Select</option>
+                <option value="Suggestion">Suggestion</option>
+                <option value="Others">Others</option>
+             </select> -->
         <input
           class="w100p mb25"
           name="feedback_email_address"
@@ -1091,7 +1106,7 @@
 <!-- Modal for Signup -->
 <ng-template #signup>
   <div class="modal-header">
-    <h3 class="modal-title pull-left">Lets get you Onboard</h3>
+    <h3 class="modal-title pull-left">Lets get you Onboard vv</h3>
     <button
       type="button"
       class="close pull-right"
@@ -1182,14 +1197,24 @@
             </div>
           </div>
           <!-- <div class="row mb20">
-               <div class="col-md-12 mb-xs-30">
-                  <div><label for="password">Company Name</label></div>
-                  <input name="company" formControlName="companyName" class="input-login" #company>
-                  <div *ngIf="companyName.invalid && (companyName.dirty || isSubmitted)" class="text-danger form-error">
-                     Compny Name is required.
-                  </div>
-               </div>
-            </div> -->
+            <div class="col-md-12 mb-xs-30">
+              <div><label for="password">Company Name</label></div>
+              <input
+                name="company"
+                formControlName="companyName"
+                class="input-login"
+                #company
+              />
+              <div
+                *ngIf="
+                  companyName.invalid && (companyName.dirty || isSubmitted)
+                "
+                class="text-danger form-error"
+              >
+                Compny Name is required.
+              </div>
+            </div>
+          </div> -->
           <div class="row mb20">
             <div class="col-md-12 mb-xs-30">
               <div><label for="password">Company Name</label></div>
@@ -1240,7 +1265,7 @@
           </div>
           <div class="row mb20">
             <div class="col-md-12 mb-xs-30">
-              <div><label for="password">City</label></div>
+              <div><label for="password">Pin Code</label></div>
               <input name="CITY" class="input-login" formControlName="CITY" />
             </div>
           </div>
@@ -1484,6 +1509,10 @@
           <span><a class="signIn" (click)="openModal(signin)">Login</a></span>
         </p>
       </div>
+      <!-- <span
+         >Register for<a class="signIn" (click)="appathonReg()"> Appathon </a
+         >here</span
+       > -->
       <div class="col-5 pr0">
         <div class="text-right"></div>
       </div>
@@ -1626,13 +1655,28 @@
           <button
             type="submit"
             class="signInBtn w100p"
-            (click)="forgot(username.value)"
+            (click)="forgot(username.value, forgotpasswreset)"
           >
             Login
           </button>
         </div>
       </div>
     </div>
+  </div>
+</ng-template>
+<ng-template #forgotpasswreset>
+  <div class="modal-header">
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef8.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="txtAlign"><label>Success! Please check your mail</label></div>
   </div>
 </ng-template>
 <!-- End Forgot password Modal -->
@@ -1871,334 +1915,334 @@
               </div>
             </div>
             <!-- Common Business Banking Field added here -->
-            <div class="row" *ngIf="Cms_allShow">
-              <div class="col-md-12 mb10">
-                <div><label for="contract">Account number</label></div>
-                <input
-                  class="form-control"
-                  [ngModel]="objOnB.AccountNo"
-                  name="AccountNo"
-                  #AccountNo="ngModel"
-                  placeholder="Your Account number"
-                  (ngModelChange)="onChangeAccountNum($event)"
-                  type="text"
-                />
-
-                <div
-                  *ngIf="accountNumErrorMsg != ''"
-                  class="text-danger form-error"
-                >
-                  {{ accountNumErrorMsg }}
-                </div>
-              </div>
-              <div class="col-md-12 mb10">
-                <div><label for="contract">CMS Client code</label></div>
-                <input
-                  class="form-control"
-                  [(ngModel)]="objOnB.CmsClientCode"
-                  name="CmsClientCode"
-                  #CmsClientCode="ngModel"
-                  placeholder="Your CMS Client code"
-                  type="text"
-                />
-              </div>
-              <div class="col-md-12 mb10">
-                <div><label for="contract">URL</label></div>
-                <input
-                  class="form-control"
-                  [ngModel]="objOnB.url"
-                  name="url"
-                  #url="ngModel"
-                  placeholder="Your URL"
-                  (ngModelChange)="onChangeURL($event)"
-                  type="text"
-                />
-                <div *ngIf="urlErrorMsg != ''" class="text-danger form-error">
-                  {{ urlErrorMsg }}
-                </div>
-              </div>
-              <div class="col-md-12 mb10">
-                <div><label for="contract">Ip</label></div>
-                <input
-                  class="form-control"
-                  [ngModel]="objOnB.Ip"
-                  name="Ip"
-                  #Ip="ngModel"
-                  placeholder="Your Ip"
-                  (ngModelChange)="onChangeIpAddress($event)"
-                  type="text"
-                />
-                <div
-                  *ngIf="ipAddressErrorMsg != ''"
-                  class="text-danger form-error"
-                >
-                  {{ ipAddressErrorMsg }}
-                </div>
-              </div>
-              <div class="col-md-12 mb10">
-                <div><label for="contract">Port</label></div>
-                <input
-                  class="form-control"
-                  [ngModel]="objOnB.Port"
-                  name="Port"
-                  #Port="ngModel"
-                  placeholder="Your Port"
-                  (ngModelChange)="onChangePort($event)"
-                  type="text"
-                />
-                <div
-                  *ngIf="portNumErrorMsg != ''"
-                  class="text-danger form-error"
-                >
-                  {{ portNumErrorMsg }}
-                </div>
-              </div>
-              <div class="col-md-12 mb10">
-                <div><label for="projectName">Checksum Required </label></div>
-                <span class="custom-dropdown">
-                  <select
-                    class="form-control"
-                    [(ngModel)]="objOnB.Checksum"
-                    name="Checksum"
-                    #Checksum="ngModel"
-                    style="height:40px"
-                  >
-                    <option value="">Select Checksum</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                </span>
-              </div>
-              <div class="col-md-12 mb10">
-                <div><label for="projectName">Encryption Required</label></div>
-                <span class="custom-dropdown">
-                  <select
-                    class="form-control"
-                    [(ngModel)]="objOnB.Encryption"
-                    name="Encryption"
-                    #Encryption="ngModel"
-                    style="height:40px"
-                  >
-                    <option value="">Select Encryption</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                </span>
-              </div>
-              <div class="col-md-12 mb10">
-                <div><label for="projectName">Certificate</label></div>
-                <span class="custom-dropdown">
-                  <select
-                    class="form-control"
-                    [(ngModel)]="objOnB.Certificate"
-                    name="Certificate"
-                    #Certificate="ngModel"
-                    style="height:40px"
-                  >
-                    <option value="">Select Certificate</option>
-                    <option>Java Key Store</option>
-                    <option>IIS SSL</option>
-                  </select>
-                </span>
-              </div>
-              <div class="col-md-12 mb10">
-                <div>
-                  <label for="projectName"> Type of Web / Services</label>
-                </div>
-                <span class="custom-dropdown">
-                  <select
-                    class="form-control"
-                    [(ngModel)]="objOnB.web"
-                    name="web"
-                    #web="ngModel"
-                    style="height:40px"
-                  >
-                    <option value="">Select Services</option>
-                    <option>WADL</option>
-                    <option>REST</option>
-                    <option>*Others </option>
-                  </select>
-                </span>
-              </div>
-              <div class="col-md-12 mb10">
-                <div>
-                  <label for="projectName"
-                    >Communication method/Message Format</label
-                  >
-                </div>
-                <span class="custom-dropdown">
-                  <select
-                    class="form-control"
-                    [(ngModel)]="objOnB.message"
-                    name="message"
-                    #message="ngModel"
-                    style="height:40px"
-                  >
-                    <option value="">Select Format</option>
-                    <option>XML</option>
-                    <option>XML as a string</option>
-                    <option>JSON</option>
-                  </select>
-                </span>
-              </div>
-            </div>
+            <!-- <div class="row" *ngIf="Cms_allShow">
+               <div class="col-md-12 mb10">
+                 <div><label for="contract">Account number</label></div>
+                 <input
+                   class="form-control"
+                   [ngModel]="objOnB.AccountNo"
+                   name="AccountNo"
+                   #AccountNo="ngModel"
+                   placeholder="Your Account number"
+                   (ngModelChange)="onChangeAccountNum($event)"
+                   type="text"
+                 />
+ 
+                 <div
+                   *ngIf="accountNumErrorMsg != ''"
+                   class="text-danger form-error"
+                 >
+                   {{ accountNumErrorMsg }}
+                 </div>
+               </div>
+               <div class="col-md-12 mb10">
+                 <div><label for="contract">CMS Client code</label></div>
+                 <input
+                   class="form-control"
+                   [(ngModel)]="objOnB.CmsClientCode"
+                   name="CmsClientCode"
+                   #CmsClientCode="ngModel"
+                   placeholder="Your CMS Client code"
+                   type="text"
+                 />
+               </div>
+               <div class="col-md-12 mb10">
+                 <div><label for="contract">URL</label></div>
+                 <input
+                   class="form-control"
+                   [ngModel]="objOnB.url"
+                   name="url"
+                   #url="ngModel"
+                   placeholder="Your URL"
+                   (ngModelChange)="onChangeURL($event)"
+                   type="text"
+                 />
+                 <div *ngIf="urlErrorMsg != ''" class="text-danger form-error">
+                   {{ urlErrorMsg }}
+                 </div>
+               </div>
+               <div class="col-md-12 mb10">
+                 <div><label for="contract">Ip</label></div>
+                 <input
+                   class="form-control"
+                   [ngModel]="objOnB.Ip"
+                   name="Ip"
+                   #Ip="ngModel"
+                   placeholder="Your Ip"
+                   (ngModelChange)="onChangeIpAddress($event)"
+                   type="text"
+                 />
+                 <div
+                   *ngIf="ipAddressErrorMsg != ''"
+                   class="text-danger form-error"
+                 >
+                   {{ ipAddressErrorMsg }}
+                 </div>
+               </div>
+               <div class="col-md-12 mb10">
+                 <div><label for="contract">Port</label></div>
+                 <input
+                   class="form-control"
+                   [ngModel]="objOnB.Port"
+                   name="Port"
+                   #Port="ngModel"
+                   placeholder="Your Port"
+                   (ngModelChange)="onChangePort($event)"
+                   type="text"
+                 />
+                 <div
+                   *ngIf="portNumErrorMsg != ''"
+                   class="text-danger form-error"
+                 >
+                   {{ portNumErrorMsg }}
+                 </div>
+               </div>
+               <div class="col-md-12 mb10">
+                 <div><label for="projectName">Checksum Required </label></div>
+                 <span class="custom-dropdown">
+                   <select
+                     class="form-control"
+                     [(ngModel)]="objOnB.Checksum"
+                     name="Checksum"
+                     #Checksum="ngModel"
+                     style="height:40px"
+                   >
+                     <option value="">Select Checksum</option>
+                     <option>Yes</option>
+                     <option>No</option>
+                   </select>
+                 </span>
+               </div>
+               <div class="col-md-12 mb10">
+                 <div><label for="projectName">Encryption Required</label></div>
+                 <span class="custom-dropdown">
+                   <select
+                     class="form-control"
+                     [(ngModel)]="objOnB.Encryption"
+                     name="Encryption"
+                     #Encryption="ngModel"
+                     style="height:40px"
+                   >
+                     <option value="">Select Encryption</option>
+                     <option>Yes</option>
+                     <option>No</option>
+                   </select>
+                 </span>
+               </div>
+               <div class="col-md-12 mb10">
+                 <div><label for="projectName">Certificate</label></div>
+                 <span class="custom-dropdown">
+                   <select
+                     class="form-control"
+                     [(ngModel)]="objOnB.Certificate"
+                     name="Certificate"
+                     #Certificate="ngModel"
+                     style="height:40px"
+                   >
+                     <option value="">Select Certificate</option>
+                     <option>Java Key Store</option>
+                     <option>IIS SSL</option>
+                   </select>
+                 </span>
+               </div>
+               <div class="col-md-12 mb10">
+                 <div>
+                   <label for="projectName"> Type of Web / Services</label>
+                 </div>
+                 <span class="custom-dropdown">
+                   <select
+                     class="form-control"
+                     [(ngModel)]="objOnB.web"
+                     name="web"
+                     #web="ngModel"
+                     style="height:40px"
+                   >
+                     <option value="">Select Services</option>
+                     <option>WADL</option>
+                     <option>REST</option>
+                     <option>*Others </option>
+                   </select>
+                 </span>
+               </div>
+               <div class="col-md-12 mb10">
+                 <div>
+                   <label for="projectName"
+                     >Communication method/Message Format</label
+                   >
+                 </div>
+                 <span class="custom-dropdown">
+                   <select
+                     class="form-control"
+                     [(ngModel)]="objOnB.message"
+                     name="message"
+                     #message="ngModel"
+                     style="height:40px"
+                   >
+                     <option value="">Select Format</option>
+                     <option>XML</option>
+                     <option>XML as a string</option>
+                     <option>JSON</option>
+                   </select>
+                 </span>
+               </div>
+             </div> -->
             <!-- Common Business Banking Field added here -->
             <!-- Additional Field Validation & Receipting -->
-            <div class="row" *ngIf="Webservice_Show">
-              <div class="col-md-12 mb10">
-                <div><label for="contract">Mode Offered</label></div>
-                <input
-                  class="form-control"
-                  [(ngModel)]="objOnB.ModeOffered"
-                  name="ModeOffered"
-                  #ModeOffered="ngModel"
-                  placeholder="Your Mode Offered"
-                  type="text"
-                />
-              </div>
-              <div class="col-md-12 mb10">
-                <div>
-                  <label for="contract"
-                    >Expected No Of Transactions in a day</label
-                  >
-                </div>
-                <input
-                  class="form-control"
-                  [(ngModel)]="objOnB.noOftransaction"
-                  name="noOftransaction"
-                  #noOftransaction="ngModel"
-                  placeholder="No. OF Transaction"
-                  type="text"
-                />
-              </div>
-              <div class="col-md-12 mb10">
-                <div>
-                  <label for="contract"
-                    >Transaction limit for per transaction</label
-                  >
-                </div>
-                <input
-                  class="form-control"
-                  [(ngModel)]="objOnB.transactionLimit"
-                  name="transactionLimit"
-                  #transactionLimit="ngModel"
-                  placeholder="Transaction Limit"
-                  type="text"
-                />
-              </div>
-              <div class="col-md-12 mb10">
-                <div>
-                  <label for="contract"
-                    >Amount Field (Editable / Non-Editable)</label
-                  >
-                </div>
-                <input
-                  class="form-control"
-                  [(ngModel)]="objOnB.ammountField"
-                  name="ammountField"
-                  #ammountField="ngModel"
-                  placeholder="Amount Field"
-                  type="text"
-                />
-              </div>
-              <div class="col-md-12 mb10">
-                <div><label for="contract">Fields on Ack receipt</label></div>
-                <input
-                  class="form-control"
-                  placeholder="URN1"
-                  [(ngModel)]="objOnB.URN1"
-                  name="URN1"
-                  #URN1="ngModel"
-                  type="text"
-                  style="width: 49%;float: left;margin-right: 7px;"
-                />
-                <input
-                  class="form-control"
-                  placeholder="URN2"
-                  [(ngModel)]="objOnB.URN2"
-                  name="URN2"
-                  #URN2="ngModel"
-                  type="text"
-                  style="width: 49%"
-                />
-              </div>
-              <div class="col-md-12 mb10">
-                <div><label for="contract">Disclaimer Text</label></div>
-                <input
-                  class="form-control"
-                  [(ngModel)]="objOnB.DiscText"
-                  name="DiscText"
-                  #DiscText="ngModel"
-                  placeholder="Disclaimer Text"
-                  type="text"
-                />
-              </div>
-            </div>
+            <!-- <div class="row" *ngIf="Webservice_Show">
+               <div class="col-md-12 mb10">
+                 <div><label for="contract">Mode Offered</label></div>
+                 <input
+                   class="form-control"
+                   [(ngModel)]="objOnB.ModeOffered"
+                   name="ModeOffered"
+                   #ModeOffered="ngModel"
+                   placeholder="Your Mode Offered"
+                   type="text"
+                 />
+               </div>
+               <div class="col-md-12 mb10">
+                 <div>
+                   <label for="contract"
+                     >Expected No Of Transactions in a day</label
+                   >
+                 </div>
+                 <input
+                   class="form-control"
+                   [(ngModel)]="objOnB.noOftransaction"
+                   name="noOftransaction"
+                   #noOftransaction="ngModel"
+                   placeholder="No. OF Transaction"
+                   type="text"
+                 />
+               </div>
+               <div class="col-md-12 mb10">
+                 <div>
+                   <label for="contract"
+                     >Transaction limit for per transaction</label
+                   >
+                 </div>
+                 <input
+                   class="form-control"
+                   [(ngModel)]="objOnB.transactionLimit"
+                   name="transactionLimit"
+                   #transactionLimit="ngModel"
+                   placeholder="Transaction Limit"
+                   type="text"
+                 />
+               </div>
+               <div class="col-md-12 mb10">
+                 <div>
+                   <label for="contract"
+                     >Amount Field (Editable / Non-Editable)</label
+                   >
+                 </div>
+                 <input
+                   class="form-control"
+                   [(ngModel)]="objOnB.ammountField"
+                   name="ammountField"
+                   #ammountField="ngModel"
+                   placeholder="Amount Field"
+                   type="text"
+                 />
+               </div>
+               <div class="col-md-12 mb10">
+                 <div><label for="contract">Fields on Ack receipt</label></div>
+                 <input
+                   class="form-control"
+                   placeholder="URN1"
+                   [(ngModel)]="objOnB.URN1"
+                   name="URN1"
+                   #URN1="ngModel"
+                   type="text"
+                   style="width: 49%;float: left;margin-right: 7px;"
+                 />
+                 <input
+                   class="form-control"
+                   placeholder="URN2"
+                   [(ngModel)]="objOnB.URN2"
+                   name="URN2"
+                   #URN2="ngModel"
+                   type="text"
+                   style="width: 49%"
+                 />
+               </div>
+               <div class="col-md-12 mb10">
+                 <div><label for="contract">Disclaimer Text</label></div>
+                 <input
+                   class="form-control"
+                   [(ngModel)]="objOnB.DiscText"
+                   name="DiscText"
+                   #DiscText="ngModel"
+                   placeholder="Disclaimer Text"
+                   type="text"
+                 />
+               </div>
+             </div> -->
             <!-- Additional Field Validation & Receipting -->
             <!-- Additional Field of Ecollection -->
-            <div class="row" *ngIf="Ecollection_Show">
-              <div class="col-md-12 mb10">
-                <div>
-                  <label for="projectName"
-                    >IFSC code to be given to the remitter while initiating
-                    payment
-                  </label>
-                </div>
-                <span class="custom-dropdown">
-                  <select
-                    [(ngModel)]="objOnB.IFSC_Code"
-                    name="IFSC_Code"
-                    #IFSC_Code="ngModel"
-                    class="form-control"
-                    style="height:40px"
-                  >
-                    <option value="">Select IFSC Code</option>
-                    <option>ICIC0000104</option>
-                    <option>ICIC0000103</option>
-                    <option>ICIC0000106</option>
-                  </select>
-                </span>
-              </div>
-              <div class="col-md-12 mb10">
-                <div>
-                  <label for="contract">4,3 or 6 Character Virtual Code</label>
-                </div>
-                <input
-                  class="form-control"
-                  [(ngModel)]="objOnB.vertualCode"
-                  name="vertualCode"
-                  #vertualCode="ngModel"
-                  placeholder="Your Virtual Code"
-                  type="text"
-                />
-              </div>
-              <div class="col-md-12 mb10">
-                <div><label for="contract">IPS Refund Code</label></div>
-                <input
-                  class="form-control"
-                  [(ngModel)]="objOnB.refundCode"
-                  name="refundCode"
-                  #refundCode="ngModel"
-                  placeholder="IPS Refund Code"
-                  type="text"
-                />
-              </div>
-              <div class="col-md-12 mb10">
-                <div>
-                  <label for="contract"
-                    >Customer Credit A/C Number - Intermediate Account</label
-                  >
-                </div>
-                <input
-                  class="form-control"
-                  [(ngModel)]="objOnB.Account_no"
-                  name="Account_no"
-                  #Account_no="ngModel"
-                  placeholder="Customer Credit A/C Number"
-                  type="text"
-                />
-              </div>
-            </div>
+            <!-- <div class="row" *ngIf="Ecollection_Show">
+               <div class="col-md-12 mb10">
+                 <div>
+                   <label for="projectName"
+                     >IFSC code to be given to the remitter while initiating
+                     payment
+                   </label>
+                 </div>
+                 <span class="custom-dropdown">
+                   <select
+                     [(ngModel)]="objOnB.IFSC_Code"
+                     name="IFSC_Code"
+                     #IFSC_Code="ngModel"
+                     class="form-control"
+                     style="height:40px"
+                   >
+                     <option value="">Select IFSC Code</option>
+                     <option>ICIC0000104</option>
+                     <option>ICIC0000103</option>
+                     <option>ICIC0000106</option>
+                   </select>
+                 </span>
+               </div>
+               <div class="col-md-12 mb10">
+                 <div>
+                   <label for="contract">4,3 or 6 Character Virtual Code</label>
+                 </div>
+                 <input
+                   class="form-control"
+                   [(ngModel)]="objOnB.vertualCode"
+                   name="vertualCode"
+                   #vertualCode="ngModel"
+                   placeholder="Your Virtual Code"
+                   type="text"
+                 />
+               </div>
+               <div class="col-md-12 mb10">
+                 <div><label for="contract">IPS Refund Code</label></div>
+                 <input
+                   class="form-control"
+                   [(ngModel)]="objOnB.refundCode"
+                   name="refundCode"
+                   #refundCode="ngModel"
+                   placeholder="IPS Refund Code"
+                   type="text"
+                 />
+               </div>
+               <div class="col-md-12 mb10">
+                 <div>
+                   <label for="contract"
+                     >Customer Credit A/C Number - Intermediate Account</label
+                   >
+                 </div>
+                 <input
+                   class="form-control"
+                   [(ngModel)]="objOnB.Account_no"
+                   name="Account_no"
+                   #Account_no="ngModel"
+                   placeholder="Customer Credit A/C Number"
+                   type="text"
+                 />
+               </div>
+             </div> -->
             <!-- Additional Field of Ecollection -->
             <div class="row">
               <div class="col-12 text-right">
@@ -2221,71 +2265,442 @@
       <div [hidden]="frmUATThird.submitted">
         <div class="tabEnvironment">
           <div class="tabContent">
-            <div class="row ">
-              <div class="col-md-12">
-                <div>
-                  <label for="whitelistIp"
-                    >Enter IP Addresses that needs to be whitelisted under
-                    Environment</label
-                  >
-                </div>
+            <div class="row">
+              <div class="col-md-12 mb10" *ngIf="accNo">
+                <div><label for="contract">Account Number</label></div>
                 <input
-                  class="w100p fs12"
-                  placeholder="Enter IP Addresses"
-                  pattern="{{ IP_Pattern }}"
-                  [(ngModel)]="objOnB.txtIPAddress"
-                  #txtIPAddress="ngModel"
-                  name="txtIPAddress"
-                  required
+                  class="form-control"
+                  [(ngModel)]="objOnB.AccountNo"
+                  name="AccountNo"
+                  #AccountNo="ngModel"
+                  placeholder="Your Account number"
+                  (ngModelChange)="onChangeAccountNum($event)"
+                  type="text"
                 />
+
                 <div
-                  *ngIf="txtIPAddress.invalid && txtIPAddress.dirty"
+                  *ngIf="accountNumErrorMsg != ''"
                   class="text-danger form-error"
                 >
-                  Please Enter correct IP address
+                  {{ accountNumErrorMsg }}
                 </div>
               </div>
-            </div>
-            <div class="row mb25" id="whitelistIPItemContainerModal"></div>
-            <div class="row mb30">
-              <div class="col-md-12">
+              <div class="col-md-12 mb10" *ngIf="clientCode">
+                <div><label for="contract">Client code</label></div>
+                <input
+                  class="form-control"
+                  [(ngModel)]="objOnB.ClientCode"
+                  name="ClientCode"
+                  #ClientCode="ngModel"
+                  placeholder="Your Client code"
+                  type="text"
+                />
+              </div>
+              <div class="col-md-12 mb10" *ngIf="url">
                 <div><label for="contract">Callback URL</label></div>
                 <input
-                  class="w100p fs12"
-                  placeholder="Enter Callback URL"
-                  pattern="{{ Callback_URL }}"
-                  [(ngModel)]="objOnB.txtCallbackURL"
-                  #txtCallbackURL="ngModel"
-                  name="txtCallbackURL"
+                  class="form-control"
+                  [(ngModel)]="objOnB.url"
+                  name="url"
+                  #url="ngModel"
+                  placeholder="Your Callback URL"
+                  (ngModelChange)="onChangeURL($event)"
+                  type="text"
+                />
+                <div *ngIf="urlErrorMsg != ''" class="text-danger form-error">
+                  {{ urlErrorMsg }}
+                </div>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="ip">
+                <div><label for="contract">IP</label></div>
+                <input
+                  class="form-control"
+                  [(ngModel)]="objOnB.Ip"
+                  name="Ip"
+                  #Ip="ngModel"
+                  placeholder="Your IP"
+                  (ngModelChange)="onChangeIpAddress($event)"
+                  type="text"
                 />
                 <div
-                  *ngIf="txtCallbackURL.invalid && txtCallbackURL.dirty"
+                  *ngIf="ipAddressErrorMsg != ''"
                   class="text-danger form-error"
                 >
-                  Please Enter correct Callback URL
+                  {{ ipAddressErrorMsg }}
+                </div>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="port">
+                <div><label for="contract">Port</label></div>
+                <input
+                  class="form-control"
+                  [(ngModel)]="objOnB.Port"
+                  name="Port"
+                  #Port="ngModel"
+                  placeholder="Your Port"
+                  (ngModelChange)="onChangePort($event)"
+                  type="text"
+                />
+                <div
+                  *ngIf="portNumErrorMsg != ''"
+                  class="text-danger form-error"
+                >
+                  {{ portNumErrorMsg }}
+                </div>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="checksum">
+                <div><label for="projectName">Checksum Required </label></div>
+                <span class="custom-dropdown">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="objOnB.Checksum"
+                    name="Checksum"
+                    #Checksum="ngModel"
+                    style="height:40px"
+                  >
+                    <option value="">Select Checksum</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select>
+                </span>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="encryption">
+                <div><label for="projectName">Encryption Required</label></div>
+                <span class="custom-dropdown">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="objOnB.Encryption"
+                    name="Encryption"
+                    #Encryption="ngModel"
+                    style="height:40px"
+                  >
+                    <option value="">Select Encryption</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select>
+                </span>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="certificate">
+                <div><label for="projectName">Certificate</label></div>
+                <span class="custom-dropdown">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="objOnB.Certificate"
+                    name="Certificate"
+                    #Certificate="ngModel"
+                    style="height:40px"
+                  >
+                    <option value="">Select Certificate</option>
+                    <option>Java Key Store</option>
+                    <option>IIS SSL</option>
+                  </select>
+                </span>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="service">
+                <div>
+                  <label for="projectName">Service Type</label>
+                </div>
+                <span class="custom-dropdown">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="objOnB.web"
+                    name="web"
+                    #web="ngModel"
+                    style="height:40px"
+                  >
+                    <option value="">Select Services</option>
+                    <option>WADL</option>
+                    <option>REST</option>
+                    <option>*Others </option>
+                  </select>
+                </span>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="commModel">
+                <div>
+                  <label for="projectName"> Communication Method</label>
+                </div>
+                <span class="custom-dropdown">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="objOnB.message"
+                    name="message"
+                    #message="ngModel"
+                    style="height:40px"
+                  >
+                    <option value="">Select Format</option>
+                    <option>XML</option>
+                    <option>XML as a string</option>
+                    <option>JSON</option>
+                  </select>
+                </span>
+              </div>
+              <!-- </div>                  -->
+              <div class="row" *ngIf="Ecollection_Show">
+                <div class="col-md-12 mb10" *ngIf="ifsc">
+                  <div>
+                    <label for="projectName"
+                      >IFSC code to be given to the remitter while initiating
+                      payment
+                    </label>
+                  </div>
+                  <span class="custom-dropdown">
+                    <select
+                      [(ngModel)]="objOnB.IFSC_Code"
+                      name="IFSC_Code"
+                      #IFSC_Code="ngModel"
+                      class="form-control"
+                      style="height:40px"
+                    >
+                      <option value="">Select IFSC Code</option>
+                      <option>ICIC0000104</option>
+                      <option>ICIC0000103</option>
+                      <option>ICIC0000106</option>
+                    </select>
+                  </span>
+                </div>
+                <div class="col-md-12 mb10" *ngIf="virtualCode">
+                  <div>
+                    <label for="contract"
+                      >4,3 or 6 Character Virtual Code</label
+                    >
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="objOnB.virtualCode"
+                    name="virtualCode"
+                    #virtualCode="ngModel"
+                    placeholder="Your Virtual Code"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="ips">
+                  <div><label for="contract">IPS Refund Code</label></div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="objOnB.refundCode"
+                    name="refundCode"
+                    #refundCode="ngModel"
+                    placeholder="IPS Refund Code"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="interAccNo">
+                  <div>
+                    <label for="contract"
+                      >Customer Credit A/C Number - Intermediate Account</label
+                    >
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="objOnB.Account_no"
+                    name="Account_no"
+                    #Account_no="ngModel"
+                    placeholder="Customer Credit A/C Number"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="accName">
+                  <div>
+                    <label for="Acc_name">Account Name</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="objOnB.Acc_name"
+                    name="Acc_name"
+                    #Acc_name="ngModel"
+                    placeholder="Account Name"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="authLevel">
+                  <div>
+                    <label for="Auth_level">Authorization Level</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="objOnB.Auth_level"
+                    name="Auth_level"
+                    #Auth_level="ngModel"
+                    placeholder="Authorization Level"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="urn">
+                  <div>
+                    <label for="Urn">URN</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="objOnB.Urn"
+                    name="Urn"
+                    #Urn="ngModel"
+                    placeholder="URN"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="env">
+                  <div>
+                    <label for="Acc_env">Environment</label>
+                  </div>
+                  <span class="custom-dropdown">
+                    <select
+                      class="form-control"
+                      [(ngModel)]="objOnB.Acc_env"
+                      name="Acc_env"
+                      #Acc_env="ngModel"
+                      style="height:40px"
+                    >
+                      <option value="">Select Environment</option>
+                      <option>UAT</option>
+                      <option>CUG</option>
+                      <option>Production </option>
+                    </select>
+                  </span>
+                </div>
+                <div class="col-md-12 mb10" *ngIf="valid">
+                  <div>
+                    <label for="Acc_validation">Validation Mode</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="objOnB.Acc_validation"
+                    name="Acc_validation"
+                    #Acc_validation="ngModel"
+                    placeholder="Validation Mode"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="accept">
+                  <div>
+                    <label for="Acc_acceptance">Acceptance Mode</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="objOnB.Acc_acceptance"
+                    name="Acc_acceptance"
+                    #Acc_acceptance="ngModel"
+                    placeholder="Acceptance Mode"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="recipient">
+                  <div>
+                    <label for="Rec_mail">Recipient Mail ID</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="objOnB.Rec_mail"
+                    placeholder="Recipient Mail ID"
+                    type="text"
+                    name="Rec_mail"
+                    #Rec_mail="ngModel"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="mode">
+                  <div>
+                    <label for="Acc_mode">Mode Offered</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="objOnB.Acc_mode"
+                    name="Acc_mode"
+                    #Acc_mode="ngModel"
+                    placeholder="Mode Offered"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="trans">
+                  <div>
+                    <label for="Acc_trans"
+                      >Transaction limit for per transaction</label
+                    >
+                  </div>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Acc_trans"
+                    [(ngModel)]="objOnB.Acc_trans"
+                    #Acc_trans="ngModel"
+                    max="5"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="amount">
+                  <div>
+                    <label for="Acc_amount"> Amount Field</label>
+                  </div>
+                  <span class="custom-dropdown">
+                    <select
+                      class="form-control"
+                      [(ngModel)]="objOnB.Acc_amount"
+                      name="Acc_amount"
+                      #Acc_amount="ngModel"
+                      style="height:40px"
+                    >
+                      <option value="">Select Amount</option>
+                      <option>Editable</option>
+                      <option>Non- Editable</option>
+                    </select>
+                  </span>
                 </div>
               </div>
             </div>
+            <!-- <div class="row ">
+                   <div class="col-md-12">
+                     <div>
+                        <label for="whitelistIp"
+                          >Enter IP Addresses that needs to be whitelisted under
+                          Environment</label
+                        >
+                      </div>
+                 <input
+                   class="w100p fs12"
+                   placeholder="Enter IP Addresses"
+                   pattern="{{ IP_Pattern }}"
+                   [(ngModel)]="objOnB.txtIPAddress"
+                   #txtIPAddress="ngModel"
+                   name="txtIPAddress"
+                   required
+                 />
+                 <div
+                   *ngIf="txtIPAddress.invalid && txtIPAddress.dirty"
+                   class="text-danger form-error"
+                 >
+                   Please Enter correct IP address
+                 </div>
+               </div>
+             </div> -->
+            <!-- <div class="row mb25" id="whitelistIPItemContainerModal"></div> -->
+            <!-- <div class="row mb30">
+               <div class="col-md-12">
+                 <div><label for="contract">Callback URL</label></div>
+                 <input
+                   class="w100p fs12"
+                   placeholder="Enter Callback URL"
+                   pattern="{{ Callback_URL }}"
+                   [(ngModel)]="objOnB.txtCallbackURL"
+                   name="txtCallbackURL"
+                 />               
+               </div>
+             </div> -->
             <div class="row mb25">
               <div class="col-md-12">
+                <div><label for="contract">Certificate Upload</label></div>
                 <input
                   class="form-control"
                   id="file1"
                   (change)="picked($event)"
                   type="file"
-                  [(ngModel)]="objOnB.txtFile"
-                  #txtFile="ngModel"
-                  name="txtFile"
+                  [(ngModel)]="objOnB.file1"
+                  #file1="ngModel"
+                  name="file1"
                   mdbInputDirective
                   required
                 />
                 <div
-                  *ngIf="txtFile.invalid && txtFile.dirty"
+                  *ngIf="file1.invalid && file1.dirty"
                   class="text-danger form-error"
                 >
-                  File is required.
+                  Certificate is required.
                 </div>
-                <!-- <div class="addedFilesProductionModal"></div> -->
               </div>
             </div>
             <label class="checkboxContainer">
@@ -2356,272 +2771,667 @@
       title="Your Organization Name"
       ><i class="fa fa-question-circle" aria-hidden="true"></i
     ></a>
-    <form #frmPRODThird="ngForm" nonvalidate>
-      <div class="tabProdEnvironment">
-        <div class="tabContent">
-          <ul class="breadcrumb">
-            <li class="active">
-              <a onclick="return openProdCurrentTabEnv(0)"
-                >Basic Details <i class="fa fa-angle-right"></i
-              ></a>
-            </li>
-            <li>
-              <a onclick="return openProdCurrentTabEnv(1)"
-                >Requested API <i class="fa fa-angle-right"></i
-              ></a>
-            </li>
-            <li>
-              <a onclick="return openProdCurrentTabEnv(2)">Whitelist IP</a>
-            </li>
-          </ul>
-          <div class="row mb30">
-            <div class="col-md-12 mb-xs-10">
-              <div><label for="requestId">Request Id</label></div>
-              <select
-                class="w100p fs12"
-                name="JiraId"
-                [ngModel]="edit_data.JiraId"
-                (change)="changeItem($event.target.value)"
-                style="font-family: Poppins-Regular;font-size: 14px;padding: 10px 14px;border-radius: 3px;border: solid 1px #acacac;outline: none;background: #ffffff;"
-              >
-                <option value="">Approved/Complete UAT Request ID</option>
-                <option *ngFor="let d of list" value="{{ d.JiraId }}"
-                  >{{ d.JiraId }} {{ d.JiraStatus }}</option
+    <ul class="breadcrumb">
+      <li class="active" (click)="openProdCurrentTabEnv(1)">
+        <a
+          [ngStyle]="{ color: shfrmProdFirst ? '#f06321' : '#919191' }"
+          href="javascript:;"
+          >Basic Details <i class="fa fa-angle-right"></i
+        ></a>
+      </li>
+      <li (click)="openProdCurrentTabEnv(2)">
+        <a
+          [ngStyle]="{ color: shfrmProdSecond ? '#f06321' : '#919191' }"
+          href="javascript:;"
+          >Requested API <i class="fa fa-angle-right"></i
+        ></a>
+      </li>
+      <li (click)="openProdCurrentTabEnv(3)">
+        <a
+          [ngStyle]="{ color: shfrmProdThird ? '#f06321' : '#919191' }"
+          href="javascript:;"
+          >Whitelist IP <i class="fa fa-angle-right"></i
+        ></a>
+      </li>
+    </ul>
+    <form #frmProdFirst="ngForm" nonvalidate [hidden]="!shfrmProdFirst">
+      <div [hidden]="frmProdFirst.submitted">
+        <div class="tabEnvironment">
+          <div class="tabContent">
+            <div class="row mb30">
+              <div class="col-md-12 mb-xs-10">
+                <div><label for="requestId">Request Id</label></div>
+                <select
+                  class="w100p fs12"
+                  name="JiraId"
+                  [ngModel]="edit_data.JiraId"
+                  #JiraId="ngModel"
+                  (change)="changeItem($event.target.value)"
+                  style="font-family: Poppins-Regular;font-size: 14px;padding: 10px 14px;border-radius: 3px;border: solid 1px #acacac;outline: none;background: #ffffff;"
                 >
-              </select>
-            </div>
-          </div>
-          <div class="row mb30">
-            <div class="col-md-12 mb-xs-10">
-              <div><label for="MerchantName">Merchant Name</label></div>
-              <input
-                class="w100p fs12"
-                name="merchantName"
-                placeholder="Your Organization Name"
-                [(ngModel)]="edit_data.MerchantName"
-                readonly=""
-              />
-            </div>
-          </div>
-          <div class="row mb30">
-            <div class="col-md-12 mb-xs-30">
-              <div><label for="description">Description</label></div>
-              <textarea
-                class="w100p fs12"
-                placeholder="Brief description of your product for which ICICI Bank APIs will be leveraged"
-                name="description"
-                [(ngModel)]="edit_data.Description"
-                readonly=""
-              ></textarea>
-            </div>
-          </div>
-          <div class="row mb25">
-            <div class="col-md-6">
-              <div>
-                <label for="companyName"
-                  >Single Point of Contact Email ID</label
-                >
+                  <option value="">Approved/Complete UAT Request ID</option>
+                  <option *ngFor="let d of list" value="{{ d.JiraId }}"
+                    >{{ d.JiraId }} {{ d.JiraStatus }}</option
+                  >
+                </select>
               </div>
-              <input
-                class="w100p fs12"
-                placeholder="Your Email ID"
-                name="companyName"
-                [(ngModel)]="edit_data.SpocEmail"
-                readonly=""
-              />
             </div>
-            <div class="col-md-6">
-              <div>
-                <label for="contactPerson"
-                  >Single Point of Contact Number</label
-                >
+            <div class="row mb30">
+              <div class="col-md-12 mb-xs-10">
+                <div><label for="MerchantName">Merchant Name</label></div>
+                <input
+                  class="w100p fs12"
+                  name="MerchantName"
+                  placeholder="Your Organization Name"
+                  [(ngModel)]="edit_data.MerchantName"
+                  #MerchantName="ngModel"
+                  readonly=""
+                />
               </div>
-              <input
-                class="w100p fs12"
-                placeholder="Your Contact Number"
-                name="contactPerson"
-                [(ngModel)]="edit_data.SpocPhone"
-                readonly=""
-              />
             </div>
-          </div>
-          <div class="row mb25">
-            <div class="col-md-12">
-              <div>
-                <label for="contactPerson"
-                  >ICICI Bank Relationship Manager</label
-                >
+            <div class="row mb30">
+              <div class="col-md-12 mb-xs-30">
+                <div><label for="description">Description</label></div>
+                <textarea
+                  class="w100p fs12"
+                  placeholder="Brief description of your product for which ICICI Bank APIs will be leveraged"
+                  name="Description"
+                  [(ngModel)]="edit_data.Description"
+                  #Description="ngModel"
+                  readonly=""
+                ></textarea>
               </div>
-              <input
-                class="w100p fs12"
-                placeholder="Name/Email ID of ICICI Bank RM with whom your are liaising"
-                name="contactEmail"
-                [(ngModel)]="edit_data.RelManager"
-                readonly=""
-              />
             </div>
-          </div>
-          <div class="row">
-            <div class="col-12 text-right">
-              <button
-                type="button"
-                class="signInBtn"
-                onclick="openProdCurrentTabEnv(1)"
-              >
-                Next
-              </button>
+            <div class="row mb25">
+              <div class="col-md-6">
+                <div>
+                  <label for="companyName"
+                    >Single Point of Contact Email ID</label
+                  >
+                </div>
+                <input
+                  class="w100p fs12"
+                  placeholder="Your Email ID"
+                  name="SpocEmail"
+                  [(ngModel)]="edit_data.SpocEmail"
+                  #SpocEmail="ngModel"
+                  readonly=""
+                />
+              </div>
+              <div class="col-md-6">
+                <div>
+                  <label for="contactPerson"
+                    >Single Point of Contact Number</label
+                  >
+                </div>
+                <input
+                  class="w100p fs12"
+                  placeholder="Your Contact Number"
+                  name="SpocPhone"
+                  [(ngModel)]="edit_data.SpocPhone"
+                  #SpocPhone="ngModel"
+                  readonly=""
+                />
+              </div>
+            </div>
+            <div class="row mb25">
+              <div class="col-md-12">
+                <div>
+                  <label for="contactPerson"
+                    >ICICI Bank Relationship Manager</label
+                  >
+                </div>
+                <input
+                  class="w100p fs12"
+                  placeholder="Name/Email ID of ICICI Bank RM with whom your are liaising"
+                  name="RelManager"
+                  [(ngModel)]="edit_data.RelManager"
+                  #RelManager="ngModel"
+                  readonly=""
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 text-right">
+                <button type="button" class="signInBtn" onclick="btnProdNext()">
+                  Next
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="tabProdEnvironment">
-        <div class="tabContent">
-          <ul class="breadcrumb">
-            <li>
-              <a onclick="return openProdCurrentTabEnv(0)"
-                >Basic Details <i class="fa fa-angle-right"></i
-              ></a>
-            </li>
-            <li class="active">
-              <a onclick="return openProdCurrentTabEnv(1)"
-                >Requested API <i class="fa fa-angle-right"></i
-              ></a>
-            </li>
-            <li>
-              <a onclick="return openProdCurrentTabEnv(2)">Whitelist IP</a>
-            </li>
-          </ul>
-          <div class="row mb30">
-            <div class="col-md-12 mb-xs-10">
-              <div><label for="projectName">Domain Type</label></div>
-              <span class="custom-dropdown">
-                {{ edit_data.Domain }}
-              </span>
+    </form>
+    <form #frmProdSecond="ngForm" nonvalidate [hidden]="!shfrmProdSecond">
+      <div [hidden]="frmProdSecond.submitted">
+        <div class="tabProdEnvironment">
+          <div class="tabContent">
+            <div class="row mb30">
+              <div class="col-md-12 mb-xs-10">
+                <div><label for="projectName">Domain Type</label></div>
+                <span class="custom-dropdown">
+                  <select
+                    class="form-control"
+                    style="height:40px"
+                    [(ngModel)]="edit_data.Domain"
+                    #Domain="ngModel"
+                    name="Domain"
+                    mdbInputDirective
+                    required
+                    (change)="callSubdomain(Domain.value)"
+                  >
+                    <option value="">Select Domain</option>
+                    <option *ngFor="let d of domainLst" [value]="d">{{
+                      d
+                    }}</option>
+                  </select>
+                </span>
+              </div>
             </div>
-          </div>
-          <div class="row mb25">
-            <div class="col-md-12 mb-xs-10">
-              <div><label for="projectName">Api's</label></div>
-              <span class="custom-dropdown">
-                {{ edit_data.DomainApi }}
-              </span>
+            <div class="row mb25">
+              <div class="col-md-12 mb-xs-10">
+                <div><label for="projectName">Api's</label></div>
+                <span class="custom-dropdown">
+                  <angular2-multiselect
+                    [data]="itemList"
+                    [(ngModel)]="edit_data.DomainApi"
+                    name="DomainApi"
+                    [settings]="settings"
+                    required
+                    (onSelectAll)="onSelectAll($event)"
+                    (onGroupDeSelect)="onGroupDeSelect($event)"
+                    (onGroupSelect)="onGroupSelect($event)"
+                    (onDeSelectAll)="onDeSelectAll($event)"
+                    (onSelect)="onItemSelect($event)"
+                    (onDeSelect)="OnItemDeSelect($event)"
+                  >
+                  </angular2-multiselect>
+                </span>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-12 text-right">
-              <button
-                type="button"
-                class="signInBtn"
-                onclick="openProdCurrentTabEnv(2)"
-              >
-                Continue
-              </button>
+            <div class="row">
+              <div class="col-12 text-right">
+                <button
+                  type="button"
+                  class="signInBtn"
+                  onclick="openProdContinue()"
+                >
+                  Continue
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="tabProdEnvironment">
-        <div class="tabContent">
-          <ul class="breadcrumb">
-            <li>
-              <a onclick="return openProdCurrentTabEnv(0)"
-                >Basic Details <i class="fa fa-angle-right"></i
-              ></a>
-            </li>
-            <li>
-              <a onclick="return openProdCurrentTabEnv(1)"
-                >Requested API <i class="fa fa-angle-right"></i
-              ></a>
-            </li>
-            <li class="active">
-              <a onclick="return openProdCurrentTabEnv(2)">Whitelist IP</a>
-            </li>
-          </ul>
-          <div class="row mb25">
-            <div class="col-md-12">
-              <div>
-                <label for="whitelistIp"
-                  >Enter IP Addresses that needs to be whitelisted under
-                  Environment</label
+    </form>
+    <form #frmProdThird="ngForm" nonvalidate [hidden]="!shfrmProdThird">
+      <div [hidden]="frmProdthird.submitted">
+        <div class="tabProdEnvironment">
+          <div class="tabContent">
+            <div class="row">
+              <div class="col-md-12 mb10" *ngIf="accNo">
+                <div><label for="contract">Account Number</label></div>
+                <input
+                  class="form-control"
+                  [ngModel]="edit_data.AccountNo"
+                  name="AccountNo"
+                  #AccountNo="ngModel"
+                  placeholder="Your Account number"
+                  (ngModelChange)="onChangeAccountNum($event)"
+                  type="text"
+                />
+
+                <div
+                  *ngIf="accountNumErrorMsg != ''"
+                  class="text-danger form-error"
                 >
+                  {{ accountNumErrorMsg }}
+                </div>
               </div>
-              <input
-                class="w100p fs12"
-                name="whitelistIp"
-                id="whitelistIpInputModal"
-                pattern="{{ IP_Pattern }}"
-                placeholder="Enter IP Addresses"
-                #whitelistIpInputModal="ngModel"
-                [(ngModel)]="edit_data.whitelistIpInputModal"
-                required
-              />
-              <div
-                *ngIf="
-                  whitelistIpInputModal.invalid && whitelistIpInputModal.dirty
-                "
-                class="text-danger form-error"
-              >
-                Please Enter correct IP address
+              <div class="col-md-12 mb10" *ngIf="clientCode">
+                <div><label for="contract">Client code</label></div>
+                <input
+                  class="form-control"
+                  [(ngModel)]="edit_data.ClientCode"
+                  name="ClientCode"
+                  #ClientCode="ngModel"
+                  placeholder="Your Client code"
+                  type="text"
+                />
+              </div>
+              <div class="col-md-12 mb10" *ngIf="url">
+                <div><label for="contract">Callback URL</label></div>
+                <input
+                  class="form-control"
+                  [ngModel]="edit_data.url"
+                  name="url"
+                  #url="ngModel"
+                  placeholder="Your Callback URL"
+                  (ngModelChange)="onChangeURL($event)"
+                  type="text"
+                />
+                <div *ngIf="urlErrorMsg != ''" class="text-danger form-error">
+                  {{ urlErrorMsg }}
+                </div>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="ip">
+                <div><label for="contract">IP</label></div>
+                <input
+                  class="form-control"
+                  [ngModel]="edit_data.Ip"
+                  name="Ip"
+                  #Ip="ngModel"
+                  placeholder="Your IP"
+                  (ngModelChange)="onChangeIpAddress($event)"
+                  type="text"
+                />
+                <div
+                  *ngIf="ipAddressErrorMsg != ''"
+                  class="text-danger form-error"
+                >
+                  {{ ipAddressErrorMsg }}
+                </div>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="port">
+                <div><label for="contract">Port</label></div>
+                <input
+                  class="form-control"
+                  [ngModel]="edit_data.Port"
+                  name="Port"
+                  #Port="ngModel"
+                  placeholder="Your Port"
+                  (ngModelChange)="onChangePort($event)"
+                  type="text"
+                />
+                <div
+                  *ngIf="portNumErrorMsg != ''"
+                  class="text-danger form-error"
+                >
+                  {{ portNumErrorMsg }}
+                </div>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="checksum">
+                <div><label for="projectName">Checksum Required </label></div>
+                <span class="custom-dropdown">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="edit_data.Checksum"
+                    name="Checksum"
+                    #Checksum="ngModel"
+                    style="height:40px"
+                  >
+                    <option value="">Select Checksum</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select>
+                </span>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="encryption">
+                <div><label for="projectName">Encryption Required</label></div>
+                <span class="custom-dropdown">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="edit_data.Encryption"
+                    name="Encryption"
+                    #Encryption="ngModel"
+                    style="height:40px"
+                  >
+                    <option value="">Select Encryption</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select>
+                </span>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="certificate">
+                <div><label for="projectName">Certificate</label></div>
+                <span class="custom-dropdown">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="edit_data.Certificate"
+                    name="Certificate"
+                    #Certificate="ngModel"
+                    style="height:40px"
+                  >
+                    <option value="">Select Certificate</option>
+                    <option>Java Key Store</option>
+                    <option>IIS SSL</option>
+                  </select>
+                </span>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="service">
+                <div>
+                  <label for="projectName">Service Type</label>
+                </div>
+                <span class="custom-dropdown">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="edit_data.web"
+                    name="web"
+                    #web="ngModel"
+                    style="height:40px"
+                  >
+                    <option value="">Select Services</option>
+                    <option>WADL</option>
+                    <option>REST</option>
+                    <option>*Others </option>
+                  </select>
+                </span>
+              </div>
+              <div class="col-md-12 mb10" *ngIf="commModel">
+                <div>
+                  <label for="projectName"> Communication Method</label>
+                </div>
+                <span class="custom-dropdown">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="edit_data.message"
+                    name="message"
+                    #message="ngModel"
+                    style="height:40px"
+                  >
+                    <option value="">Select Format</option>
+                    <option>XML</option>
+                    <option>XML as a string</option>
+                    <option>JSON</option>
+                  </select>
+                </span>
+              </div>
+              <!-- </div>                  -->
+              <div class="row" *ngIf="Ecollection_Show">
+                <div class="col-md-12 mb10" *ngIf="ifsc">
+                  <div>
+                    <label for="projectName"
+                      >IFSC code to be given to the remitter while initiating
+                      payment
+                    </label>
+                  </div>
+                  <span class="custom-dropdown">
+                    <select
+                      [(ngModel)]="edit_data.IFSC_Code"
+                      name="IFSC_Code"
+                      #IFSC_Code="ngModel"
+                      class="form-control"
+                      style="height:40px"
+                    >
+                      <option value="">Select IFSC Code</option>
+                      <option>ICIC0000104</option>
+                      <option>ICIC0000103</option>
+                      <option>ICIC0000106</option>
+                    </select>
+                  </span>
+                </div>
+                <div class="col-md-12 mb10" *ngIf="virtualCode">
+                  <div>
+                    <label for="contract"
+                      >4,3 or 6 Character Virtual Code</label
+                    >
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="edit_data.virtualCode"
+                    name="virtualCode"
+                    #virtualCode="ngModel"
+                    placeholder="Your Virtual Code"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="ips">
+                  <div><label for="contract">IPS Refund Code</label></div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="edit_data.refundCode"
+                    name="refundCode"
+                    #refundCode="ngModel"
+                    placeholder="IPS Refund Code"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="interAccNo">
+                  <div>
+                    <label for="contract"
+                      >Customer Credit A/C Number - Intermediate Account</label
+                    >
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="edit_data.Account_no"
+                    name="Account_no"
+                    #Account_no="ngModel"
+                    placeholder="Customer Credit A/C Number"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="accName">
+                  <div>
+                    <label for="Acc_name">Account Name</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="edit_data.Acc_name"
+                    name="Acc_name"
+                    #Acc_name="ngModel"
+                    placeholder="Account Name"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="authLevel">
+                  <div>
+                    <label for="Auth_level">Authorization Level</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="edit_data.Auth_level"
+                    name="Auth_level"
+                    #Auth_level="ngModel"
+                    placeholder="Authorization Level"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="urn">
+                  <div>
+                    <label for="Urn">URN</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="edit_data.Urn"
+                    name="Urn"
+                    #Urn="ngModel"
+                    placeholder="URN"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="env">
+                  <div>
+                    <label for="Acc_env">Environment</label>
+                  </div>
+                  <span class="custom-dropdown">
+                    <select
+                      class="form-control"
+                      [(ngModel)]="edit_data.Acc_env"
+                      name="Acc_env"
+                      #Acc_env="ngModel"
+                      style="height:40px"
+                    >
+                      <option value="">Select Environment</option>
+                      <option>UAT</option>
+                      <option>CUG</option>
+                      <option>Production </option>
+                    </select>
+                  </span>
+                </div>
+                <div class="col-md-12 mb10" *ngIf="valid">
+                  <div>
+                    <label for="Acc_validation">Validation Mode</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="edit_data.Acc_validation"
+                    name="Acc_validation"
+                    #Acc_validation="ngModel"
+                    placeholder="Validation Mode"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="accept">
+                  <div>
+                    <label for="Acc_acceptance">Acceptance Mode</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="edit_data.Acc_acceptance"
+                    name="Acc_acceptance"
+                    #Acc_acceptance="ngModel"
+                    placeholder="Acceptance Mode"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="recipient">
+                  <div>
+                    <label for="Rec_mail">Recipient Mail ID</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="edit_data.Rec_mail"
+                    placeholder="Recipient Mail ID"
+                    type="text"
+                    name="Rec_mail"
+                    #Rec_mail="ngModel"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="mode">
+                  <div>
+                    <label for="Acc_mode">Mode Offered</label>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="edit_data.Acc_mode"
+                    name="Acc_mode"
+                    #Acc_mode="ngModel"
+                    placeholder="Mode Offered"
+                    type="text"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="trans">
+                  <div>
+                    <label for="Acc_trans"
+                      >Transaction limit for per transaction</label
+                    >
+                  </div>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Acc_trans"
+                    [(ngModel)]="edit_data.Acc_trans"
+                    #Acc_trans="ngModel"
+                    max="5"
+                  />
+                </div>
+                <div class="col-md-12 mb10" *ngIf="amount">
+                  <div>
+                    <label for="Acc_amount"> Amount Field</label>
+                  </div>
+                  <span class="custom-dropdown">
+                    <select
+                      class="form-control"
+                      [(ngModel)]="edit_data.Acc_amount"
+                      name="Acc_amount"
+                      #Acc_amount="ngModel"
+                      style="height:40px"
+                    >
+                      <option value="">Select Amount</option>
+                      <option>Editable</option>
+                      <option>Non- Editable</option>
+                    </select>
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row mb25" id="whitelistIPItemContainerModal"></div>
-          <div class="row mb30">
-            <div class="col-md-12">
-              <div><label for="contract">Callback URL</label></div>
-              <input
-                class="w100p fs12"
-                name="contract"
-                pattern="{{ Callback_URL }}"
-                placeholder="Callback URL"
-                #CallbackUrl="ngModel"
-                [(ngModel)]="edit_data.CallbackUrl"
-              />
-              <div
-                *ngIf="CallbackUrl.invalid && CallbackUrl.dirty"
-                class="text-danger form-error"
-              >
-                Please Enter correct Callback URL
+            <div class="row mb25">
+              <div class="col-md-12">
+                <div>
+                  <label for="whitelistIp"
+                    >Enter IP Addresses that needs to be whitelisted under
+                    Environment</label
+                  >
+                </div>
+                <input
+                  class="w100p fs12"
+                  name="whitelistIp"
+                  id="whitelistIpInputModal"
+                  pattern="{{ IP_Pattern }}"
+                  placeholder="Enter IP Addresses"
+                  #whitelistIpInputModal="ngModel"
+                  [(ngModel)]="edit_data.whitelistIpInputModal"
+                  required
+                />
+                <div
+                  *ngIf="
+                    whitelistIpInputModal.invalid && whitelistIpInputModal.dirty
+                  "
+                  class="text-danger form-error"
+                >
+                  Please Enter correct IP address
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row mb25">
-            <div class="col-md-12">
-              <input
-                class="form-control"
-                id="file2"
-                (change)="picked($event)"
-                type="file"
-                [(ngModel)]="edit_data.file2"
-                name="txtFile1"
-                #txtFile1="ngModel"
-                mdbInputDirective
-                required
-              />
-              <div
-                *ngIf="txtFile1.invalid && txtFile1.dirty"
-                class="text-danger form-error"
-              >
-                File is required.
+            <div class="row mb25" id="whitelistIPItemContainerModal"></div>
+            <div class="row mb30">
+              <div class="col-md-12">
+                <div><label for="contract">Callback URL</label></div>
+                <input
+                  class="w100p fs12"
+                  name="CallbackUrl"
+                  pattern="{{ Callback_URL }}"
+                  placeholder="Callback URL"
+                  #CallbackUrl="ngModel"
+                  [(ngModel)]="edit_data.CallbackUrl"
+                />
+                <div
+                  *ngIf="CallbackUrl.invalid && CallbackUrl.dirty"
+                  class="text-danger form-error"
+                >
+                  Please Enter correct Callback URL
+                </div>
               </div>
             </div>
-          </div>
-          <label class="checkboxContainer">
-            <a href="javascript:;">I ACCEPT CONTRACT TERMS & CONDITIONS</a>
-            <input type="checkbox" id="selectAll" />
-            <span class="checkmark"></span>
-          </label>
-          <div class="row">
-            <div class="col-12 text-right">
-              <button
-                type="submit"
-                class="signInBtn"
-                [disabled]="frmPRODThird.invalid"
-                [ngClass]="frmPRODThird.valid ? 'btn-dark' : 'btn-white'"
-                (click)="btnConfirmProd(Prodconfirm)"
-              >
-                Confirm Request
-              </button>
+            <div class="row mb25">
+              <div class="col-md-12">
+                <input
+                  class="form-control"
+                  id="file2"
+                  (change)="picked($event)"
+                  type="file"
+                  [(ngModel)]="edit_data.file2"
+                  name="file2"
+                  #file2="ngModel"
+                  mdbInputDirective
+                  required
+                />
+                <div
+                  *ngIf="file2.invalid && file2.dirty"
+                  class="text-danger form-error"
+                >
+                  File is required.
+                </div>
+              </div>
+            </div>
+            <label class="checkboxContainer">
+              <a href="javascript:;">I ACCEPT CONTRACT TERMS & CONDITIONS</a>
+              <input type="checkbox" id="selectAll" />
+              <span class="checkmark"></span>
+            </label>
+            <div class="row">
+              <div class="col-12 text-right">
+                <button
+                  type="submit"
+                  class="signInBtn"
+                  [disabled]="frmPRODThird.invalid"
+                  [ngClass]="frmPRODThird.valid ? 'btn-dark' : 'btn-white'"
+                  (click)="btnConfirmProd(Prodconfirm)"
+                >
+                  Confirm Request
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -2721,8 +3531,8 @@
 <!--UAT Confirmation alert modalbox -->
 <ng-template #UATconfirm>
   <!-- <div class="modal-header">
-      <h4 class="modal-title pull-left"></h4>
-      </div> -->
+       <h4 class="modal-title pull-left"></h4>
+       </div> -->
   <div class="modal-body">
     <div class="row">
       <div class="col-md-12 mb-xs-10">

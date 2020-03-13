@@ -55,6 +55,7 @@ export class HeaderComponent implements OnInit {
   loginResponse: any;
   companyNamesDetails: any;
   companyNames: any;
+  modalRef8: BsModalRef;
 
   constructor(
     private SessionService: SessionService,
@@ -472,7 +473,7 @@ export class HeaderComponent implements OnInit {
   }
 
   // forget Password function
-  forgot(username: any) {
+  forgot(username: any, forgotpasswreset: TemplateRef<any>) {
     if (username == '') {
       this.toastrmsg('error', 'Enter Username');
       return;
@@ -483,7 +484,10 @@ export class HeaderComponent implements OnInit {
       var response = data._body;
       var obj = JSON.parse(response);
       if (obj.status == true) {
-        this.toastrmsg('success', ' Please check your mail');
+        this.modalRef8 = this.modalService.show(forgotpasswreset, {
+          backdrop: 'static',
+        });
+        // this.toastrmsg('success', ' Please check your mail');
         this.router.navigate(['/index']);
         this.modalRef3.hide();
         this.spinnerService.hide();
@@ -545,6 +549,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('password');
     localStorage.removeItem('id');
     localStorage.removeItem('role');
+    //localStorage.removeItem('nodeId');
 
     this.adm.sendUserId('');
     this.showbtn = true;

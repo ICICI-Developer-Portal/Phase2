@@ -893,7 +893,7 @@ ul.nav.nav-tabs.documentaionTabs li:last-child {
 }
 
 /* level 4 */
-.openDropdown.active > .collapse.submenuLevelThree::before {
+.openDropdown.active > .collapse.submenuLevelFour::before {
   content: '';
   display: block;
   width: 0;
@@ -902,6 +902,32 @@ ul.nav.nav-tabs.documentaionTabs li:last-child {
   bottom: 0;
   left: 0px;
   border-left: 1px solid #bbbbbb;
+}
+.submenuLevelFour .nav-link {
+  padding: 11px 12px 12px 27px !important;
+  border-left: 1px solid #bbbbbb !important;
+  border-radius: 0px !important;
+}
+.submenuLevelFour .nav-link.active {
+  font-family: Poppins-Regular;
+}
+.submenuLevelFour .nav-link a::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 0;
+  border-top: 1px solid #bbbbbb;
+  margin-top: -1px;
+  position: absolute;
+  top: 18px;
+  left: 0px;
+}
+.submenuLevelFour li.nav-link:last-child a::before {
+  background: #ffffff !important;
+}
+.submenuLevelFour.collapse {
+  margin-top: 5px;
+  margin-bottom: -15px;
 }
 .myProfileIcon {
   position: absolute;
@@ -2769,4 +2795,7 @@ input, textarea {
   font-weight: 600;
   color: #f06321;
   padding-top: 4px;
+}
+.tree-node {
+  cursor: pointer !important;
 }

@@ -12,61 +12,54 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class MailverifyComponent implements OnInit {
   user_name: string;
 
-  constructor(private HttpClient:HttpClient,private adm:LoginService, private activeRoute:ActivatedRoute,private router:Router,private auth:AuthService) { 
+  constructor(
+    private HttpClient: HttpClient,
+    private adm: LoginService,
+    private activeRoute: ActivatedRoute,
+    private router: Router,
+    private auth: AuthService,
+  ) {
     this.user_name = localStorage.getItem('username');
-    
-  }
-   
-  ngOnInit() {
-   
-    
-    
-  }
- // Change Password
- Mail_verify(){
-  try{
-    var json= {
-      "email":localStorage.getItem('email'),
-      "token":localStorage.getItem('token')
-    }  
-   this.adm.verify_mail(json)
-   .subscribe(
-     (data:any) => {
-       var response= data._body; 
-       var obj=JSON.parse(response);
-       
-     }
-  );  
-  
-  }
-  catch{}
- 
-}
-logout(){
-      
-      localStorage.removeItem('username');
-      localStorage.removeItem('password');
-      sessionStorage.removeItem('username');
-      localStorage.removeItem('id');
-      localStorage.removeItem('role');
-      //alert('a');
-      this.adm.sendUserId('');
-   
-      this.adm.LogoutPortal()
-          .subscribe(
-           (res) => { 
-             this.router.navigate(['/index']);
-           },
-           (err) => {
-             this.router.navigate(['/index']);
-           }
-         );
-         }
-
-    
-  scroll_view(id){
-  this.router.navigate(['index']);
-  setTimeout(function(){ document.querySelector(id).scrollIntoView({behavior: 'smooth' }); }, 10);
   }
 
+  ngOnInit() {}
+  // Change Password
+  Mail_verify() {
+    try {
+      var json = {
+        email: localStorage.getItem('email'),
+        token: localStorage.getItem('token'),
+      };
+      this.adm.verify_mail(json).subscribe((data: any) => {
+        var response = data._body;
+        var obj = JSON.parse(response);
+      });
+    } catch {}
+  }
+  logout() {
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
+    sessionStorage.removeItem('username');
+    localStorage.removeItem('id');
+    localStorage.removeItem('role');
+    //localStorage.removeItem('nodeId');
+    //alert('a');
+    this.adm.sendUserId('');
+
+    this.adm.LogoutPortal().subscribe(
+      res => {
+        this.router.navigate(['/index']);
+      },
+      err => {
+        this.router.navigate(['/index']);
+      },
+    );
+  }
+
+  scroll_view(id) {
+    this.router.navigate(['index']);
+    setTimeout(function() {
+      document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+    }, 10);
+  }
 }

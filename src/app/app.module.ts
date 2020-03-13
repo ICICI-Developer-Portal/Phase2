@@ -28,6 +28,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
 } from '@angular/material';
+// import { BranchDetailsComponent } from './documentation-dashb/branch-details/branch-details.component';
 @NgModule({
   declarations: [AppComponent, AdminPortalComponent, SigninModalComponent],
   imports: [

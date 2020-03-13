@@ -392,7 +392,12 @@ export class LoginService {
     return this.http.post(this.apiUrl + 'load-api-data', query, options);
     //return this.http.get(this.apiUrl+'load-api-data'+json);
   }
-
+  api_description(id) {
+    return this.http.get(
+      'https://developer.icicibank.com/rest/getMenuDescription?ID=' +
+        id,
+    );
+  }
   // Get error code of documentation page
 
   error_code() {
@@ -433,7 +438,21 @@ export class LoginService {
     );
   }
   //Merchant-onboarding End
+  getUATFromData(data) {
+  
 
+   
+    var query = data;
+    
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+    });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(
+      'https://developer.icicibank.com/rest/getAdditionalParameters',
+     query,options
+    );
+  }
   // Get All API Start
   Get_All_API() {
     var json = {};

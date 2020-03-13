@@ -11,6 +11,7 @@ import { PaymentsComponent } from './Sidenav-pages/payments/payments.component';
 import { ViewAllApiComponent } from './Sidenav-pages/view-all-api/view-all-api.component';
 import { AccountDepositComponent } from './Sidenav-pages/account-deposit/account-deposit.component';
 import { MerchantOnboardingComponent } from './merchant-onboarding/merchant-onboarding.component';
+import { BranchDetailsComponent } from './branch-details/branch-details.component';
 import { OffersComponent } from './Sidenav-pages/Sidenav-Subpages/offers/offers.component';
 import { CustomerAuthComponent } from './Sidenav-pages/Sidenav-Subpages/customer-auth/customer-auth.component';
 import { CustomerOnboardingComponent } from './Sidenav-pages/Sidenav-Subpages/customer-onboarding/customer-onboarding.component';
@@ -42,6 +43,7 @@ import { IsurepayComponent } from './Sidenav-pages/Sidenav-Subpages/isurepay/isu
 import { RemittanceComponent } from './Sidenav-pages/Sidenav-Subpages/remittance/remittance.component';
 import { AuthGuard } from '../services/auth.guard';
 import { CompositepayComponent } from './Sidenav-pages/Sidenav-Subpages/compositepay/compositepay.component';
+import { RootDetailsComponent } from './root-details/root-details.component';
 
 const routes: Routes = [
   {
@@ -59,6 +61,11 @@ const routes: Routes = [
         component: ApiDetailsComponent,
         canActivate: [AuthGuard],
       },
+      // {
+      //   path: 'apidetails',
+      //   component: ApiDetailsComponent,
+      //   canActivate: [AuthGuard],
+      // },
       // sidenav pages
       {
         path: 'accountdeposit',
@@ -101,7 +108,12 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
 
-      // subpages pages
+      // branch details pages
+      {
+        path: 'branchdetails/:id',
+        component: BranchDetailsComponent,
+        //canActivate: [AuthGuard]
+      },
       {
         path: 'offers',
         component: OffersComponent,
@@ -251,6 +263,11 @@ const routes: Routes = [
         path: 'compositepay',
         component: CompositepayComponent,
         //canActivate: [AuthGuard],
+      },
+      {
+        path: 'rootdetails/:id',
+        component: RootDetailsComponent,
+        //canActivate: [AuthGuard]
       },
     ],
   },

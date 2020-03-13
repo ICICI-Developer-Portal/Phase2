@@ -10,27 +10,29 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   user_name = '';
-  constructor(private router:Router,private adm:LoginService,private auth:AuthService) { 
-
+  constructor(
+    private router: Router,
+    private adm: LoginService,
+    private auth: AuthService,
+  ) {
     this.user_name = localStorage.getItem('username');
     this.adm.check_user_log();
   }
 
   ngOnInit() {
     this.auth.ischeck_session();
-    this.adm.getUserName().subscribe(
-    data => {
+    this.adm.getUserName().subscribe(data => {
       this.user_name = data;
     });
   }
 
-     //  Fuction for Logout
-     logout(){
-      localStorage.removeItem('username');
-      localStorage.removeItem('password');
-      sessionStorage.removeItem('username');
-      localStorage.removeItem('id');
-      this.router.navigate(['/admin/login'])
-    }
-
+  //  Fuction for Logout
+  logout() {
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
+    sessionStorage.removeItem('username');
+    localStorage.removeItem('id');
+    //localStorage.removeItem('nodeId');
+    this.router.navigate(['/admin/login']);
+  }
 }
