@@ -61,6 +61,7 @@ import {
   MatInputModule,
 } from '@angular/material';
 import { RootDetailsComponent } from './root-details/root-details.component';
+import { SecurityComponent } from './Sidenav-pages/security/security.component';
 
 @NgModule({
   imports: [
@@ -128,6 +129,7 @@ import { RootDetailsComponent } from './root-details/root-details.component';
     RemittanceComponent,
     CompositepayComponent,
     RootDetailsComponent,
+    SecurityComponent,
   ],
 })
 export class DocumentationDashbModule {}

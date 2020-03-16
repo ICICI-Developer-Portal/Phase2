@@ -44,6 +44,7 @@ import { RemittanceComponent } from './Sidenav-pages/Sidenav-Subpages/remittance
 import { AuthGuard } from '../services/auth.guard';
 import { CompositepayComponent } from './Sidenav-pages/Sidenav-Subpages/compositepay/compositepay.component';
 import { RootDetailsComponent } from './root-details/root-details.component';
+import { SecurityComponent } from './Sidenav-pages/security/security.component';
 
 const routes: Routes = [
   {
@@ -268,6 +269,11 @@ const routes: Routes = [
         path: 'rootdetails/:id',
         component: RootDetailsComponent,
         //canActivate: [AuthGuard]
+      },
+      {
+        path: 'security',
+        component: SecurityComponent,
+        //canActivate: [AuthGuard],
       },
     ],
   },
