@@ -59,6 +59,7 @@ import {
   MatAutocompleteModule,
   MatFormFieldModule,
   MatInputModule,
+  MatProgressSpinnerModule,
 } from '@angular/material';
 import { RootDetailsComponent } from './root-details/root-details.component';
 import { SecurityComponent } from './Sidenav-pages/security/security.component';
@@ -78,6 +79,7 @@ import { SecurityComponent } from './Sidenav-pages/security/security.component';
     Ng2SearchPipeModule,
     MatAutocompleteModule,
     MatFormFieldModule,
+    MatProgressSpinnerModule,
     MatInputModule,
   ],
   declarations: [
