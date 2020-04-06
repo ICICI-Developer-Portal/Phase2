@@ -4,13 +4,24 @@ import { LayoutComponent } from './LandingPage/layout/layout.component';
 import { MailverifyComponent } from './mailverify/mailverify.component';
 import { AuthGuard } from './services/auth.guard';
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
-
+import { JwtAuthComponent } from './jwt-auth/jwt-auth.component'
+import { MisComponent } from './mis/mis.component'
 const routes: Routes = [
   // { path: '', redirectTo :'index', pathMatch :'full' },
   { path: 'layout', component: LayoutComponent, canActivate: [AuthGuard] },
   {
     path: 'dashboard',
     component: MailverifyComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'jwt-auth',
+    component: JwtAuthComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'mis',
+    component: MisComponent,
     canActivate: [AuthGuard],
   },
   {

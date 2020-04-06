@@ -6,5 +6,9 @@ export const CONSTANTS = {
   URL: "Enter a valid URL",
   PDF_DOCUMENT: "Document",
   VIEW_FLOW: "View Flow",
-  PDF_TITLE: "Document"
+  PDF_TITLE: "Document",
+  SUBMIT: "Submit",
+  DATE: "Date",
+  COMPANY_NAME: "Company Name",
+  LOG_OUT: "Logout"
 };

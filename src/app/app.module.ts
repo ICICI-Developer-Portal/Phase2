@@ -28,9 +28,11 @@ import {
   MatFormFieldModule,
   MatInputModule,
 } from '@angular/material';
+import { JwtAuthComponent } from './jwt-auth/jwt-auth.component';
+import { MisComponent } from './mis/mis.component';
 // import { BranchDetailsComponent } from './documentation-dashb/branch-details/branch-details.component';
 @NgModule({
-  declarations: [AppComponent, AdminPortalComponent, SigninModalComponent],
+  declarations: [AppComponent, AdminPortalComponent, SigninModalComponent, JwtAuthComponent, MisComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

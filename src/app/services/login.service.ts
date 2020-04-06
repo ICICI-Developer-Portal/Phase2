@@ -399,7 +399,19 @@ export class LoginService {
     );
   }
   // Get error code of documentation page
-
+mis(json){
+  var query = '';
+  var key;
+  for (key in json) {
+    query +=
+      encodeURIComponent(key) + '=' + encodeURIComponent(json[key]) + '&';
+  }
+  let headers = new Headers({
+    'Content-Type': 'application/x-www-form-urlencoded',
+  });
+  let options = new RequestOptions({ headers: headers });
+  return this.http.post('https://developer.icicibank.com/rest/createCSV' ,query, options);
+}
   error_code() {
     //console.log(json);
     let headers = new Headers({
