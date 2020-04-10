@@ -28,14 +28,14 @@ export class AuthService {
     //localStorage.removeItem('nodeId');
     //alert('a');
     this.adm.sendUserId('');
-    this.adm.LogoutPortal().subscribe(
-      res => {
-        this.router.navigate(['/index']);
-      },
-      err => {
-        this.router.navigate(['/index']);
-      },
-    );
+    // this.adm.LogoutPortal().subscribe(
+    //   res => {
+    //     this.router.navigate(['/index']);
+    //   },
+    //   err => {
+    //     this.router.navigate(['/index']);
+    //   },
+    // );
   }
   ischeck_session() {
     // if(!localStorage.getItem("username")){

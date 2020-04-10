@@ -36,14 +36,14 @@ export class LoginService {
   check_user_log() {
     if (localStorage.getItem('id') == '' || !localStorage.getItem('id')) {
       this.sendUserId('');
-      this.LogoutPortal().subscribe(
-        res => {
-          this.router.navigate(['/index']);
-        },
-        err => {
-          this.router.navigate(['/index']);
-        },
-      );
+      // this.LogoutPortal().subscribe(
+      //   res => {
+      //     this.router.navigate(['/index']);
+      //   },
+      //   err => {
+      //     this.router.navigate(['/index']);
+      //   },
+      // );
     }
   }
   clearUserId() {
@@ -82,31 +82,31 @@ export class LoginService {
     return this.http.post(this.apiUrl + 'login', query, options);
   }
 
-  LoginPortal(json) {
-    let options = {
-      withCredentials: true,
-    };
-    const formData = new FormData();
-    formData.append('dev-auth', 'true');
-    formData.append('username', json['username']);
-    formData.append('password', json['password']);
-    formData.append('reset-username', '');
-    return this.HttpClient.post<any>(
-      'https://sandbox.icicibank.com/login',
-      formData,
-      options,
-    );
-  }
+  // LoginPortal(json) {
+  //   let options = {
+  //     withCredentials: true,
+  //   };
+  //   const formData = new FormData();
+  //   formData.append('dev-auth', 'true');
+  //   formData.append('username', json['username']);
+  //   formData.append('password', json['password']);
+  //   formData.append('reset-username', '');
+  //   return this.HttpClient.post<any>(
+  //     'https://sandbox.icicibank.com/login',
+  //     formData,
+  //     options,
+  //   );
+  // }
 
-  LogoutPortal() {
-    let options = {
-      withCredentials: true,
-    };
-    return this.HttpClient.get<any>(
-      'https://sandbox.icicibank.com/logout',
-      options,
-    );
-  }
+  // LogoutPortal() {
+  //   let options = {
+  //     withCredentials: true,
+  //   };
+  //   return this.HttpClient.get<any>(
+  //     'https://sandbox.icicibank.com/logout',
+  //     options,
+  //   );
+  // }
 
   check_log() {
     return localStorage.getItem('id') ? true : false;

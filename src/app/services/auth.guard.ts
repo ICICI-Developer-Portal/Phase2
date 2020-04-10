@@ -41,30 +41,30 @@ export class AuthGuard implements CanActivate {
       !localStorage.getItem('username')
     ) {
       this.adm.sendUserId('');
-      this.adm.LogoutPortal().subscribe(
-        res => {
-          //   this.router.navigate(['/index'], {
-          //     queryParams: { returnUrl: state.url },
-          //   });
-          //   return false;
+      // this.adm.LogoutPortal().subscribe(
+      //   res => {
+      //     //   this.router.navigate(['/index'], {
+      //     //     queryParams: { returnUrl: state.url },
+      //     //   });
+      //     //   return false;
 
-          const dialogRef = this.dialog.open(SigninModalComponent, {
-            disableClose: true,
-          });
-          return false;
-        },
-        err => {
-          //   this.router.navigate(['/index'], {
-          //     queryParams: { returnUrl: state.url },
-          //   });
-          //   return false;
+      //     const dialogRef = this.dialog.open(SigninModalComponent, {
+      //       disableClose: true,
+      //     });
+      //     return false;
+      //   },
+      //   err => {
+      //     //   this.router.navigate(['/index'], {
+      //     //     queryParams: { returnUrl: state.url },
+      //     //   });
+      //     //   return false;
 
-          const dialogRef = this.dialog.open(SigninModalComponent, {
-            disableClose: true,
-          });
-          return false;
-        },
-      );
+      //     const dialogRef = this.dialog.open(SigninModalComponent, {
+      //       disableClose: true,
+      //     });
+      //     return false;
+      //   },
+      // );
     } else {
       sessionStorage.setItem('username', sessionStorage.getItem('username'));
       return true;

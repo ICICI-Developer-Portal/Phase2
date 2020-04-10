@@ -196,10 +196,9 @@ export class IndexComponent implements OnInit {
     var self = this;
     //api for get menu tree data
     this.getMenuTree();
-    localStorage.removeItem('checkedid');
 
     //api for get tree data
-    this.dashboardService.getTreeData().subscribe((data: any) => {
+    this.dashboardService.getMenuTreeData().subscribe((data: any) => {
       this.responseData = JSON.parse(data._body);
       this.menuArray = this.getMenuData(this.responseData);
     });
@@ -510,7 +509,6 @@ Appnode(num:any, checked:any){
   var index = this.internalArr.indexOf(num)
   if(index === -1 && checked){
      this.internalArr.push(num);
-     localStorage.setItem("checkedid",this.internalArr)
        console.log("idarray",this.internalArr)
   }
   else{
@@ -655,14 +653,14 @@ Appnode(num:any, checked:any){
         localStorage.setItem('password', obj.data.password);
         localStorage.setItem('role', 'user');
         this.adm.sendUserId(obj.data.id);
-        this.adm.LoginPortal(json).subscribe(
-          res => {
-            this.router.navigate(['/index']);
-          },
-          err => {
-            this.router.navigate(['/index']);
-          },
-        );
+        // this.adm.LoginPortal(json).subscribe(
+        //   res => {
+        //     this.router.navigate(['/index']);
+        //   },
+        //   err => {
+        //     this.router.navigate(['/index']);
+        //   },
+        // );
         this.spinnerService.hide();
       } else {
         this.spinnerService.hide();

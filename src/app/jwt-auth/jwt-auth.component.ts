@@ -32,14 +32,14 @@ loginResponse:any;
       var response = data._body;
       this.loginResponse = JSON.parse(response);
       if (this.loginResponse.status == true) {
-        this.adm.LoginPortal(json).subscribe(
-          res => {
-            // this.router.navigate(['/index']);
-          },
-          err => {
-            //this.router.navigate(['/index']);
-          },
-        );
+        // this.adm.LoginPortal(json).subscribe(
+        //   res => {
+        //     // this.router.navigate(['/index']);
+        //   },
+        //   err => {
+        //     //this.router.navigate(['/index']);
+        //   },
+        // );
       }
     });
     

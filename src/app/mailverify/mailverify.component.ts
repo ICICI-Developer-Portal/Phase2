@@ -46,14 +46,14 @@ export class MailverifyComponent implements OnInit {
     //alert('a');
     this.adm.sendUserId('');
 
-    this.adm.LogoutPortal().subscribe(
-      res => {
-        this.router.navigate(['/index']);
-      },
-      err => {
-        this.router.navigate(['/index']);
-      },
-    );
+    // this.adm.LogoutPortal().subscribe(
+    //   res => {
+    //     this.router.navigate(['/index']);
+    //   },
+    //   err => {
+    //     this.router.navigate(['/index']);
+    //   },
+    // );
   }
 
   scroll_view(id) {

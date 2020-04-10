@@ -132,13 +132,13 @@ downloadCertificate(url) {
     //localStorage.removeItem('nodeId');
     this.adm.sendUserId('');
 
-    this.adm.LogoutPortal().subscribe(
-      res => {
-        this.router.navigate(['/index']);
-      },
-      err => {
-        this.router.navigate(['/index']);
-      },
-    );
+    // this.adm.LogoutPortal().subscribe(
+    //   res => {
+    //     this.router.navigate(['/index']);
+    //   },
+    //   err => {
+    //     this.router.navigate(['/index']);
+    //   },
+    // );
   }
 }
