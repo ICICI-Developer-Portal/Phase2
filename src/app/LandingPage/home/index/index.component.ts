@@ -165,7 +165,8 @@ export class IndexComponent implements OnInit {
   treeElements: any;
   showMatSpinner: boolean = false;
   selectednode:any =[];
-  interval:any;
+  interval_Check:any;
+
   constructor(
     private HttpClient: HttpClient,
     private formbuilder: FormBuilder,
@@ -186,18 +187,13 @@ export class IndexComponent implements OnInit {
     this.adm.getUserId().subscribe(data => {
       this.logged_in =
         data != '' && data != null && data != undefined ? true : false;
-    });
-   this.interval= setInterval(()=>{     
-      this.assignClickToNodes();
-    },1000)
+    }); 
   }
 
   ngOnInit() {
     var self = this;
-    //api for get menu tree data
     this.getMenuTree();
-
-    //api for get tree data
+    //api for get menu tree data
     this.dashboardService.getMenuTreeData().subscribe((data: any) => {
       this.responseData = JSON.parse(data._body);
       this.menuArray = this.getMenuData(this.responseData);
@@ -271,7 +267,7 @@ export class IndexComponent implements OnInit {
   }
     assignClickToNodes() {
     var self = this;
-    //$('.sideMenu>.nav-pills li.nav-link').unbind('click');
+    $('.sideMenu>.nav-pills li.nav-link').off('click');
 
     $('.sideMenu>.nav-pills li.nav-link').click(function() {
       $(this)
@@ -374,7 +370,6 @@ export class IndexComponent implements OnInit {
 
   createTreeAndJquery() {
     this.treeElements = this.createTree();
-    console.log(this.treeElements)
     // setInterval(() => {
     //   this.assignClickToNodes();
     // }, 1000);
@@ -1332,8 +1327,21 @@ Appnode(num:any, checked:any){
     this.imageSrc = base64result;
     localStorage.setItem('Imagepath', this.imageSrc);
   }
+  checkInterval(){
+    var counter2=0;
+    this.interval_Check= setInterval(()=>{  
+      this.assignClickToNodes();
+      counter2 =counter2 +1 ;
+      console.log(counter2)
+      if(counter2 === 1){
+        clearInterval(this.interval_Check);        
+      }
+      counter2=0;
+    },1000)
+  }
   //Next button in UAT
   btnNext() {
+    this.checkInterval();
     this.frmUAT_A2 = true;
     this.frmUAT_A1 = false;
     this.frmUAT_A3 = false;
@@ -1354,6 +1362,7 @@ Appnode(num:any, checked:any){
   }
   //Nav tab in UAT
   uatNext(id) {
+    this.checkInterval();
     if (this.shfrmUATFirst) {
       this.shfrmUATFirst = true;
     } else if (this.shfrmUATSecond) {
