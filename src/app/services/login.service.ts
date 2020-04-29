@@ -616,4 +616,9 @@ mis(json){
         companyName,
     );
   }
+  faq(){
+    return this.http.get(
+      'https://developer.icicibank.com/rest/getPortalFAQ'
+    )
+  }
 }
