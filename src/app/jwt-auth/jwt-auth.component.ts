@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services';
 import * as CryptoJS from 'crypto-js';  
-
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-jwt-auth',
   templateUrl: './jwt-auth.component.html',
@@ -14,19 +14,28 @@ export class JwtAuthComponent implements OnInit {
   encPassword: string;  
   conversionEncryptOutput: string;  
   conversionDecryptOutput: string;  
-  
+  // loginForm: FormGroup;
     
   constructor(
     private adm: LoginService,
-
+    // private formBuilder: FormBuilder,
   ) { }
 loginResponse:any;
-  ngOnInit() {}
+  ngOnInit() {
+    // this.loginForm = this.formBuilder.group({
+    //   username: ['', Validators.required],
+    //   password: ['', Validators.required]
+    // });
+  }
   Login(username: any, password: any) {
-    this.conversionEncryptOutput = CryptoJS.AES.encrypt(username.trim(),password.trim()).toString();  
-    alert("encrypt : "+this.conversionEncryptOutput)
-    this.conversionDecryptOutput = CryptoJS.AES.decrypt( this.conversionEncryptOutput.trim(), password.trim()).toString(CryptoJS.enc.Utf8);
-   alert("decrypt : "+this.conversionDecryptOutput)
+  //   this.conversionEncryptOutput = CryptoJS.AES.encrypt(username.trim(),password.trim()).toString();  
+  //   alert("encrypt : "+this.conversionEncryptOutput)
+  //   this.conversionDecryptOutput = CryptoJS.AES.decrypt( this.conversionEncryptOutput.trim(), password.trim()).toString(CryptoJS.enc.Utf8);
+  //  alert("decrypt : "+this.conversionDecryptOutput)
+  console.log(username+':',password)
+  username = btoa(username);
+  password = btoa(password);
+  console.log(username+':' ,password)
     var json = { username: username, password: password };
     this.adm.Login(json).subscribe((data: any) => {
       var response = data._body;
@@ -42,9 +51,24 @@ loginResponse:any;
         // );
       }
     });
+    // this.adm.Login(btoa(this.f.username.value), btoa(this.f.password.value))
+    //         .pipe(first())
+    //         .subscribe(
+    //             data => {
+    //                 console.log("username" )
+    //             },
+    //             error => {
+    //                 console.log
+    //             });
     
-    console.log(this.conversionEncryptOutput)
-    console.log(username, password);
+    // }
+    // console.log(this.conversionEncryptOutput)
+    // console.log(username, password);
+    // this.conversionEncryptOutput = window.btoa(username + ':' + password);
+    // console.log(this.conversionEncryptOutput); 
+    // this.conversionEncryptOutput = window.atob("dXNlcm5hbWU6cGFzc3dvcmQ=");
+    // console.log(this.conversionEncryptOutput); 
+    return false;
   }
   
 }

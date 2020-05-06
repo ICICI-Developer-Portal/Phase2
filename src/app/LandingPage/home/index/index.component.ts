@@ -36,6 +36,10 @@ export class IndexComponent implements OnInit {
   treeData = [];
   treeData1: any[];
   itemArr:any =[];
+  nodetype: any;
+  nodeName:any;
+  nodeValue: any = [];
+  selectedId: any;
   IP_Pattern =
     '^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.' +
     '([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.' +
@@ -336,9 +340,13 @@ export class IndexComponent implements OnInit {
       .off('click')
       .on('click', '.tree-node', function(e) {
        $(".containercb").append ( `<input type="checkbox" class="check"/>` +`<span class="checkmark">`+`</span>`);
-        var selectedId = $(this).attr('role');
-        this.nodeId = selectedId.split('_').pop();
-         var nodeType = selectedId.split('_', 2).pop();
+       var nodeName = $(this).attr('value');
+       this.selectedId = $(this).attr('role');
+       this.nodeId = this.selectedId.split('_').pop();
+       this.nodetype = this.selectedId.split('_', 2).pop();
+       if (this.nodetype === "root") {
+         localStorage.setItem("nodeName", nodeName)
+       }
       }) 
       $('.containercb').off().on('change', function() {
         var rbtn = $(this).find("input");
@@ -402,7 +410,7 @@ export class IndexComponent implements OnInit {
       if (this.treeData[i].CHILD_COUNT !== '0') {
         this.treeItems +=
           `<li class="nav-link">` +
-          `<a id="v-pills-messages-tab" class="tree-node" data-toggle="pill"  role="tab_${this.treeData[i].TYPE}_${this.treeData[i].TREE_ID}" aria-controls="v-pills-home" aria-selected="true">` +
+          `<a id="v-pills-messages-tab" class="tree-node" data-toggle="pill" value="${this.treeData[i].TAB_NAME}" role="tab_${this.treeData[i].TYPE}_${this.treeData[i].TREE_ID}" aria-controls="v-pills-home" aria-selected="true">` +
           `${this.treeData[i].TAB_NAME}` +
           `<img class="dropdownIcon" src="assets/images/dropdown-2.svg" alt=""/>` +
           `</a>`;
@@ -417,7 +425,7 @@ export class IndexComponent implements OnInit {
       } else {
         this.treeItems +=
           `<li class="nav-link">` +
-          `<a id="v-pills-messages-tab" class="tree-node" data-toggle="pill" role="tab_${this.treeData[i].TYPE}_${this.treeData[i].API_ID}" aria-controls="v-pills-home" aria-selected="true">` +
+          `<a id="v-pills-messages-tab" class="tree-node" data-toggle="pill" value="${this.treeData[i].TAB_NAME}" role="tab_${this.treeData[i].TYPE}_${this.treeData[i].API_ID}" aria-controls="v-pills-home" aria-selected="true">` +
           `${this.treeData[i].TAB_NAME}` +
           `</a>`;
       }
@@ -501,15 +509,34 @@ export class IndexComponent implements OnInit {
    * @method Appnode
    */
 Appnode(num:any, checked:any){
-  var index = this.internalArr.indexOf(num)
-  if(index === -1 && checked){
-     this.internalArr.push(num);
-       console.log("idarray",this.internalArr)
+  this.nodeName = localStorage.getItem("nodeName")
+      this.nodeValue.push(this.nodeName.split('_', 3).pop())
+      this.hasDuplicates(this.nodeValue);
+      if (this.hasDuplicates(this.nodeValue)) {
+        var indexNode = this.internalArr.indexOf(this.nodeValue)
+        this.nodeValue.splice(indexNode, 1)  
+      }
+      localStorage.setItem("nodeValue",this.nodeValue)
+    var index = this.internalArr.indexOf(num)
+    if (index === -1 && checked) {
+      this.internalArr.push(num);
+      console.log("idarray", this.internalArr)
+    }
+    else {
+      this.internalArr.splice(index, 1);
+      console.log("id array uncheck", this.internalArr)
+    }
+}
+hasDuplicates(arr) {
+  var counts = [];
+  for (var i = 0; i <= arr.length; i++) {
+    if (counts[arr[i]] === undefined) {
+      counts[arr[i]] = 1;
+    } else {
+      return true;
+    }
   }
-  else{
-    this.internalArr.splice(index, 1);
-    console.log("id array uncheck", this.internalArr)
-  }
+  return false;
 }
   /** For scroll view
    * @class SidebarComponent
@@ -1546,61 +1573,60 @@ Appnode(num:any, checked:any){
       );
     }
 
-    this.collection =
-      this.objOnB.AccountNo +
-      ' ' +
-      this.objOnB.CmsClientCode +
-      ' ' +
-      this.objOnB.url +
-      ' ' +
-      this.objOnB.Ip +
-      ' ' +
-      this.objOnB.Port +
-      ' ' +
-      this.objOnB.Checksum +
-      ' ' +
-      this.objOnB.Encryption +
-      ' ' +
-      this.objOnB.Certificate +
-      ' ' +
-      this.objOnB.web +
-      ' ' +
-      this.objOnB.message +
-      ' ' +
-      this.objOnB.IFSC_Code +
-      ' ' +
-      this.objOnB.virtualCode +
-      ' ' +
-      this.objOnB.refundCode +
-      ' ' +
-      this.objOnB.Account_no +
-      ' ' +
-      this.objOnB.Acc_name +
-      ' ' +
-      this.objOnB.Auth_level +
-      ' ' +
-      this.objOnB.Urn +
-      ' ' +
-      this.objOnB.Acc_env +
-      ' ' +
-      this.objOnB.Acc_validation +
-      ' ' +
-      this.objOnB.Acc_acceptance +
-      ' ' +
-      this.objOnB.Rec_mail +
-      ' ' +
-      this.objOnB.Acc_mode +
-      ' ' +
-      this.objOnB.Acc_trans +
-      ' ' +
-      this.objOnB.Acc_amount;
-
+    // this.collection =
+    //   this.objOnB.AccountNo +
+    //   ' ' +
+    //   this.objOnB.CmsClientCode +
+    //   ' ' +
+    //   this.objOnB.url +
+    //   ' ' +
+    //   this.objOnB.Ip +
+    //   ' ' +
+    //   this.objOnB.Port +
+    //   ' ' +
+    //   this.objOnB.Checksum +
+    //   ' ' +
+    //   this.objOnB.Encryption +
+    //   ' ' +
+    //   this.objOnB.Certificate +
+    //   ' ' +
+    //   this.objOnB.web +
+    //   ' ' +
+    //   this.objOnB.message +
+    //   ' ' +
+    //   this.objOnB.IFSC_Code +
+    //   ' ' +
+    //   this.objOnB.virtualCode +
+    //   ' ' +
+    //   this.objOnB.refundCode +
+    //   ' ' +
+    //   this.objOnB.Account_no +
+    //   ' ' +
+    //   this.objOnB.Acc_name +
+    //   ' ' +
+    //   this.objOnB.Auth_level +
+    //   ' ' +
+    //   this.objOnB.Urn +
+    //   ' ' +
+    //   this.objOnB.Acc_env +
+    //   ' ' +
+    //   this.objOnB.Acc_validation +
+    //   ' ' +
+    //   this.objOnB.Acc_acceptance +
+    //   ' ' +
+    //   this.objOnB.Rec_mail +
+    //   ' ' +
+    //   this.objOnB.Acc_mode +
+    //   ' ' +
+    //   this.objOnB.Acc_trans +
+    //   ' ' +
+    //   this.objOnB.Acc_amount;
     var inputFields = {
       userName: localStorage.getItem('username'),
-      domainName: this.objOnB.txtDomainType,
-      domainApis: ips.toString(),
+      domainName: localStorage.getItem("nodeValue"),
+      domainApis: this.idArr.toString(),
       mName: this.objOnB.txtMerchantName,
-      desc: this.objOnB.txtDescription + ' ' + this.collection,
+      desc: this.objOnB.txtDescription,
       spocEmail: this.objOnB.txtContactEmail,
       spocPhone: this.objOnB.txtContactNumber,
       relManager: this.objOnB.txtRelManager,
