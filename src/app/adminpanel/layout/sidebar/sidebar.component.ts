@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+declare var $:any;
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -10,6 +10,11 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    var self = this;
+    $('.nav-link > li').on('click', function() {
+      $(this).addClass('active');
+      $(this).siblings().removeClass('active');
+    }); 
   }
-
+  
 }
