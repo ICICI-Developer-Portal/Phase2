@@ -20,7 +20,7 @@
                         <tr>
                         <td>
                         <form [formGroup]="uploadDoc">
-                          <select (change)="selectedId()" class="form-control" formControlName="docUpload" style="height:40px" #SelectDomain>  
+                          <select class="form-control" formControlName="docUpload" style="height:40px" #SelectDomain>  
                           <option value="">Select Jira ID</option>
                           <option *ngFor="let id of jiraId" value={{id}}>{{id}}</option>
                         </select>
