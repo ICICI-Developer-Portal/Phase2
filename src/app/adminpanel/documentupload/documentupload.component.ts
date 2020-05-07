@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { HttpClient , HttpHeaders} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-
+declare var $:any;
 @Component({
   selector: 'app-documentupload',
   templateUrl: './documentupload.component.html',
@@ -19,6 +19,7 @@ export class DocumentuploadComponent implements OnInit {
   confirmMsg:any;
   sellersPermitString: string;
   imageSrc;
+  uploadDoc:FormGroup;
 
   constructor(
     private adm:LoginService,
@@ -26,14 +27,21 @@ export class DocumentuploadComponent implements OnInit {
     private HttpClient: HttpClient,
     private formbuilder: FormBuilder,
     private modalService: BsModalService,) { 
-    // this.spinnerService.show();
+    this.spinnerService.show();
   }
 
   ngOnInit() {
     this.request_data();
+    this.uploadDoc=this.formbuilder.group({
+      docUpload:["",[Validators.required]],
+    });
+  }
+
+  get docUpload() {
+    return this.uploadDoc.get('docUpload');
   }
   request_data() {
-   this.spinnerService.show();
+  //  this.spinnerService.show();
   this.adm.Onboardrequestsuser().subscribe((data: any) => {
     var response = data._body;
 
@@ -41,15 +49,12 @@ export class DocumentuploadComponent implements OnInit {
     this.dataSource = obj;
     for(var i=0; i<=this.dataSource.length; i++){
       this.jiraId.push(this.dataSource[i].JiraId);
-      console.log("abc",this.jiraId)
     }
-    console.log("obj",obj)
     this.spinnerService.hide();
   });
 
 }
 public picked(event) {
-  //this.currentId = field;
   let fileList: FileList = event.target.files;
   if (fileList.length > 0) {
     const file: File = fileList[0];
@@ -59,12 +64,7 @@ public picked(event) {
 }
 handleInputChange(files) {
   var file = files;
-  //var pattern = /image-*/;
   var reader = new FileReader();
-  // if (!file.type.match(pattern)) {
-  //   this.toastrmsg('error', "Invalid Format.");
-  //   return;
-  // }
   reader.onloadend = this._handleReaderLoaded.bind(this);
   reader.readAsDataURL(file);
 }
@@ -75,52 +75,31 @@ _handleReaderLoaded(e) {
   this.imageSrc = base64result;
   localStorage.setItem('Imagepath', this.imageSrc);
 }
+
 btnConfirm(UATconfirm) {
-  const formData = new FormData();
-  let a: any = (<HTMLInputElement>document.getElementById('file1')).files;
-    console.log('a', a);
-    for (let k = 0; k < a.length; k++) {
-      formData.append('file1', a[k]);
-    }
-this.HttpClient.post<any>(
-  'https://developerapi.icicibank.com:8443/api/v2/jira',
-  formData,
-).subscribe(
-  res => {
-    console.log(res);
-    if (res.success === 'true') {
-      //File upload service
+  event.preventDefault();
       var formData = new FormData();
-      let b: any = (<HTMLInputElement>document.getElementById('file1'))
-        .files;
+      let b: any = (<HTMLInputElement>document.getElementById('file1')).files;
       for (let k = 0; k < b.length; k++) {
-        formData.append(res.jiraId, b[k]);
+        formData.append(this.uploadDoc.value.docUpload, b[k]);
       }
       this.HttpClient.post<any>(
-        'https://developer.icicibank.com/fileUpload',
+        'https://developer.icicibank.com/PDFfileUpload',
         formData,
       ).subscribe(
         res => {
           console.log(res);
+          this.confirmMsg = res['message'];
+    this.confirmMsg = this.confirmMsg.substring(51, 44);
         },
         err => {
           console.log('err', err);
-          console.log('err headers', err.headers);
+          console.log('err headers');
         },
       );
-    }
-    this.modalRef = this.modalService.show(UATconfirm, {
-      backdrop: 'static',
-    });
-    this.confirmMsg = res['message'];
-    this.confirmMsg = this.confirmMsg.substring(51, 44);
-    //this.toastrmsg('success', res['message']);
-    // this.modalRef.hide();
-  },
-  err => {
-    console.log('zze', err);
-    console.log('zzz', err.headers);
-  },
-);
+    this.modalRef = this.modalService.show(UATconfirm);
+}
+Close_ConfirmId() {
+  this.modalRef.hide();
 }
 }

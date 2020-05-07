@@ -39,7 +39,7 @@
               <!-- <td><div *ngIf="showurl">Approval URL</div></td> -->
               <td>UAT/Prod</td>
               <td>UAT Request ID</td>
-              <td>API URL</td>
+              <td>API Document</td>
               <td>Certificate</td>
             </tr>
           </thead>
@@ -57,14 +57,22 @@
               <!-- <td><div *ngIf="showurl">{{row.CallbackUrl}}</div></td> -->
               <td>{{ row.Env }}</td>
               <td>{{ row.RefJiraId }}</td>
-              <td>
-                <a href="row.API_URL">{{ row.API_URL }}</a>
+              <!-- <td>
+                <a href="row.Url">{{ row.Url }}</a>
+              </td> -->
+              <td *ngIf="row.Url !== ''">
+                <a
+                  (click)="downloadCertificate(row.Url)"
+                  class="signInBtn"
+                  id="ApiUrl"
+                  >Document</a
+                >
               </td>
               <!-- <td href="row.CERTIFICATE">{{ row.Certificate }}</td> -->
               <td *ngIf="row.Certificate !== ''">
                 <a
                   (click)="downloadCertificate(row.Certificate)"
-                  class="btn btn-border"
+                  class="btn-submit"
                   id="certificateUrl"
                   >Download</a
                 >

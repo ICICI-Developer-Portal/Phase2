@@ -18,16 +18,20 @@
                     </thead>
                     <tbody>
                         <tr>
-                        <td><select class="form-control" formControlName="freeText1" style="height:40px" #SelectDomain>  
+                        <td>
+                        <form [formGroup]="uploadDoc">
+                          <select (change)="selectedId()" class="form-control" formControlName="docUpload" style="height:40px" #SelectDomain>  
                           <option value="">Select Jira ID</option>
                           <option *ngFor="let id of jiraId" value={{id}}>{{id}}</option>
-                        </select></td>
+                        </select>
+                      </form>
+                      </td>
                         <td><input
                           class="form-control"
                           id="file1"
                           (change)="picked($event)"
                           type="file"
-                          
+                          #file1
                           name="file1"
                           mdbInputDirective
                           required
@@ -42,10 +46,10 @@
                     </tbody>
                 </table>
               <div class="clearfix"></div>
-              <br>
+              <!-- <br>
               <ul class="pagination" >  
                     <pagination-controls (pageChange)="p = $event"></pagination-controls>  
-                </ul>
+                </ul> -->
           </div>
       </div>
       
@@ -72,7 +76,7 @@
       <div class="row w100p m0">
         <div class="col-12 plr0">
           <div>
-            <button type="submit" class="signInBtn" (click)="Close_confirmId()">
+            <button type="submit" class="signInBtn" (click)="Close_ConfirmId()">
               Ok
             </button>
           </div>
