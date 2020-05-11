@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-// import 'rxjs/Rx';
-import { Http, Headers, Response } from '@angular/http';
 import { saveAs } from 'file-saver';
 
 @Component({
@@ -15,7 +13,6 @@ export class DocumentdownloadComponent implements OnInit {
   p: any = '';
   role: string;
   certificate: any;
-  //showurl:Boolean;
   constructor(
     private adm: LoginService,
     private spinnerService: Ng4LoadingSpinnerService,
@@ -24,18 +21,10 @@ export class DocumentdownloadComponent implements OnInit {
   }
 
   ngOnInit() {}
-
   request_data() {
     this.spinnerService.show();
-    //  this.role=localStorage.getItem('role')
-    //   if(localStorage.getItem('role')=='admin'){
-    //     this.showurl=true;
-    //   }else{
-    //   this.showurl=false;
-    //   }
     this.adm.Onboardrequestsuser().subscribe((data: any) => {
       var response = data._body;
-
       var obj = JSON.parse(response);
       this.dataSource = obj;
       this.spinnerService.hide();
@@ -47,17 +36,78 @@ export class DocumentdownloadComponent implements OnInit {
     var json = {
       filePath: url,
     };
-
     var fileName = url.substring(url.lastIndexOf('/') + 1);
-
+    var fileType = url.substring(url.lastIndexOf('.') + 1);
     this.adm.downloadCertificate(json).subscribe((data: any) => {
       this.certificate = data._body;
       console.log(data._body);
+      if(fileType === "pdf"){
+        alert("pdf")
+      var blob = new Blob([this.certificate], {
+        type: "application/pdf"
+      });
+      saveAs(blob, fileName);
+    }
+    if(fileType === "cer" || fileType === "crt" || fileType ==="txt" || fileType === "pem"){
+      if(fileType === "cer"){
+      alert("cer")
+      }
+      if(fileType === "crt"){
+        alert("crt")
+        }
+        if(fileType === "txt"){
+          alert("txt")
+          }
       var blob = new Blob([this.certificate], {
         type: 'text/plain',
       });
       saveAs(blob, fileName);
+    }
+    if(fileType === "png"){
+      if(fileType === "png"){
+        alert("png")
+        }
+      var blob = new Blob([this.certificate], {
+        type: 'image/png',
+      });
+      saveAs(blob, fileName);
+    }
+    if(fileType === "jpeg" || fileType === "jpg"){
+      if(fileType === "jpeg"){
+        alert("jpeg")
+        }
+      var blob = new Blob([this.certificate], {
+        type: 'image/jpeg',
+      });
+      saveAs(blob, fileName);
+    }
+    if(fileType === "xlsx"){
+      if(fileType === "xlsx"){
+        alert("xlsx")
+        }
+      var blob = new Blob([this.certificate], {
+        type: ' application/vnd.ms-excel',
+      });
+      saveAs(blob, fileName);
+    }
+    if(fileType === "xlsx"){
+      if(fileType === "xlsx"){
+        alert("xlsx")
+        }
+      var blob = new Blob([this.certificate], {
+        type: ' application/vnd.ms-excel',
+      });
+      saveAs(blob, fileName);
+    }
+    if(fileType === "zip"){
+      if(fileType === "zip"){
+        alert("zip")
+        }
+      var blob = new Blob([this.certificate], {
+        type: 'application/zip',
+      });
+      saveAs(blob, fileName);
+    }
     });
   }
-
 }

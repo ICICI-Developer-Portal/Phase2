@@ -2,20 +2,11 @@
 <ng4-loading-spinner> </ng4-loading-spinner>
 <div class="documentTabContent">
   <div class="tab-content" id="v-pills-tabContent">
-    <div
-      class="tab-pane fade"
-      id="v-pills-dashboard"
-      role="tabpanel"
-      aria-labelledby="v-pills-dashboard-tab"
-    >
+    <div class="tab-pane fade" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
       dashboard
     </div>
-    <div
-      class="tab-pane fade active show"
-      id="v-pills-applications"
-      role="tabpanel"
-      aria-labelledby="v-pills-applications-tab"
-    >
+    <div class="tab-pane fade active show" id="v-pills-applications" role="tabpanel"
+      aria-labelledby="v-pills-applications-tab">
       <div class="tabContentInner">
         <div class="row">
           <div class="col-md-6">
@@ -34,7 +25,6 @@
               <td>Request Status</td>
               <td>Domain</td>
               <td>APIs</td>
-              <!-- <td><div *ngIf="showurl">Approval URL</div></td> -->
               <td>UAT/Prod</td>
               <td>UAT Request ID</td>
               <td>API Document</td>
@@ -42,12 +32,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr
-              *ngFor="
+            <tr *ngFor="
                 let row of dataSource
                   | paginate: { itemsPerPage: 5, currentPage: p }
-              "
-            >
+              ">
               <td>{{ row.JiraId }}</td>
               <td>{{ row.JiraStatus }}</td>
               <td>{{ row.Domain }}</td>
@@ -59,41 +47,24 @@
                 <a href="row.API_Url">{{ row.Url }}</a>
               </td> -->
               <td *ngIf="row.Url !== ''">
-                <a
-                  (click)="downloadCertificate(row.Url)"
-                  class="signInBtn"
-                  id="ApiUrl"
-                  >Document</a
-                >
+                <a (click)="downloadCertificate(row.Url)" [hidden]="row.Url === ''" class="signInBtn btn-background" id="ApiUrl">Document</a>
               </td>
-              <td *ngIf="row.Url === ''"></td>
+              <!-- <td *ngIf="row.Url === ''"></td> -->
               <!-- <td href="row.CERTIFICATE">{{ row.Certificate }}</td> -->
               <td *ngIf="row.Certificate !== ''">
-                <a
-                  (click)="downloadCertificate(row.Certificate)"
-                  class="btn-submit"
-                  id="certificateUrl"
-                  >Download</a
-                >
+                <a (click)="downloadCertificate(row.Certificate)" [hidden]="row.Certificate === ''" class="btn-submit" id="certificateUrl">Download</a>
               </td>
               <td *ngIf="row.Certificate === ''"></td>
             </tr>
           </tbody>
         </table>
         <div class="clearfix"></div>
-
         <ul class="pagination">
           <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </ul>
       </div>
     </div>
-
-    <div
-      class="tab-pane fade"
-      id="v-pills-analytics"
-      role="tabpanel"
-      aria-labelledby="v-pills-analytics-tab"
-    >
+    <div class="tab-pane fade" id="v-pills-analytics" role="tabpanel" aria-labelledby="v-pills-analytics-tab">
       analytics
     </div>
   </div>

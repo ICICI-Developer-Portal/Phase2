@@ -63,7 +63,8 @@
               <td *ngIf="row.Url !== ''">
                 <a
                   (click)="downloadCertificate(row.Url)"
-                  class="signInBtn"
+                  [hidden]="row.Url === ''"
+                  class="signInBtn btn-background"
                   id="ApiUrl"
                   >Document</a
                 >
@@ -72,6 +73,7 @@
               <td *ngIf="row.Certificate !== ''">
                 <a
                   (click)="downloadCertificate(row.Certificate)"
+                  [hidden]="row.Certificate === ''"
                   class="btn-submit"
                   id="certificateUrl"
                   >Download</a

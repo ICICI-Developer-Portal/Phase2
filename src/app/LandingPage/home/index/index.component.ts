@@ -198,10 +198,10 @@ export class IndexComponent implements OnInit {
     var self = this;
     this.getMenuTree();
     //api for get menu tree data
-    this.dashboardService.getMenuTreeData().subscribe((data: any) => {
-      this.responseData = JSON.parse(data._body);
-      this.menuArray = this.getMenuData(this.responseData);
-    });
+    // this.dashboardService.getMenuTreeData().subscribe((data: any) => {
+    //   this.responseData = JSON.parse(data._body);
+    //   this.menuArray = this.getMenuData(this.responseData);
+    // });
     this.settings = {
       singleSelection: false,
       text: 'Select Fields',
@@ -378,9 +378,6 @@ export class IndexComponent implements OnInit {
 
   createTreeAndJquery() {
     this.treeElements = this.createTree();
-    // setInterval(() => {
-    //   this.assignClickToNodes();
-    // }, 1000);
   }
 
 /** Fetch tree dynamically
@@ -432,7 +429,6 @@ export class IndexComponent implements OnInit {
 
       this.treeItems = this.treeItems + `</li>`;
     }
-    //  this.assignClickToNodes();
     return this.treeItems;
   }
   /** Fetch tree sub nodes dynamically
@@ -1557,6 +1553,37 @@ hasDuplicates(arr) {
   //UAT
   openModaldemo(UATconfirm: TemplateRef<any>) {
     this.modalRef = this.modalService.show(UATconfirm);
+  }
+  closeUAT(){
+    this.objOnB.txtMerchantName = ''
+    this.objOnB.txtDescription = ''
+    this.objOnB.txtContactEmail = ''
+    this.objOnB.txtContactNumber = ''
+    this.objOnB.txtRelManager = ''
+    this.objOnB.AccountNo = ''
+    this.objOnB.ClientCode = ''
+    this.objOnB.url = ''
+    this.objOnB.Ip = ''
+    this.objOnB.Port = ''
+    this.objOnB.Checksum = ''
+    this.objOnB.Certificate = ''
+    this.objOnB.web = ''
+    this.objOnB.message = ''
+    this.objOnB.IFSC_Code = ''
+    this.objOnB.virtualCode = ''
+    this.objOnB.refundCode = ''
+    this.objOnB.Account_no = ''
+    this.objOnB.Acc_name = ''
+    this.objOnB.Auth_level = ''
+    this.objOnB.Urn = ''
+    this.objOnB.Acc_env = ''
+    this.objOnB.Acc_validation = ''
+    this.objOnB.Acc_acceptance = ''
+    this.objOnB.Rec_mail = ''
+    this.objOnB.Acc_mode = ''
+    this.objOnB.Acc_trans = ''
+    this.objOnB.Acc_amount = ''
+    this.modalRef4.hide();
   }
 
   btnConfirm(UATconfirm) {

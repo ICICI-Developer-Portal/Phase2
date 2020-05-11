@@ -5,6 +5,7 @@ import {
   RequestOptions,
   Response,
   RequestMethod,
+  ResponseContentType,
 } from '@angular/http';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -599,14 +600,14 @@ mis(json){
   downloadCertificate(filePath) {
     var query = filePath;
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/octet-stream',
     });
-
+    // https://thingproxy.freeboard.io/fetch/
     let options = new RequestOptions({ headers: headers });
     return this.http.post(
       'https://developer.icicibank.com/' + 'download',
       query,
-      options,
+      { responseType: ResponseContentType.Blob }
     );
   }
 
