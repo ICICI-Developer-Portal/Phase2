@@ -13,6 +13,7 @@ export class FaqComponent implements OnInit {
   faqObjQues:any=[];
   faqObjAns:any=[];
   faqObjList:any;
+  faqHeaderList:any;
   constructor(
     private adm: LoginService,
   ) { }
@@ -29,6 +30,8 @@ export class FaqComponent implements OnInit {
           return str.replace(/\\n/g, '\n')
         });
         }
+      this.faqHeaderList = JSON.parse(this.faqObjList)
+      this.faqHeader = this.faqHeaderList["1"][0]
     })
   }
 }
