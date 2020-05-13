@@ -40,6 +40,8 @@ export class IndexComponent implements OnInit {
   nodeName:any;
   nodeValue: any = [];
   selectedId: any;
+  apiName:any;
+  apiArr:any=[];
   IP_Pattern =
     '^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.' +
     '([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.' +
@@ -352,14 +354,15 @@ export class IndexComponent implements OnInit {
         var rbtn = $(this).find("input");
           if(rbtn.is(':checked')){
               this.selectednode = $(this).attr('role');
+              this.apiName = $(this).attr('value');
                console.log("api id", this.selectednode)
                this.checked =true;
-               self.Appnode(this.selectednode,this.checked)
+               self.Appnode(this.selectednode,this.checked,this.apiName)
            }
            else {
              if(this.selectednode!=undefined){
                this.checked=false;
-               self.Appnode(this.selectednode,this.checked)
+               self.Appnode(this.selectednode,this.checked,this.apiName)
              }
            }
        })      
@@ -455,7 +458,7 @@ export class IndexComponent implements OnInit {
       if (childrenArr[i].CHILD_COUNT !== '0') {
         this.treeItems +=
           `<li class="nav-link">` +
-          `<a id="v-pills-messages-tab" class="tree-node" data-toggle="pill" role="tab_${childrenArr[i].TYPE}_${childrenArr[i].TREE_ID}" aria-controls="v-pills-home" aria-selected="true">` +
+          `<a id="v-pills-messages-tab" class="tree-node" data-toggle="pill" value="${childrenArr[i].TAB_NAME}" role="tab_${childrenArr[i].TYPE}_${childrenArr[i].TREE_ID}" aria-controls="v-pills-home" aria-selected="true">` +
           `${childrenArr[i].TAB_NAME}` +
           `<img class="dropdownIcon" src="assets/images/dropdown-2.svg" alt="" />` +
           `</a>`;
@@ -467,7 +470,7 @@ export class IndexComponent implements OnInit {
         );
       } else {   
         this.treeItems +=
-          `<li class="nav-link">` + `<label class="checkboxContainer"><div class="containercb" role="${childrenArr[i].API_ID}"></div>`+
+          `<li class="nav-link">` + `<label class="checkboxContainer"><div class="containercb"  value="${childrenArr[i].TAB_NAME}" role="${childrenArr[i].API_ID}"></div>`+
           `<a id="v-pills-messages-tab" class="tree-node" data-toggle="pill" role="tab_${childrenArr[i].TYPE}_${childrenArr[i].API_ID}" aria-controls="v-pills-home" aria-selected="true">` +
           `${childrenArr[i].TAB_NAME}` + 
           `</a>` +
@@ -504,7 +507,7 @@ export class IndexComponent implements OnInit {
    * @class IndexComponent
    * @method Appnode
    */
-Appnode(num:any, checked:any){
+Appnode(num:any, checked:any, apiName:any){
   this.nodeName = localStorage.getItem("nodeName")
       this.nodeValue.push(this.nodeName.split('_', 3).pop())
       this.hasDuplicates(this.nodeValue);
@@ -516,11 +519,13 @@ Appnode(num:any, checked:any){
     var index = this.internalArr.indexOf(num)
     if (index === -1 && checked) {
       this.internalArr.push(num);
-      console.log("idarray", this.internalArr)
+      this.apiArr.push(apiName);
+      console.log("idarray", this.internalArr,this.apiArr)
     }
     else {
       this.internalArr.splice(index, 1);
-      console.log("id array uncheck", this.internalArr)
+      this.apiArr.splice(index, 1);
+      console.log("id array uncheck", this.internalArr, this.apiArr)
     }
 }
 hasDuplicates(arr) {
@@ -1651,7 +1656,7 @@ hasDuplicates(arr) {
     var inputFields = {
       userName: localStorage.getItem('username'),
       domainName: localStorage.getItem("nodeValue"),
-      domainApis: this.idArr.toString(),
+      domainApis: this.apiArr +'('+ this.idArr.toString()+')',
       mName: this.objOnB.txtMerchantName,
       desc: this.objOnB.txtDescription,
       spocEmail: this.objOnB.txtContactEmail,

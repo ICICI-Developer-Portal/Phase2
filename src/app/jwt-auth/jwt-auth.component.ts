@@ -37,7 +37,7 @@ loginResponse:any;
   password = btoa(password);
   console.log(username+':' ,password)
     var json = { username: username, password: password };
-    this.adm.Login(json).subscribe((data: any) => {
+    this.adm.LoginJWT(json).subscribe((data: any) => {
       var response = data._body;
       this.loginResponse = JSON.parse(response);
       if (this.loginResponse.status == true) {
