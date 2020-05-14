@@ -1755,7 +1755,7 @@ body {
   table.tableApplications thead td:nth-child(4) {
   width: 9%;
   }  
-  
+
   .tableApplications thead td:first-child {
   width: 4% !important;
   }
@@ -2997,7 +2997,11 @@ body {
 .pbox{
   padding: 7px 8px !important;
 }
-
+.search-box{
+  width:250px;
+  float: right;
+  margin-bottom: 5%;
+}
   /* document download css start*/
   /* table.tableApplicationsDownload thead {
     border-radius: 3px;

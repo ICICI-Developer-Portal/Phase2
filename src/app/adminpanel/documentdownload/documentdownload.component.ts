@@ -13,6 +13,8 @@ export class DocumentdownloadComponent implements OnInit {
   p: any = '';
   role: string;
   certificate: any;
+  searchtext:any;
+  public settings = {};
   constructor(
     private adm: LoginService,
     private spinnerService: Ng4LoadingSpinnerService,
@@ -20,7 +22,27 @@ export class DocumentdownloadComponent implements OnInit {
     this.request_data();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.settings = {
+      singleSelection: false,
+      idField: 'key',
+      textField:'name',
+      selector:'selected',
+      enableCheckAll: true,
+      selectAllText: 'Choose All',
+      unSelectAllText: 'Unselect All',
+      allowSearchFilter: true,
+      limitSelection: -1,
+      clearSearchFilter: true,
+      maxHeight: 197,
+      itemsShowLimit: 3,
+      searchPlaceholderText: 'Search',
+      noDataAvailablePlaceholderText: 'No data available',
+      closeDropDownOnSelection: false,
+      showSelectedItemsAtTop: false,
+      defaultOpen: false
+    };
+  }
   request_data() {
     this.spinnerService.show();
     this.adm.Onboardrequestsuser().subscribe((data: any) => {

@@ -15,8 +15,8 @@
             </h4>
           </div>
           <div class="col-md-6 text-right">
-            <!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442; Search" style="width:250px;float: right;margin-top: 6px;"> -->
-          </div>
+            <input class="form-control search-box" type="text" name="search" [(ngModel)]="searchText" value="{{seartext}}" placeholder="&#61442; Search">
+      </div>
         </div>
         <table class="table tableApplications">
           <thead>
@@ -34,7 +34,7 @@
           <tbody>
             <tr *ngFor="
                 let row of dataSource
-                  | paginate: { itemsPerPage: 5, currentPage: p }
+                |filter:searchText |filter:filter | paginate: { itemsPerPage: 5, currentPage: p }
               ">
               <td>{{ row.JiraId }}</td>
               <td>{{ row.JiraStatus }}</td>
