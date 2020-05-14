@@ -12,8 +12,9 @@ export class DocumentdownloadComponent implements OnInit {
   dataSource: any;
   p: any = '';
   role: string;
+  searchText;
+  filter : any = "";
   certificate: any;
-  searchtext:any;
   public settings = {};
   constructor(
     private adm: LoginService,
