@@ -9,10 +9,10 @@
                          <a class="nav-link" [routerLink]="['/index']" aria-controls="pills-home" aria-selected="true"><img src="assets/images/icici-svg-2.svg" alt=""></a>
                        </li>
                        <li class="nav-item">
-                        <a class="nav-link" id="FAQs-tab" data-toggle="pill" href="#FAQs" [routerLink]="['/index']"  role="tab" aria-controls="FAQs" aria-selected="false" style="font-size: 13px;line-height: 31px;">Home</a>
+                        <a class="nav-link fs13 lh31" id="FAQs-tab" data-toggle="pill" href="#FAQs" [routerLink]="['/index']"  role="tab" aria-controls="FAQs" aria-selected="false">Home</a>
                      </li>
                         <li class="nav-item">
-                          <a class="nav-link" id="FAQs-tab" data-toggle="pill" href="#FAQs" [routerLink]="['/faq']"  role="tab" aria-controls="FAQs" aria-selected="false" style="font-size: 13px;">FAQ</a>
+                          <a class="nav-link fs13" id="FAQs-tab" data-toggle="pill" href="#FAQs" [routerLink]="['/faq']"  role="tab" aria-controls="FAQs" aria-selected="false">FAQ</a>
                        </li>
                        <li class="nav-item">
                           <a class="nav-link active" id="pills-profile-tab" data-toggle="pill"  [routerLink]="['/documentation']" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Documentation</a>
@@ -38,9 +38,9 @@
                             <i class="fa fa-user-circle-o"></i>&nbsp;{{user_name}}
                          </a>
                       <div class="dropdown-content" aria-labelledby="navbarMobiles">
-                         <a style="line-height: 21px;"  [routerLink]="['/userprofile']" class="nav-link dropdown-item" >Profile</a>
-                         <a  (click)="scroll_view('#UAT_onboard')" class="nav-link dropdown-item cursor" style="line-height: 16px;">UAT Onboarding</a>
-                         <a style="line-height: 21px;"  class="nav-link dropdown-item"  class="nav-link dropdown-item" (click)="logout()">Logout</a>
+                         <a [routerLink]="['/userprofile']" class="nav-link dropdown-item lh21" >Profile</a>
+                         <a  (click)="scroll_view('#UAT_onboard')" class="nav-link dropdown-item cursor lh16">UAT Onboarding</a>
+                         <a class="nav-link dropdown-item lh21" (click)="logout()">Logout</a>
                          <!-- <a [routerLink]="['/analytics']" class="nav-link dropdown-item" id="pills-account-analytics-tab" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account-analytics" aria-selected="true">Analytics</a> -->
                       </div>
                    </li>

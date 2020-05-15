@@ -23,27 +23,7 @@ export class DocumentdownloadComponent implements OnInit {
     this.request_data();
   }
 
-  ngOnInit() {
-    this.settings = {
-      singleSelection: false,
-      idField: 'key',
-      textField:'name',
-      selector:'selected',
-      enableCheckAll: true,
-      selectAllText: 'Choose All',
-      unSelectAllText: 'Unselect All',
-      allowSearchFilter: true,
-      limitSelection: -1,
-      clearSearchFilter: true,
-      maxHeight: 197,
-      itemsShowLimit: 3,
-      searchPlaceholderText: 'Search',
-      noDataAvailablePlaceholderText: 'No data available',
-      closeDropDownOnSelection: false,
-      showSelectedItemsAtTop: false,
-      defaultOpen: false
-    };
-  }
+  ngOnInit() {}
   request_data() {
     this.spinnerService.show();
     this.adm.Onboardrequestsuser().subscribe((data: any) => {
@@ -54,7 +34,7 @@ export class DocumentdownloadComponent implements OnInit {
     });
   }
 
-  //supporting .sql,.cer (not supporting .png, .docx)
+  //supporting .crt,.zip,pdf,.txt,png,jpeg,jpg,pem,xlsx,.cer
   downloadCertificate(url) {
     var json = {
       filePath: url,
