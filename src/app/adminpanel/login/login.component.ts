@@ -95,7 +95,12 @@ export class LoginComponent implements OnInit {
         this.issetpwd = false;
         this.is_res_error = obj.message;
       }
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
 
   admin_acccess(username) {
@@ -109,6 +114,11 @@ export class LoginComponent implements OnInit {
         this.toastrmsg('error', 'Unauthorized');
         this.router.navigate(['/admin/login']);
       }
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
 }

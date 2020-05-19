@@ -69,7 +69,7 @@
       </mat-tree-node>
 
       <mat-tree-node
-        *matTreeNodeDef="let node; when: hasChild"
+        *matTreeNodeDef="let node; when: hasChild" id="matTreeNode" #matTreeNode
         matTreeNodePadding
         cdkDrag
         [cdkDragData]="node"
@@ -88,18 +88,20 @@
           </mat-icon>
         </div>
         <!-- {{ node.filename }} : {{ node.type }} -->
-        <div class="mat-tree-items-sec">
-          <div>
+        <div class="mat-tree-items-sec" id="nodeFile" #nodeFile>
+          <div  id="nodeFN" #nodeFN>
+            <div id={{node.filename}} #node.filename>
             <!-- <button mat-icon-button disabled></button> -->
 
-            {{ node.filename }} : {{ node.type }}
+            {{ node.filename }}
           </div>
+        </div>
           <div>
             <i class="material-icons edit-icons">
-              <a (click)="editMenuItem()">edit</a>
+              <a (click)="editMenuItem(node.filename)">edit</a>
             </i>
             <i class="material-icons close-icons">
-              <a (click)="deleteMenuItem(node)">close</a>
+              <a (click)="deleteMenuItem(node.filename)">close</a>
             </i>
             <mat-slide-toggle [color]="color"></mat-slide-toggle>
           </div>
@@ -114,12 +116,12 @@
         class="menu-input"
         type="text"
         name="menuitem"
-        #menuitem
-        placeholder="Menu Label"
+        #menuitem [(ngModel)] = "menu"
+        placeholder="Menu Label" value={{menu}} (change)="menuFn(menu)"
       />
     </div>
     <div>
-      <button type="button" id="add" class="btn-add" (click)="addMenuItems()">
+      <button type="button" id="add" class="btn-add" (click)="addMenuItems(menu)">
         ADD
       </button>
 

@@ -60,7 +60,11 @@ export class MisComponent implements OnInit {
         this.companyNamesDetails = data;
         this.companyNames = JSON.parse(this.companyNamesDetails._body);
       }
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },);
   }
 //download csv file
 downloadCertificate(url) {
@@ -92,7 +96,11 @@ downloadCertificate(url) {
                 document.body.appendChild(dwldLink);
                 dwldLink.click();
                 document.body.removeChild(dwldLink); 
-  });
+  },
+  err => {
+    console.log('err', err);
+    this.router.navigate(['error']);
+  },);
   error => {
     let err = JSON.parse(error._body);
     this.toasterService.pop('error', 'Error!', err.message);
@@ -112,7 +120,11 @@ downloadCertificate(url) {
       this.adm.mis(json).subscribe((data: any) => {
         var response = data._body;
         var obj = JSON.parse(response); 
-      });
+      },
+      err => {
+        console.log('err', err);
+        this.router.navigate(['error']);
+      },);
       alert(JSON.stringify(json));
       // this.spinnerService.show();
     } catch {

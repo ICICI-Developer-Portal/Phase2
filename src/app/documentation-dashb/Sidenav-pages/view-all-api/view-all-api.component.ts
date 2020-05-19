@@ -24,8 +24,12 @@ export class ViewAllApiComponent implements OnInit {
    
   }
 
-  onSearchChange(searchValue: string): void {  
+  onSearchChange(searchValue: string): void { 
+    // var json = {
+    //   "username" : localStorage.getItem('username')
+    // } 
     this.adm.Get_All_API().subscribe((data: any) => {
+    // this.adm.Get_All_API(json).subscribe((data: any) => {
       var obj = JSON.parse(data._body);
       this.APIListV = obj; 
       var ApiName = [];
@@ -64,12 +68,21 @@ export class ViewAllApiComponent implements OnInit {
       }
       this.appNameList = nn[0];
       console.log(this.appNameList);
-    }); 
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    ); 
   }
 
   Get_All_API_List()
   {
+    // var json = {
+    //   "username" : localStorage.getItem('username')
+    // } 
       this.adm.Get_All_API().subscribe((data: any) => {
+      // this.adm.Get_All_API(json).subscribe((data: any) => {
       var obj = JSON.parse(data._body);
       console.log(obj);
       this.APIListV = obj; 
@@ -118,7 +131,12 @@ export class ViewAllApiComponent implements OnInit {
       //console.log(alfabets);
       this.appNameList = nn[0];
       console.log(this.appNameList);
-      })      
+      },
+      err => {
+        console.log('err', err);
+        this.router.navigate(['error']);
+      },
+      )      
   }
 
   search( A:any){

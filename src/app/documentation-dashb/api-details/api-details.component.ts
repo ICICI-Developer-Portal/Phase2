@@ -5,6 +5,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -38,6 +39,7 @@ export class ApiDetailsComponent implements OnInit {
     private ngxXml2jsonService: NgxXml2jsonService,
     private modalService: BsModalService,
     private sanitizer: DomSanitizer,
+    private router: Router,
   ) {
     this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -47,7 +49,12 @@ export class ApiDetailsComponent implements OnInit {
       this.isactive_class1 = true;
       this.isactive_class2 = false;
       this.isactive_class3 = false;
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
 
     this.error_code();
     this.Sample_packet();
@@ -89,16 +96,30 @@ export class ApiDetailsComponent implements OnInit {
       .addClass('show');
   }
   error_code() {
-    this.adm.error_code().subscribe((data: any) => {
+    // var json ={
+    //   "username":localStorage.getItem('username')
+    // }
+    this.adm.error_code()
+    // this.adm.error_code(json)
+    .subscribe(
+      (data:any) => {
       var response = data._body;
       var obj = JSON.parse(response);
       this.errorDetails = obj;
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
 
   NewApplication() {
     this.spinnerService.show();
-    var Json = { id: this.id };
+    var Json={
+      "id":this.id,
+      // "username":localStorage.getItem('username')
+     }
     this.adm.api_details(Json).subscribe((data: any) => {
       var response = data._body;
       this.spinnerService.hide();
@@ -112,11 +133,22 @@ export class ApiDetailsComponent implements OnInit {
       this.reqDetails = obj.ReqParam;
       this.resDetails = obj.ResParam;
       this.spinnerService.hide();
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
 
   Sample_packet() {
-    this.adm.Sample_packet({ id: this.id }).subscribe((data: any) => {
+    var json = {
+      "id":this.id,
+      // "username":localStorage.getItem('username')
+    }
+    this.adm.Sample_packet(json)
+    .subscribe(
+      (data:any) => {
       this.sampleobj2 = data.data;
       this.ParseData(this.sampleobj2);
 
@@ -134,7 +166,12 @@ export class ApiDetailsComponent implements OnInit {
         .next()
         .find('.tab-pane:first')
         .addClass('active');
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
   openModal(Authentication: TemplateRef<any>) {
     var json = {

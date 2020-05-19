@@ -38,10 +38,20 @@ export class NavbarComponent implements OnInit {
     this.adm.getUserId().subscribe(data => {
       this.logged_in =
         data != '' && data != null && data != undefined ? true : false;
-    });
+    },
+    err => {
+      console.log('err', err);
+      console.log('err headers');
+    },
+    );
     this.adm.getUserName().subscribe(data => {
       this.user_name = data;
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
 
   ngOnDestroy() {

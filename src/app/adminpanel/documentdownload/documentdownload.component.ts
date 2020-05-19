@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { saveAs } from 'file-saver';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-documentdownload',
@@ -19,6 +20,7 @@ export class DocumentdownloadComponent implements OnInit {
   constructor(
     private adm: LoginService,
     private spinnerService: Ng4LoadingSpinnerService,
+    private router: Router,
   ) {
     this.request_data();
   }
@@ -31,7 +33,13 @@ export class DocumentdownloadComponent implements OnInit {
       var obj = JSON.parse(response);
       this.dataSource = obj;
       this.spinnerService.hide();
-    });
+    },
+    err => {
+      // this.router.navigate(['error'])
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
 
   //supporting .crt,.zip,pdf,.txt,png,jpeg,jpg,pem,xlsx,.cer
@@ -111,6 +119,11 @@ export class DocumentdownloadComponent implements OnInit {
       });
       saveAs(blob, fileName);
     }
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
 }

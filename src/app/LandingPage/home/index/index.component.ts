@@ -8,6 +8,14 @@ import { LoginService } from 'src/app/services';
 import { PasswordValidation } from '../../layout/header/password.validator';
 import { VariablesService } from 'src/app/services/Variables.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import {
+  Http,
+  Headers,
+  RequestOptions,
+  Response,
+  RequestMethod,
+  ResponseContentType
+} from "@angular/http";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 declare var showProdTabEnv: any; // just change here from arun answer.
 declare var openProdCurrentTabEnv: any;
@@ -174,6 +182,7 @@ export class IndexComponent implements OnInit {
   interval_Check:any;
 
   constructor(
+    private http: Http,
     private HttpClient: HttpClient,
     private formbuilder: FormBuilder,
     private objOnBoarding: VariablesService,
@@ -193,7 +202,12 @@ export class IndexComponent implements OnInit {
     this.adm.getUserId().subscribe(data => {
       this.logged_in =
         data != '' && data != null && data != undefined ? true : false;
-    }); 
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    ); 
   }
 
   ngOnInit() {
@@ -371,7 +385,12 @@ export class IndexComponent implements OnInit {
     this.dashboardService.getMenuTreeData().subscribe((data: any) => {
       this.treeData = JSON.parse(data._body);
       this.createTreeAndJquery();
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
 
   /** create tree and jquery for menu tree expand/collapse
@@ -691,7 +710,12 @@ hasDuplicates(arr) {
         this.issetpwd = false;
         this.is_res_error = obj.message;
       }
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
 
   today = new Date();
@@ -749,7 +773,11 @@ hasDuplicates(arr) {
           this.spinnerService.hide();
           this.toastrmsg('error', obj.message);
         }
-      });
+      },
+      err => {
+        console.log('err', err);
+        this.router.navigate(['error']);
+      },);
     } catch {
       this.toastrmsg('error', console.error());
     }
@@ -775,7 +803,11 @@ hasDuplicates(arr) {
     };
     this.adm.sign_upjira(json).subscribe((data: any) => {
       var response = data._body;
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },);
   }
 
   SendOtp(mobile: any) {
@@ -802,7 +834,11 @@ hasDuplicates(arr) {
           this.showOtp = true;
           this.show = true;
         }
-      });
+      },
+      err => {
+        console.log('err', err);
+        this.router.navigate(['error']);
+      },);
     } catch {}
   }
 
@@ -818,7 +854,12 @@ hasDuplicates(arr) {
         } else {
           this.toastrmsg('error', 'some thing went wrong');
         }
-      });
+      },
+      err => {
+        console.log('err', err);
+        this.router.navigate(['error']);
+      },
+      );
     } catch {}
   }
   email_validate(searchValue: string): void {}
@@ -844,7 +885,12 @@ hasDuplicates(arr) {
             this.signupForm.controls['otp_verified'].setValue('0');
             this.isotp_reg_check = 'Otp not verified';
           }
-        });
+        },
+        err => {
+          console.log('err', err);
+          this.router.navigate(['error']);
+        },
+        );
     } catch {}
   }
 
@@ -906,7 +952,11 @@ hasDuplicates(arr) {
       } else {
         this.toastrmsg('error', obj.message);
       }
-    });
+    },
+      err => {
+        console.log('err', err);
+        this.router.navigate(['error']);
+      },);
   }
 
   OnCheckEmail(Exists_Email: any) {
@@ -921,7 +971,12 @@ hasDuplicates(arr) {
           this.isemail_check = false;
           this.isemail_reg_check = obj.message;
         }
-      });
+      },
+      err => {
+        console.log('err', err);
+        this.router.navigate(['error']);
+      },
+      );
     } catch {}
   }
 
@@ -1006,7 +1061,11 @@ hasDuplicates(arr) {
         domain.push(obj[i].domain);
       }
       this.domainLst = domain;
-    });
+    },
+      err => {
+        console.log('err', err);
+        this.router.navigate(['error']);
+      },);
   }
 
   callSubdomain(value) {
@@ -1045,7 +1104,11 @@ hasDuplicates(arr) {
         // this.edit_data.txtSubDomain = [];
         this.itemList = dt;
         console.log(this.itemList);
-      });
+      },
+      err => {
+        console.log('err', err);
+        this.router.navigate(['error']);
+      },);
     } else {
       this.drpHide = false;
       this.toastrmsg('error', 'Please select correct domain type.');
@@ -1464,6 +1527,7 @@ hasDuplicates(arr) {
 
     var json = {
       ID: this.idArr,
+      // "username":localStorage.getItem('username')
     };
     console.log('json', json);
     this.adm.getUATFromData(json).subscribe((data: any) => {
@@ -1547,7 +1611,12 @@ hasDuplicates(arr) {
         }
       }
       console.log('final', this.additionalParams);
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
   //Continue button funcionality in Production
   openProdContinue() {
@@ -1764,7 +1833,7 @@ hasDuplicates(arr) {
             },
             err => {
               console.log('err', err);
-              console.log('err headers', err.headers);
+              this.router.navigate(['error']);
             },
           );
         }
@@ -1778,7 +1847,7 @@ hasDuplicates(arr) {
       },
       err => {
         console.log('zze', err);
-        console.log('zzz', err.headers);
+        this.router.navigate(['error']);
       },
     );
   }
@@ -1821,10 +1890,10 @@ hasDuplicates(arr) {
   getRequestIds() {
     this.list = [];
 
-    let username = localStorage.getItem('username');
+    let username = localStorage.getItem("username");
     const headers = new HttpHeaders().set(
-      'Content-Type',
-      'application/x-www-form-urlencoded',
+      "Content-Type",
+      "application/x-www-form-urlencoded"
     );
 
     let options = {
@@ -1834,10 +1903,16 @@ hasDuplicates(arr) {
         'application/x-www-form-urlencoded',
       ),
     };
+    // let headers = new Headers({
+    //   "Content-Type": "application/x-www-form-urlencoded",
+    //   "Token" : localStorage.getItem("jwt")
+    // });
+    // let options = new RequestOptions({ headers: headers });
 
     let body = new URLSearchParams();
-    body.set('username', username);
+    body.set("username", username);
     this.HttpClient.post(
+    // this.http.post(
       'https://developer.icicibank.com/rest/fetch-jiraid',
       body.toString(),
       options,
@@ -1847,6 +1922,7 @@ hasDuplicates(arr) {
       },
       err => {
         this.list = [];
+      this.router.navigate(['error']);
       },
     );
   }
@@ -2005,7 +2081,7 @@ hasDuplicates(arr) {
             },
             err => {
               console.log('err', err);
-              console.log('err headers', err.headers);
+              this.router.navigate(['error']);
             },
           );
         }
@@ -2019,7 +2095,7 @@ hasDuplicates(arr) {
       },
       err => {
         console.log('zze', err);
-        console.log('zzz', err.headers);
+        this.router.navigate(['error']);
       },
     );
   }
@@ -2054,7 +2130,12 @@ hasDuplicates(arr) {
           } else {
             this.toastrmsg('error', obj.message);
           }
-        });
+        },
+        err => {
+          console.log('err', err);
+          this.router.navigate(['error']);
+        },
+        );
       } else {
         this.browse_api(signin);
       }
@@ -2115,7 +2196,12 @@ hasDuplicates(arr) {
       } else {
         this.toastrmsg('error', obj.message);
       }
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
 
   alredy_login() {
@@ -2207,6 +2293,10 @@ hasDuplicates(arr) {
         this.companyNamesDetails = data;
         this.companyNames = JSON.parse(this.companyNamesDetails._body);
       }
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },);
   }
 }

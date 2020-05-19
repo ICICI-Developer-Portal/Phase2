@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { CONSTANTS } from 'config/application-constant';
+import { Router } from '@angular/router';
 
 declare var $: any;
 @Component({
@@ -31,11 +32,17 @@ export class BranchDetailsComponent implements OnInit {
     private modalService: BsModalService,
     private sanitizer: DomSanitizer,
     private spinnerService: Ng4LoadingSpinnerService,
+    private router: Router,
   ) {
     this.route.params.subscribe(params => {
       this.branchId = params['id'];
       this.newApplication();
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
   constants = CONSTANTS;
 
@@ -54,6 +61,11 @@ export class BranchDetailsComponent implements OnInit {
       this.description = this.obj[0].DESCRIPTION;
       this.image = this.obj[0].IMAGE_URL;
       this.file = this.obj[0].FILE_URL;
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
 }

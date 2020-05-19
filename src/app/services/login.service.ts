@@ -224,66 +224,70 @@ export class LoginService {
 
   // User profile getdata
   Usergetdata(json) {
-    var query = '';
+    var query = "";
     var key;
     for (key in json) {
       query +=
-        encodeURIComponent(key) + '=' + encodeURIComponent(json[key]) + '&';
+        encodeURIComponent(key) + "=" + encodeURIComponent(json[key]) + "&";
     }
     //console.log(query);
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'profile_get', query, options);
+    return this.http.post(this.apiUrl + "profile_get", query, options);
   }
   // End region
   // Save User profile
   SaveUserdata(json) {
-    var query = '';
+    var query = "";
     var key;
     for (key in json) {
       query +=
-        encodeURIComponent(key) + '=' + encodeURIComponent(json[key]) + '&';
+        encodeURIComponent(key) + "=" + encodeURIComponent(json[key]) + "&";
     }
     //console.log(query);
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'profile_set', query, options);
+    return this.http.post(this.apiUrl + "profile_set", query, options);
   }
   // End region
 
   // User Change Password
   ChangePassw(json) {
-    var query = '';
+    var query = "";
     var key;
     for (key in json) {
       query +=
-        encodeURIComponent(key) + '=' + encodeURIComponent(json[key]) + '&';
+        encodeURIComponent(key) + "=" + encodeURIComponent(json[key]) + "&";
     }
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'password', query, options);
+    return this.http.post(this.apiUrl + "password", query, options);
   }
   // End region
 
   // User Check Password
   CheckPassw(json) {
-    var query = '';
+    var query = "";
     var key;
     for (key in json) {
       query +=
-        encodeURIComponent(key) + '=' + encodeURIComponent(json[key]) + '&';
+        encodeURIComponent(key) + "=" + encodeURIComponent(json[key]) + "&";
     }
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'chk_pass', query, options);
+    return this.http.post(this.apiUrl + "chk_pass", query, options);
   }
   // End region
 
@@ -305,62 +309,66 @@ export class LoginService {
 
   //  Get application List
   applicationList(json) {
-    var query = '';
+    var query = "";
     var key;
     for (key in json) {
       query +=
-        encodeURIComponent(key) + '=' + encodeURIComponent(json[key]) + '&';
+        encodeURIComponent(key) + "=" + encodeURIComponent(json[key]) + "&";
     }
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'my_applications', query, options);
+    return this.http.post(this.apiUrl + "my_applications", query, options);
   }
   // End region
 
   //  Add New application
   add_newApplication(json) {
-    var query = '';
+    var query = "";
     var key;
     for (key in json) {
       query +=
-        encodeURIComponent(key) + '=' + encodeURIComponent(json[key]) + '&';
+        encodeURIComponent(key) + "=" + encodeURIComponent(json[key]) + "&";
     }
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'get_application', query, options);
+    return this.http.post(this.apiUrl + "get_application", query, options);
   }
   // End region
 
   saveAddAppl(json) {
-    var query = '';
+    var query = "";
     var key;
     for (key in json) {
       query +=
-        encodeURIComponent(key) + '=' + encodeURIComponent(json[key]) + '&';
+        encodeURIComponent(key) + "=" + encodeURIComponent(json[key]) + "&";
     }
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'save_application', query, options);
+    return this.http.post(this.apiUrl + "save_application", query, options);
   }
 
   deleteApp(json) {
-    var query = '';
+    var query = "";
     var key;
     for (key in json) {
       query +=
-        encodeURIComponent(key) + '=' + encodeURIComponent(json[key]) + '&';
+        encodeURIComponent(key) + "=" + encodeURIComponent(json[key]) + "&";
     }
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'del_application', query, options);
+    return this.http.post(this.apiUrl + "del_application", query, options);
   }
 
   Exists_Email(json) {
@@ -394,17 +402,18 @@ export class LoginService {
   // Get api-details of documentation page
 
   api_details(json) {
-    var query = '';
+    var query = "";
     var key;
     for (key in json) {
       query +=
-        encodeURIComponent(key) + '=' + encodeURIComponent(json[key]) + '&';
+        encodeURIComponent(key) + "=" + encodeURIComponent(json[key]) + "&";
     }
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'load-api-data', query, options);
+    return this.http.post(this.apiUrl + "load-api-data", query, options);
     //return this.http.get(this.apiUrl+'load-api-data'+json);
   }
   api_description(id) {
@@ -423,35 +432,57 @@ mis(json){
   }
   let headers = new Headers({
     'Content-Type': 'application/x-www-form-urlencoded',
+    // "Token" : localStorage.getItem("jwt")
   });
   let options = new RequestOptions({ headers: headers });
   return this.http.post('https://developer.icicibank.com/rest/createCSV' ,query, options);
 }
   error_code() {
-    //console.log(json);
-    let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
-    });
-    let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'load-error-codes', {}, options);
-  }
+  // error_code(json) {
+  //console.log(json);
+  // var query = "";
+  // var key;
+  // for (key in json) {
+  //   query +=
+  //     encodeURIComponent(key) + "=" + encodeURIComponent(json[key]) + "&";
+  // }
+  let headers = new Headers({
+    "Content-Type": "application/x-www-form-urlencoded",
+    // "Token" : localStorage.getItem("jwt")
+  });
+  let options = new RequestOptions({ headers: headers });
+  return this.http.post(this.apiUrl + "load-error-codes", {}, options);
+}
 
   // Get sample packet data
 
   Sample_packet(data) {
     let options = {
       headers: new HttpHeaders().set(
-        'Content-Type',
-        'application/x-www-form-urlencoded',
-      ),
+        "Content-Type",
+        "application/x-www-form-urlencoded",
+      )
     };
     let body = new URLSearchParams();
-    body.set('id', data['id']);
+    body.set("id", data["id"]);
     // console.log(body.toString());
+    // var query = "";
+    // var key;
+    // for (key in data) {
+    //   query +=
+    //     encodeURIComponent(key) + "=" + encodeURIComponent(data[key]) + "&";
+    // }
+    // let headers = new Headers({
+    //   "Content-Type": "application/x-www-form-urlencoded",
+    //   "Token" : localStorage.getItem("jwt")
+    // });
+    // let options = new RequestOptions({ headers: headers });
     return this.HttpClient.post(
-      this.apiUrl + 'load-api-packet',
-      body.toString(),
-      options,
+    // return this.http.post(
+      this.apiUrl + "load-api-packet",
+       body.toString(),
+      // query,
+      options
     );
   }
 
@@ -466,34 +497,34 @@ mis(json){
   }
   //Merchant-onboarding End
   getUATFromData(data) {
-  
-
-   
     var query = data;
-    
     let headers = new Headers({
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(
-      'https://developer.icicibank.com/rest/getAdditionalParameters',
-     query,options
+      "https://developer.icicibank.com/rest/getAdditionalParameters",
+      query,
+      options
     );
   }
   // Get All API Start
   Get_All_API() {
+  // Get_All_API(json) {
     var json = {};
     var key;
-    var query = '';
+    var query = "";
     for (key in json) {
       query +=
-        encodeURIComponent(key) + '=' + encodeURIComponent(json[key]) + '&';
+        encodeURIComponent(key) + "=" + encodeURIComponent(json[key]) + "&";
     }
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'get-api-data-resp', {}, options);
+    return this.http.post(this.apiUrl + "get-api-data-resp", {}, options);
   }
   // Get All API Start
 
@@ -546,21 +577,23 @@ mis(json){
   }
 
   Onboardrequestsuser() {
-    var query = 'username=' + localStorage.getItem('username');
+    var query = "username=" + localStorage.getItem("username");
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'fetch-jiraid-v2', query, options);
+    return this.http.post(this.apiUrl + "fetch-jiraid-v2", query, options);
   }
 
   Onboardrequests() {
-    var query = 'username=' + localStorage.getItem('username');
+    var query = "username=" + localStorage.getItem("username");
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'fetch-pending-jiraid', query, options);
+    return this.http.post(this.apiUrl + "fetch-pending-jiraid", query, options);
   }
 
   approvals() {
@@ -573,43 +606,46 @@ mis(json){
   }
 
   GetPendingReg() {
-    var query = 'username=' + localStorage.getItem('username');
+    var query = "username=" + localStorage.getItem("username");
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(
-      this.apiUrl + 'fetch-pending-userReg',
+      this.apiUrl + "fetch-pending-userReg",
       query,
-      options,
+      options
     );
   }
 
   ApproveReg(json) {
-    var query = '';
+    var query = "";
     var key;
     for (key in json) {
       query +=
-        encodeURIComponent(key) + '=' + encodeURIComponent(json[key]) + '&';
+        encodeURIComponent(key) + "=" + encodeURIComponent(json[key]) + "&";
     }
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(
-      this.apiUrl + 'approve-pending-userReg',
+      this.apiUrl + "approve-pending-userReg",
       query,
-      options,
+      options
     );
   }
 
   Admin_access(username) {
-    var query = 'username=' + username;
+    var query = "username=" + username;
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
+      // "Token" : localStorage.getItem("jwt")
     });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl + 'has-admin-access', query, options);
+    return this.http.post(this.apiUrl + "has-admin-access", query, options);
   }
   downloadCertificate(filePath) {
     var query = filePath;

@@ -6,6 +6,7 @@ import { AuthGuard } from './services/auth.guard';
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { JwtAuthComponent } from './jwt-auth/jwt-auth.component'
 import { MisComponent } from './mis/mis.component'
+import { ErrorPageComponent } from './error-page/error-page.component';
 const routes: Routes = [
   // { path: '', redirectTo :'index', pathMatch :'full' },
   { path: 'layout', component: LayoutComponent, canActivate: [AuthGuard] },
@@ -25,8 +26,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'error',
+    component: ErrorPageComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'admin',
-    component: AdminPortalComponent,
+    component: ErrorPageComponent,
     // canActivate: [true],
     children: [
       {

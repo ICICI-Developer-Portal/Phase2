@@ -170,9 +170,10 @@ export class ApplicationComponent implements OnInit {
   }
 
   GetApplList(){ 
-        var json={ 
-          "id":localStorage.getItem('id')
-        }
+    var json={ 
+      "id":localStorage.getItem('id'),
+      // "username": localStorage.getItem('username')
+    }
         this.adm.applicationList(json)
       .subscribe(
         (data:any) => {
@@ -180,7 +181,11 @@ export class ApplicationComponent implements OnInit {
           var obj=JSON.parse(response);
          
           this.appList =obj.data;
-        }
+        },
+        err => {
+          console.log('err', err);
+          this.router.navigate(['error']);
+        },
       );
   }
   App_id:any;
@@ -194,7 +199,8 @@ export class ApplicationComponent implements OnInit {
    this.App_id=App_id
    var json={ 
      "id": localStorage.getItem('id'),
-     "app_id":App_id
+     "app_id":App_id,
+    //  "username": localStorage.getItem('username')
    }
    this.AddApplication(json); 
  }
@@ -241,7 +247,11 @@ export class ApplicationComponent implements OnInit {
 
   
 
-      }
+      },
+      err => {
+        console.log('err', err);
+        this.router.navigate(['error']);
+      },
     );
 }
 
@@ -251,7 +261,8 @@ export class ApplicationComponent implements OnInit {
    NewApplication( ){  
     var json={
       "id": localStorage.getItem('id'), 
-      "app_id":"0" 
+      "app_id":"0",
+      // "username": localStorage.getItem('username')
     }
 
     this.adm.add_newApplication(json)
@@ -262,7 +273,11 @@ export class ApplicationComponent implements OnInit {
       this.applicationdata =obj.data.platforms;
       this.authType =obj.data.auth_types;
       this.data =obj.data.apis;
-    }
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
   );
 }
 // End region
@@ -283,8 +298,8 @@ saveAddAppl_Edit(call_back_url:any,scope:any){
     "auth_type": this.auth_type,
     "apis":  obj.toString(), 
     //"app_id": this.AuthForm.value.app_id 
-    "app_id":this.App_id
-
+    "app_id":this.App_id,
+    // "username":localStorage.getItem('username')
   }
 
    this.adm.saveAddAppl(json)
@@ -328,7 +343,11 @@ saveAddAppl_Edit(call_back_url:any,scope:any){
          //this.modalRef.hide();
          }
         
-     }
+     },
+     err => {
+       console.log('err', err);
+       this.router.navigate(['error']);
+     },
        
   );  
 //}catch{ }  
@@ -350,8 +369,8 @@ saveAddAppl(call_back_url:any,scope:any){
     "scope": this.AuthForm.value.scope,
     "auth_type":this.auth_type,
     "apis":  obj.join(", "), 
-    "app_id": 0
-
+    "app_id": 0,
+    // "username":localStorage.getItem('username')
   }
    this.adm.saveAddAppl(json)
    .subscribe(
@@ -396,7 +415,11 @@ saveAddAppl(call_back_url:any,scope:any){
          //this.modalRef.hide();
          }
         
-     }
+     },
+     err => {
+       console.log('err', err);
+       this.router.navigate(['error']);
+     },
        
   );  
 }
@@ -439,7 +462,8 @@ saveTab2(selecteddata:any=[])
   if(confirm("Are you sure to delete")) {
     var json={
               //"id": localStorage.getItem('id'), 
-              "app_id":App_id  
+              "app_id":App_id,
+              // "username":localStorage.getItem('username')
             } 
      this.adm.deleteApp(json)
      .subscribe(
@@ -455,7 +479,11 @@ saveTab2(selecteddata:any=[])
          else{
                this.toastrmsg('error', "something went wrong please try again");
              } 
-       } 
+       },
+       err => {
+         console.log('err', err);
+         this.router.navigate(['error']);
+       }, 
     );  
   } 
  }  

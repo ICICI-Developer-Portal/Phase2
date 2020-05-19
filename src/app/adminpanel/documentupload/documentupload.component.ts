@@ -4,6 +4,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { HttpClient } from '@angular/common/http'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { Router } from '@angular/router';
 declare var $: any;
 @Component({
   selector: 'app-documentupload',
@@ -26,7 +27,8 @@ export class DocumentuploadComponent implements OnInit {
     private spinnerService: Ng4LoadingSpinnerService,
     private HttpClient: HttpClient,
     private formbuilder: FormBuilder,
-    private modalService: BsModalService, ) {
+    private modalService: BsModalService,
+    private router: Router, ) {
     this.spinnerService.show();
   }
 
@@ -93,7 +95,7 @@ export class DocumentuploadComponent implements OnInit {
       },
       err => {
         console.log('err', err);
-        console.log('err headers');
+        this.router.navigate(['error']);
       },
     );
     this.modalRef = this.modalService.show(UATconfirm);

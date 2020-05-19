@@ -23,7 +23,12 @@ export class HeaderComponent implements OnInit {
     this.auth.ischeck_session();
     this.adm.getUserName().subscribe(data => {
       this.user_name = data;
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
 
   //  Fuction for Logout

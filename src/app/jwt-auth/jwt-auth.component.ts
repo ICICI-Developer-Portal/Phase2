@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services';
+import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';  
 // import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
@@ -13,11 +14,13 @@ export class JwtAuthComponent implements OnInit {
   encUsername: string;  
   encPassword: string;  
   conversionEncryptOutput: string;  
-  conversionDecryptOutput: string;  
+  conversionDecryptOutput: string; 
+  jwt:any; 
   // loginForm: FormGroup;
     
   constructor(
     private adm: LoginService,
+    public router:Router
     // private formBuilder: FormBuilder,
   ) { }
 loginResponse:any;
@@ -41,16 +44,14 @@ loginResponse:any;
       var response = data._body;
       this.loginResponse = JSON.parse(response);
       if (this.loginResponse.status == true) {
-        this.adm.LoginPortal(json).subscribe(
-          res => {
-            // this.router.navigate(['/index']);
-          },
-          err => {
-            //this.router.navigate(['/index']);
-          },
-        );
+       localStorage.setItem("jwt",this.loginResponse.jwttoken)
       }
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
     // this.adm.Login(btoa(this.f.username.value), btoa(this.f.password.value))
     //         .pipe(first())
     //         .subscribe(

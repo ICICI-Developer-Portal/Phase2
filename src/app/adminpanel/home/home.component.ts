@@ -1,5 +1,5 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, ViewChild, ElementRef } from '@angular/core';
 import {
   MatTreeFlatDataSource,
   MatTreeFlattener,
@@ -9,6 +9,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { WARN } from 'config/properties';
+declare var $: any;
 
 /**
  * File node data with nested structure.
@@ -29,7 +30,7 @@ export class FileFlatNode {
     public level: number,
     public type: any,
     public id: string,
-  ) {}
+  ) { }
 }
 
 /**
@@ -190,7 +191,12 @@ export class FileDatabase {
 
       // Notify the change.
       this.dataChange.next(data1);
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },
+    );
   }
 
   /**
@@ -205,7 +211,15 @@ export class FileDatabase {
     return Object.keys(obj).reduce<FileNode[]>((accumulator, key, idx) => {
       const value = obj[key];
       const node = new FileNode();
-      node.filename = key;
+      node.filename = value.TAB_NAME;
+      if (value.children !== '0') {
+        for (var i = 0; i < value.children.length; i++) {
+          node.children = value.children[i].TAB_NAME
+          console.log("nodechild", node.children)
+
+        }
+      }
+      console.log("node", node.filename)
       /**
        * Make sure your node has an id so we can properly rearrange the tree during drag'n'drop.
        * By passing parentId to buildFileTree, it constructs a path of indexes which make
@@ -214,12 +228,13 @@ export class FileDatabase {
       node.id = `${parentId}/${idx}`;
 
       if (value != null) {
+        console.log("sdd",value)
         if (typeof value === 'object') {
           if (value.API_ID) {
             //node.type = 'value';
           } else node.children = this.buildFileTree(value, level + 1, node.id);
         } else {
-          node.type = value;
+          //node.type = value;
         }
       }
       if (key != 'ID') {
@@ -239,6 +254,7 @@ export class FileDatabase {
   providers: [FileDatabase],
 })
 export class HomeComponent {
+  @ViewChild('menuitem') menuitem: ElementRef;
   treeControl: FlatTreeControl<FileFlatNode>;
   treeFlattener: MatTreeFlattener<FileNode, FileFlatNode>;
   dataSource: MatTreeFlatDataSource<FileNode, FileFlatNode>;
@@ -247,6 +263,11 @@ export class HomeComponent {
   expandTimeout: any;
   expandDelay = 1000;
   color = 'primary';
+  menu: any;
+  initialVal: any;
+  updateItem: any;
+  initial: any;
+  updatedEle: any;
 
   constructor(database: FileDatabase, private router: Router) {
     this.treeFlattener = new MatTreeFlattener(
@@ -525,16 +546,26 @@ export class HomeComponent {
   }
 
   //Function for edit menu item
-  editMenuItem() {
-    alert('edit');
+  editMenuItem(e) {
+    this.menu = e;
+    this.initialVal = this.menu;
+    localStorage.setItem("initialVal", this.initialVal);
   }
-
+deleteItem:any;
+deleteVal:any;
   //Function for delete menu item
   deleteMenuItem(node) {
     console.log('node===', node);
     var deleteState;
     deleteState = confirm(WARN.DELETE);
     if (deleteState === true) {
+    this.deleteVal=  document.getElementById(node)
+    console.log("aasdsda",this.deleteVal)
+    $(this.deleteVal).each(function(){
+      $(this).parent().parent().parent().find("#nodeFile").prevObject[0].remove();
+      console.log("SDS",$(this).find("#nodeFile").remove())
+    })
+    // document.getElementById("nodeFile").remove()
       // const changedData = JSON.parse(JSON.stringify(this.dataSource.data));
       // console.log('changedData', changedData);
       // const siblings = this.findNodeSiblings(changedData, node.id);
@@ -556,19 +587,51 @@ export class HomeComponent {
 
   //   return result;
   // }
-
+  menuFn(menuChangedVal) {
+    this.menu = menuChangedVal;
+    localStorage.setItem("update", this.menu)
+  }
   //Function for save menu items
   saveMenuItems() {
     alert('save');
   }
-
   //Function for update menu item
   updateMenuItems() {
-    alert('update');
+    $('#nodeFN').each(function () {
+      this.updateItem = localStorage.getItem("update")
+      this.initial = localStorage.getItem("initialVal")
+      // alert($(this).find("[id="+this.initialVal+"]").prevObject[0])
+      console.log("ccccc", document.getElementById(this.initial))
+      this.updatedEle = document.getElementById(this.initial)
+      this.updatedEle.innerHTML = this.updateItem
+    });
   }
   //Function for add menu item
-  addMenuItems() {
-    alert('add');
+  addMenuItems(addItem) {
+    // $('#nodeFile').each(function () {
+    //   $(this).append('<div id='+this.updateItem +'#'+this.updateItem+'>'+this.updateItem
+    //   +'</div>')
+    // })
+    // $('#add').click(function(){
+    //   $('#matTreeNode').append(' <div class="mat-tree-items-sec" id="nodeFile" #nodeFile>'+
+    //   '<div  id="nodeFN" #nodeFN>'+
+    //     '<div id='+addItem+ '#'+addItem+'>'+
+    //     addItem+
+    //   '</div>'+
+    // '</div>'+
+    //   '<div>'+
+    //     '<i class="material-icons edit-icons">'+
+    //       '<a (click)="editMenuItem('+addItem+')">edit</a>'+
+    //     '</i>'+
+    //     '<i class="material-icons close-icons">'+
+    //      ' <a (click)="+deleteMenuItem('+addItem+')">close</a>'+
+    //    ' </i>'+
+    //    ' <mat-slide-toggle [color]="color"></mat-slide-toggle>'+
+    //  ' </div>'+
+    // '</div>')
+
+    // console.log("ansdgsyad",$('#matTreeNode'))
+    // })
   }
 
   toggle(event) {

@@ -4,6 +4,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 // import 'rxjs/Rx';
 import { Http, Headers, Response } from '@angular/http';
 import { saveAs } from 'file-saver';
+import { Router } from '@angular/router';
 //declare var require;
 
 @Component({
@@ -19,6 +20,7 @@ export class OnboardingrequestsComponent implements OnInit {
   constructor(
     private adm: LoginService,
     private spinnerService: Ng4LoadingSpinnerService,
+    private router: Router,
   ) {
     this.request_data();
   }
@@ -39,6 +41,13 @@ export class OnboardingrequestsComponent implements OnInit {
       var obj = JSON.parse(response);
       this.dataSource = obj;
       this.spinnerService.hide();
+    },
+    err => {
+      console.log("err",err);
+      // console.log("status code",err.status)
+      // if(err.status === "500" || err.status === "404"){
+        this.router.navigate(['error']);
+      // }
     });
   }
 
@@ -57,6 +66,10 @@ export class OnboardingrequestsComponent implements OnInit {
         type: 'text/plain',
       });
       saveAs(blob, fileName);
-    });
+    },
+    err => {
+      console.log('err', err);
+      this.router.navigate(['error']);
+    },);
   }
 }
