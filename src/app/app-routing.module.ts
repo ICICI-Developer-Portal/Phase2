@@ -32,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: ErrorPageComponent,
+    component: AdminPortalComponent,
     // canActivate: [true],
     children: [
       {
